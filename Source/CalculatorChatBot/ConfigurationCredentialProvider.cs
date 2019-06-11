@@ -1,15 +1,21 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
-//
-// Generated with Bot Builder V4 SDK Template for Visual Studio EchoBot v4.3.0
-
-using Microsoft.Bot.Connector.Authentication;
-using Microsoft.Extensions.Configuration;
+// <copyright file="ConfigurationCredentialProvider.cs" company="Microsoft">
+// Copyright (c) Microsoft. All rights reserved.
+// </copyright>
 
 namespace CalculatorChatBot
 {
+    using Microsoft.Bot.Connector.Authentication;
+    using Microsoft.Extensions.Configuration;
+
+    /// <summary>
+    /// Initializes the configuration credential provider.
+    /// </summary>
     public class ConfigurationCredentialProvider : SimpleCredentialProvider
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigurationCredentialProvider"/> class.
+        /// </summary>
+        /// <param name="configuration">The current configuration settings.</param>
         public ConfigurationCredentialProvider(IConfiguration configuration)
             : base(configuration["MicrosoftAppId"], configuration["MicrosoftAppPassword"])
         {

@@ -11,7 +11,7 @@ using Microsoft.Bot.Schema;
 
 namespace CalculatorChatBot.Bots
 {
-    public class EchoBot : ActivityHandler
+    public class CalculatorBot : ActivityHandler
     {
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
