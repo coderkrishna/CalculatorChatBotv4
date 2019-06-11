@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CalculatorChatBot</name>
+    </assembly>
+    <members>
+        <member name="T:CalculatorChatBot.Bots.CalculatorBot">
+            <summary>
+            Initializes the CalculatorBot class.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Bots.CalculatorBot.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Logging.ILogger{CalculatorChatBot.Bots.CalculatorBot})">
+            <summary>
+            Initializes a new instance of the <see cref="T:CalculatorChatBot.Bots.CalculatorBot"/> class.
+            </summary>
+            <param name="configuration">The current configuration.</param>
+            <param name="logger">Use of the logging mechanisms.</param>
+        </member>
+        <member name="M:CalculatorChatBot.Bots.CalculatorBot.OnMessageActivityAsync(Microsoft.Bot.Builder.ITurnContext{Microsoft.Bot.Schema.IMessageActivity},System.Threading.CancellationToken)">
+            <summary>
+            Method that gets fired when a message comes in.
+            </summary>
+            <param name="turnContext">The current turn.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.Bots.CalculatorBot.OnMembersAddedAsync(System.Collections.Generic.IList{Microsoft.Bot.Schema.ChannelAccount},Microsoft.Bot.Builder.ITurnContext{Microsoft.Bot.Schema.IConversationUpdateActivity},System.Threading.CancellationToken)">
+            <summary>
+            Method that gets fired when there are system events being fired.
+            </summary>
+            <param name="membersAdded">The list of members being added.</param>
+            <param name="turnContext">The current turn.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a unit of execution.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.ConfigurationCredentialProvider">
+            <summary>
+            Initializes the configuration credential provider.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.ConfigurationCredentialProvider.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CalculatorChatBot.ConfigurationCredentialProvider"/> class.
+            </summary>
+            <param name="configuration">The current configuration settings.</param>
+        </member>
+        <member name="T:CalculatorChatBot.Controllers.BotController">
+            <summary>
+            This ASP Controller is created to handle a request. Dependency Injection will provide the Adapter and IBot
+            implementation at runtime. Multiple different IBot implementations running at different endpoints can be
+            achieved by specifying a more specific type for the bot constructor argument.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Controllers.BotController.#ctor(Microsoft.Bot.Builder.Integration.AspNet.Core.IBotFrameworkHttpAdapter,Microsoft.Bot.Builder.IBot)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CalculatorChatBot.Controllers.BotController"/> class.
+            </summary>
+            <param name="adapter">The bot framework adapter.</param>
+            <param name="bot">The bot itself.</param>
+        </member>
+        <member name="M:CalculatorChatBot.Controllers.BotController.PostAsync">
+            <summary>
+            Posting method.
+            </summary>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Program">
+            <summary>
+            The main point of execution.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Program.Main(System.String[])">
+            <summary>
+            The main method of execution at the time the solution is running.
+            </summary>
+            <param name="args">Command line arguments.</param>
+        </member>
+        <member name="M:CalculatorChatBot.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Creates the Web Host.
+            </summary>
+            <param name="args">A string array of arguments.</param>
+            <returns>An interface for having the application scaffolded.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Startup">
+            <summary>
+            Initializes the members of the Startup class.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CalculatorChatBot.Startup"/> class.
+            </summary>
+            <param name="configuration">All configurations done.</param>
+        </member>
+        <member name="P:CalculatorChatBot.Startup.Configuration">
+            <summary>
+            Gets the configuration properties.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Method that gets called by the runtime.
+            </summary>
+            <param name="services">All of the services that are required.</param>
+        </member>
+        <member name="M:CalculatorChatBot.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">The current built application.</param>
+            <param name="env">All of the environment settings.</param>
+        </member>
+    </members>
+</doc>

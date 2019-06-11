@@ -15,7 +15,7 @@ namespace CalculatorChatBot
     using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
-    /// Initializes the members of the Startup class
+    /// Initializes the members of the Startup class.
     /// </summary>
     public class Startup
     {

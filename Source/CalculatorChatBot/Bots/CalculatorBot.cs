@@ -31,11 +31,24 @@ namespace CalculatorChatBot.Bots
             this.configuration = configuration;
         }
 
+        /// <summary>
+        /// Method that gets fired when a message comes in.
+        /// </summary>
+        /// <param name="turnContext">The current turn.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>Returns a unit of execution.</returns>
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
             await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {turnContext.Activity.Text}"), cancellationToken);
         }
 
+        /// <summary>
+        /// Method that gets fired when there are system events being fired.
+        /// </summary>
+        /// <param name="membersAdded">The list of members being added.</param>
+        /// <param name="turnContext">The current turn.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>Returns a unit of execution.</returns>
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
             foreach (var member in membersAdded)
