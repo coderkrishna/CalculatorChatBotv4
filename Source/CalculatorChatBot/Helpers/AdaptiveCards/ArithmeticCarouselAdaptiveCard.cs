@@ -11,13 +11,13 @@ namespace CalculatorChatBot.Helpers.AdaptiveCards
     /// <summary>
     /// This class is generating the arithmetic carousel card.
     /// </summary>
-    public class ArithmeticCarouselCard
+    public class ArithmeticCarouselAdaptiveCard
     {
         private static readonly string CardTemplate;
 
-        static ArithmeticCarouselCard()
+        static ArithmeticCarouselAdaptiveCard()
         {
-            var cardJsonFilePath = Path.Combine(".", "Helpers", "AdaptiveCards", "ArithmeticCarouselCard.json");
+            var cardJsonFilePath = Path.Combine(".", "Helpers", "AdaptiveCards", "ArithmeticCarouselAdaptiveCard.json");
             CardTemplate = File.ReadAllText(cardJsonFilePath);
         }
 
