@@ -61,6 +61,24 @@ namespace CalculatorChatBot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The arithmetic operations are the most rudimentary operations that I perform. To be precise, I can calculate: the sum; the difference; the product; the quotient; and the remainder for a list of numbers. I also will throw up errors if I need to..
+        /// </summary>
+        public static string ArithmeticCarouselCardContent {
+            get {
+                return ResourceManager.GetString("ArithmeticCarouselCardContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arithmetic.
+        /// </summary>
+        public static string ArithmeticCarouselCardTitleText {
+            get {
+                return ResourceManager.GetString("ArithmeticCarouselCardTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Take a tour.
         /// </summary>
         public static string TakeATourText {

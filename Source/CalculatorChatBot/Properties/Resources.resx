@@ -117,6 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ArithmeticCarouselCardContent" xml:space="preserve">
+    <value>The arithmetic operations are the most rudimentary operations that I perform. To be precise, I can calculate: the sum; the difference; the product; the quotient; and the remainder for a list of numbers. I also will throw up errors if I need to.</value>
+    <comment>The card content for the arithmetic carousel card</comment>
+  </data>
+  <data name="ArithmeticCarouselCardTitleText" xml:space="preserve">
+    <value>Arithmetic</value>
+    <comment>The title text for the first of the three carousel cards in the welcome tour for the calculator chat bot</comment>
+  </data>
   <data name="TakeATourText" xml:space="preserve">
     <value>Take a tour</value>
     <comment>Text for taking a tour</comment>
