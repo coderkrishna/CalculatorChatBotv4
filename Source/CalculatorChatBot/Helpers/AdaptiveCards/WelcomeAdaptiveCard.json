@@ -1,0 +1,46 @@
+﻿{
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "TextBlock",
+      "separator": true,
+      "size": "Medium",
+      "weight": "Bolder",
+      "color": "Accent",
+      "text": "Hello 👋"
+    },
+    {
+      "type": "TextBlock",
+      "separator": true,
+      "text": "I am the better Calculator Chat Bot - unlike my cousin in v3, I can work a little better. Yes I can do everything my cousin can, and possibly a little more...in due ⏰",
+      "wrap": true,
+      "maxLines": 3
+    },
+    {
+      "type": "TextBlock",
+      "text": "Curious are we? Here are the categories of operations that I can do:",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "* Arithmetic"
+    },
+    {
+      "type": "TextBlock",
+      "text": "* Geometric"
+    },
+    {
+      "type": "TextBlock",
+      "text": "* Statistical"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Take a tour",
+      "data": "Take a tour"
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.0"
+}

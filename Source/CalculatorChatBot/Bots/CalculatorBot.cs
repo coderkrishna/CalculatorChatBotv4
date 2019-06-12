@@ -55,6 +55,7 @@ namespace CalculatorChatBot.Bots
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
                 {
+                    var botDisplayName = this.configuration["BotDisplayName"];
                     await turnContext.SendActivityAsync(MessageFactory.Text($"Hello and Welcome!"), cancellationToken);
                 }
             }
