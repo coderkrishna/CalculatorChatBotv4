@@ -110,6 +110,11 @@
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.TakeATourText">
+            <summary>
+              Looks up a localized string similar to Take a tour.
+            </summary>
+        </member>
         <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardBulletListItem1">
             <summary>
               Looks up a localized string similar to * Arithmetic.
