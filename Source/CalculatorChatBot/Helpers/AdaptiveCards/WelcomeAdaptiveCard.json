@@ -7,38 +7,44 @@
       "size": "Medium",
       "weight": "Bolder",
       "color": "Accent",
-      "text": "Hello 👋"
+      "text": "%welcomeCardTitle%"
     },
     {
       "type": "TextBlock",
       "separator": true,
-      "text": "I am the better Calculator Chat Bot - unlike my cousin in v3, I can work a little better. Yes I can do everything my cousin can, and possibly a little more...in due ⏰",
+      "text": "%welcomeCardContentPart1%",
       "wrap": true,
       "maxLines": 3
     },
     {
       "type": "TextBlock",
-      "text": "Curious are we? Here are the categories of operations that I can do:",
+      "text": "%welcomeCardContentPart2%",
       "wrap": true
     },
     {
       "type": "TextBlock",
-      "text": "* Arithmetic"
+      "text": "%welcomeCardBulletListItem1%"
     },
     {
       "type": "TextBlock",
-      "text": "* Geometric"
+      "text": "%welcomeCardBulletListItem2%"
     },
     {
       "type": "TextBlock",
-      "text": "* Statistical"
+      "text": "%welcomeCardBulletListItem3%"
     }
   ],
   "actions": [
     {
       "type": "Action.Submit",
-      "title": "Take a tour",
-      "data": "Take a tour"
+      "title": "%takeATourText%",
+      "data": {
+        "msteams": {
+          "type": "messageBack",
+          "displayText": "%takeATourText%",
+          "text": "%takeATourText%"
+        }
+      }
     }
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",

@@ -64,6 +64,18 @@
             </summary>
             <returns>A unit of execution.</returns>
         </member>
+        <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeAdaptiveCard">
+            <summary>
+            This class is responsible for the generation of the welcome adaptive card.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeAdaptiveCard.GetCard(System.String)">
+            <summary>
+            Generates the JSON string of the adaptive card.
+            </summary>
+            <param name="botDisplayName">The display name for the bot.</param>
+            <returns>JSON string of the welcome adaptive card.</returns>
+        </member>
         <member name="T:CalculatorChatBot.Program">
             <summary>
             The main point of execution.
@@ -81,6 +93,52 @@
             </summary>
             <param name="args">A string array of arguments.</param>
             <returns>An interface for having the application scaffolded.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardBulletListItem1">
+            <summary>
+              Looks up a localized string similar to * Arithmetic.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardBulletListItem2">
+            <summary>
+              Looks up a localized string similar to * Geometric.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardBulletListItem3">
+            <summary>
+              Looks up a localized string similar to * Statistical.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardContentPart1">
+            <summary>
+              Looks up a localized string similar to I am the new and improved {0} - unlike my cousin in v3, I can work a little better. Yes I can do everything my cousin can, and possibly a little more...in due ⏰.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardContentPart2">
+            <summary>
+              Looks up a localized string similar to Curious are we? Here are the categories of operations that I can do:.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardTitle">
+            <summary>
+              Looks up a localized string similar to Hello 👋.
+            </summary>
         </member>
         <member name="T:CalculatorChatBot.Startup">
             <summary>
