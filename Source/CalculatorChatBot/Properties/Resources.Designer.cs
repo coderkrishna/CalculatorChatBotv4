@@ -79,6 +79,33 @@ namespace CalculatorChatBot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I can also perform some geometric operations such as: calculating the discriminant; calculating the roots of a quadratic equation; calculating the hypotenuse given two legs of a triangle; calculating the area and perimeter of polygons; and more....
+        /// </summary>
+        public static string GeometricCarouselCardContent {
+            get {
+                return ResourceManager.GetString("GeometricCarouselCardContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geometric.
+        /// </summary>
+        public static string GeometricCarouselCardTitleText {
+            get {
+                return ResourceManager.GetString("GeometricCarouselCardTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Statistical.
+        /// </summary>
+        public static string StatisticalCarouselCardTitleText {
+            get {
+                return ResourceManager.GetString("StatisticalCarouselCardTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Take a tour.
         /// </summary>
         public static string TakeATourText {

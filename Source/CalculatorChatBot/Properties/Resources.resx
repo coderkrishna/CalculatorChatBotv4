@@ -125,6 +125,18 @@
     <value>Arithmetic</value>
     <comment>The title text for the first of the three carousel cards in the welcome tour for the calculator chat bot</comment>
   </data>
+  <data name="GeometricCarouselCardContent" xml:space="preserve">
+    <value>I can also perform some geometric operations such as: calculating the discriminant; calculating the roots of a quadratic equation; calculating the hypotenuse given two legs of a triangle; calculating the area and perimeter of polygons; and more...</value>
+    <comment>The card content of the geometric carousel card</comment>
+  </data>
+  <data name="GeometricCarouselCardTitleText" xml:space="preserve">
+    <value>Geometric</value>
+    <comment>The title text for second of the three carousel cards in the welcome tour for the calculator chat bot</comment>
+  </data>
+  <data name="StatisticalCarouselCardTitleText" xml:space="preserve">
+    <value>Statistical</value>
+    <comment>The title text for the third of the three carousel cards in the welcome tour for the calculator chat bot</comment>
+  </data>
   <data name="TakeATourText" xml:space="preserve">
     <value>Take a tour</value>
     <comment>Text for taking a tour</comment>
