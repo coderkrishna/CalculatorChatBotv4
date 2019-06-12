@@ -38,7 +38,13 @@
     {
       "type": "Action.Submit",
       "title": "%takeATourText%",
-      "data": "%takeATourText%"
+      "data": {
+        "msteams": {
+          "type": "messageBack",
+          "displayText": "%takeATourText%",
+          "text": "%takeATourText%"
+        }
+      }
     }
   ],
   "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
