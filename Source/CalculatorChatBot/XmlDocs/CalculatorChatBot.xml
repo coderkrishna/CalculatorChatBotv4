@@ -33,6 +33,20 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>Returns a unit of execution.</returns>
         </member>
+        <member name="T:CalculatorChatBot.CalcChatBot">
+            <summary>
+            This class will be allowing for the separation of logic.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.SendProactiveWelcomeMessage(Microsoft.Bot.Builder.ITurnContext{Microsoft.Bot.Schema.IConversationUpdateActivity},System.Threading.CancellationToken,System.String)">
+            <summary>
+            Method which fires at the time the bot sends a proactive welcome message.
+            </summary>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <param name="botDisplayName">The bot display name.</param>
+            <returns>A unit of execution.</returns>
+        </member>
         <member name="T:CalculatorChatBot.ConfigurationCredentialProvider">
             <summary>
             Initializes the configuration credential provider.
@@ -63,6 +77,18 @@
             Posting method.
             </summary>
             <returns>A unit of execution.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.ArithmeticCarouselCard">
+            <summary>
+            This class is generating the arithmetic carousel card.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.ArithmeticCarouselCard.GetCard">
+            <summary>
+            Method that will generate the JSON string for the arithmetic carousel card. This card is one
+            of 3 that will appear as part of the welcome tour.
+            </summary>
+            <returns>The JSON string for the adaptive card.</returns>
         </member>
         <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeAdaptiveCard">
             <summary>
@@ -108,6 +134,16 @@
             <summary>
               Overrides the current thread's CurrentUICulture property for all
               resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.ArithmeticCarouselCardContent">
+            <summary>
+              Looks up a localized string similar to The arithmetic operations are the most rudimentary operations that I perform. To be precise, I can calculate: the sum; the difference; the product; the quotient; and the remainder for a list of numbers. I also will throw up errors if I need to..
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.ArithmeticCarouselCardTitleText">
+            <summary>
+              Looks up a localized string similar to Arithmetic.
             </summary>
         </member>
         <member name="P:CalculatorChatBot.Properties.Resources.TakeATourText">
