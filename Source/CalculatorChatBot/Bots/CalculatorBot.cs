@@ -41,7 +41,7 @@ namespace CalculatorChatBot.Bots
         {
             if (turnContext.Activity.Text == "Take a tour")
             {
-                await turnContext.SendActivityAsync(MessageFactory.Text("The tour will be done soon"), cancellationToken);
+                await CalcChatBot.SendTourCarouselCard(turnContext, cancellationToken);
             }
             else
             {

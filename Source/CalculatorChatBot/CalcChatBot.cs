@@ -29,6 +29,12 @@ namespace CalculatorChatBot
             await turnContext.SendActivityAsync(MessageFactory.Attachment(welcomeCardAttachment), cancellationToken);
         }
 
+        /// <summary>
+        /// Method that returns the necessary tour carousel card.
+        /// </summary>
+        /// <param name="turnContext">The turn context.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
         public static async Task SendTourCarouselCard(ITurnContext turnContext, CancellationToken cancellationToken)
         {
             var tourCarouselReply = turnContext.Activity.CreateReply();

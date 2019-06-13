@@ -29,5 +29,53 @@ namespace CalculatorChatBot.Helpers
 
             return welcomeCardAttachment;
         }
+
+        /// <summary>
+        /// Returns the arithmetic carousel card.
+        /// </summary>
+        /// <returns>Returns the attachment that is to be a part of the tour carousel card.</returns>
+        public static Attachment GetArithmeticCarouselAttachment()
+        {
+            var arithmeticCarouselAttachmentString = ArithmeticCarouselAdaptiveCard.GetCard();
+            var arithmeticCarouselAttachment = new Attachment()
+            {
+                ContentType = "application/vnd.microsoft.card.adaptive",
+                Content = JsonConvert.DeserializeObject(arithmeticCarouselAttachmentString),
+            };
+
+            return arithmeticCarouselAttachment;
+        }
+
+        /// <summary>
+        /// Returns the geometric carousel card.
+        /// </summary>
+        /// <returns>Returns the attachment that is to be a part of the tour carousel card.</returns>
+        public static Attachment GetGeometricCarouselAttachment()
+        {
+            var geometricCarouselAttachmentString = GeometricCarouselAdaptiveCard.GetCard();
+            var geometricCarouselAttachment = new Attachment()
+            {
+                ContentType = "application/vnd.microsoft.card.adaptive",
+                Content = JsonConvert.DeserializeObject(geometricCarouselAttachmentString),
+            };
+
+            return geometricCarouselAttachment;
+        }
+
+        /// <summary>
+        /// Returns the statistical carousel card.
+        /// </summary>
+        /// <returns>Returns the attachment that is to be part of the tour carousel card.</returns>
+        public static Attachment GetStatisticalCarouselAttachment()
+        {
+            var statisticalCarouselAttachmentString = StatisticalCarouselAdaptiveCard.GetCard();
+            var statisticalCarouselAttachment = new Attachment()
+            {
+                ContentType = "application/vnd.microsoft.card.adaptive",
+                Content = JsonConvert.DeserializeObject(statisticalCarouselAttachmentString),
+            };
+
+            return statisticalCarouselAttachment;
+        }
     }
 }
