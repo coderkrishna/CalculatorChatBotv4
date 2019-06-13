@@ -86,56 +86,6 @@
             </summary>
             <returns>A unit of execution.</returns>
         </member>
-        <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.ArithmeticCarouselAdaptiveCard">
-            <summary>
-            This class is generating the arithmetic carousel card.
-            </summary>
-        </member>
-        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.ArithmeticCarouselAdaptiveCard.#cctor">
-            <summary>
-            Initializes static members of the <see cref="T:CalculatorChatBot.Helpers.AdaptiveCards.ArithmeticCarouselAdaptiveCard"/> class.
-            </summary>
-        </member>
-        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.ArithmeticCarouselAdaptiveCard.GetCard">
-            <summary>
-            Method that will generate the JSON string for the arithmetic carousel card. This card is one
-            of 3 that will appear as part of the welcome tour.
-            </summary>
-            <returns>The JSON string for the adaptive card.</returns>
-        </member>
-        <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.GeometricCarouselAdaptiveCard">
-            <summary>
-            This class is generating the geometric carousel card.
-            </summary>
-        </member>
-        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.GeometricCarouselAdaptiveCard.#cctor">
-            <summary>
-            Initializes static members of the <see cref="T:CalculatorChatBot.Helpers.AdaptiveCards.GeometricCarouselAdaptiveCard"/> class.
-            </summary>
-        </member>
-        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.GeometricCarouselAdaptiveCard.GetCard">
-            <summary>
-            Method that will generate the JSON string for the arithmetic carousel card.This card is the second
-            of 3 that will appear as part of the welcome tour.
-            </summary>
-            <returns>JSON string of the adaptive card.</returns>
-        </member>
-        <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.StatisticalCarouselAdaptiveCard">
-            <summary>
-            Generates the statistical carousel adaptive card.
-            </summary>
-        </member>
-        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.StatisticalCarouselAdaptiveCard.#cctor">
-            <summary>
-            Initializes static members of the <see cref="T:CalculatorChatBot.Helpers.AdaptiveCards.StatisticalCarouselAdaptiveCard"/> class.
-            </summary>
-        </member>
-        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.StatisticalCarouselAdaptiveCard.GetCard">
-            <summary>
-            Ensures to generate the JSON string for the statistical carousel card.
-            </summary>
-            <returns>JSON string of the adaptive card.</returns>
-        </member>
         <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeAdaptiveCard">
             <summary>
             This class is responsible for the generation of the welcome adaptive card.

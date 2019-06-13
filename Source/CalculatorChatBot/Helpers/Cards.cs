@@ -5,8 +5,10 @@
 namespace CalculatorChatBot.Helpers
 {
     using CalculatorChatBot.Helpers.AdaptiveCards;
+    using CalculatorChatBot.Properties;
     using Microsoft.Bot.Schema;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Class that allows for the returning of attachments.
@@ -36,14 +38,23 @@ namespace CalculatorChatBot.Helpers
         /// <returns>Returns the attachment that is to be a part of the tour carousel card.</returns>
         public static Attachment GetArithmeticCarouselAttachment()
         {
-            var arithmeticCarouselAttachmentString = ArithmeticCarouselAdaptiveCard.GetCard();
-            var arithmeticCarouselAttachment = new Attachment()
+            var arithmeticHeroCard = new HeroCard()
             {
-                ContentType = "application/vnd.microsoft.card.adaptive",
-                Content = JsonConvert.DeserializeObject(arithmeticCarouselAttachmentString),
+                Title = Resources.ArithmeticCarouselCardTitleText,
+                Text = Resources.ArithmeticCarouselCardContent,
+                Buttons = new List<CardAction>()
+                {
+                    new CardAction()
+                    {
+                        Title = "Sample Arithmetic Command",
+                        DisplayText = "Sample Arithmetic Command",
+                        Type = ActionTypes.MessageBack,
+                        Text = "add 1,3,4",
+                    },
+                },
             };
 
-            return arithmeticCarouselAttachment;
+            return arithmeticHeroCard.ToAttachment();
         }
 
         /// <summary>
@@ -52,14 +63,23 @@ namespace CalculatorChatBot.Helpers
         /// <returns>Returns the attachment that is to be a part of the tour carousel card.</returns>
         public static Attachment GetGeometricCarouselAttachment()
         {
-            var geometricCarouselAttachmentString = GeometricCarouselAdaptiveCard.GetCard();
-            var geometricCarouselAttachment = new Attachment()
+            var geometricHeroCard = new HeroCard()
             {
-                ContentType = "application/vnd.microsoft.card.adaptive",
-                Content = JsonConvert.DeserializeObject(geometricCarouselAttachmentString),
+                Title = Resources.GeometricCarouselCardTitleText,
+                Text = Resources.GeometricCarouselCardContent,
+                Buttons = new List<CardAction>()
+                {
+                    new CardAction()
+                    {
+                        Title = "Sample Geometric Command",
+                        DisplayText = "Sample Geometric Command",
+                        Type = ActionTypes.MessageBack,
+                        Text = "hypotenuse 3,4",
+                    },
+                },
             };
 
-            return geometricCarouselAttachment;
+            return geometricHeroCard.ToAttachment();
         }
 
         /// <summary>
@@ -68,14 +88,23 @@ namespace CalculatorChatBot.Helpers
         /// <returns>Returns the attachment that is to be part of the tour carousel card.</returns>
         public static Attachment GetStatisticalCarouselAttachment()
         {
-            var statisticalCarouselAttachmentString = StatisticalCarouselAdaptiveCard.GetCard();
-            var statisticalCarouselAttachment = new Attachment()
+            var statisticalHeroCard = new HeroCard()
             {
-                ContentType = "application/vnd.microsoft.card.adaptive",
-                Content = JsonConvert.DeserializeObject(statisticalCarouselAttachmentString),
+                Title = Resources.StatisticalCarouselCardTitleText,
+                Text = Resources.StatisticalCarouselCardContent,
+                Buttons = new List<CardAction>()
+                {
+                    new CardAction()
+                    {
+                        Title = "Sample Statistical Command",
+                        DisplayText = "Sample Statistical Command",
+                        Type = ActionTypes.MessageBack,
+                        Text = "mean 3,4,5,6,7",
+                    },
+                },
             };
 
-            return statisticalCarouselAttachment;
+            return statisticalHeroCard.ToAttachment();
         }
     }
 }
