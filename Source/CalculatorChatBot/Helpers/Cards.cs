@@ -8,6 +8,7 @@ namespace CalculatorChatBot.Helpers
     using CalculatorChatBot.Properties;
     using Microsoft.Bot.Schema;
     using Newtonsoft.Json;
+    using System.Collections.Generic;
 
     /// <summary>
     /// Class that allows for the returning of attachments.
@@ -41,6 +42,16 @@ namespace CalculatorChatBot.Helpers
             {
                 Title = Resources.ArithmeticCarouselCardTitleText,
                 Text = Resources.ArithmeticCarouselCardContent,
+                Buttons = new List<CardAction>()
+                {
+                    new CardAction()
+                    {
+                        Title = "Sample Arithmetic Command",
+                        DisplayText = "Sample Arithmetic Command",
+                        Type = ActionTypes.MessageBack,
+                        Text = "add 1,3,4",
+                    },
+                },
             };
 
             return arithmeticHeroCard.ToAttachment();
@@ -56,6 +67,16 @@ namespace CalculatorChatBot.Helpers
             {
                 Title = Resources.GeometricCarouselCardTitleText,
                 Text = Resources.GeometricCarouselCardContent,
+                Buttons = new List<CardAction>()
+                {
+                    new CardAction()
+                    {
+                        Title = "Sample Geometric Command",
+                        DisplayText = "Sample Geometric Command",
+                        Type = ActionTypes.MessageBack,
+                        Text = "hypotenuse 3,4",
+                    },
+                },
             };
 
             return geometricHeroCard.ToAttachment();
@@ -71,6 +92,16 @@ namespace CalculatorChatBot.Helpers
             {
                 Title = Resources.StatisticalCarouselCardTitleText,
                 Text = Resources.StatisticalCarouselCardContent,
+                Buttons = new List<CardAction>()
+                {
+                    new CardAction()
+                    {
+                        Title = "Sample Statistical Command",
+                        DisplayText = "Sample Statistical Command",
+                        Type = ActionTypes.MessageBack,
+                        Text = "mean 3,4,5,6,7",
+                    },
+                },
             };
 
             return statisticalHeroCard.ToAttachment();
