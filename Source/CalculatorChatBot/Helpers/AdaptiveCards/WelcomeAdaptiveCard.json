@@ -1,0 +1,46 @@
+﻿{
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "TextBlock",
+      "separator": true,
+      "size": "Medium",
+      "weight": "Bolder",
+      "color": "Accent",
+      "text": "%welcomeCardTitleText%"
+    },
+    {
+      "type": "TextBlock",
+      "separator": true,
+      "text": "%welcomeCardContentPart1%",
+      "wrap": true,
+      "maxLines": 3
+    },
+    {
+      "type": "TextBlock",
+      "text": "%welcomeCardContentPart2%",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "%welcomeCardBulletListItem1%"
+    },
+    {
+      "type": "TextBlock",
+      "text": "%welcomeCardBulletListItem2%"
+    },
+    {
+      "type": "TextBlock",
+      "text": "%welcomeCardBulletListItem3%"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "%takeATourText%",
+      "data": "%takeATourText%"
+    }
+  ],
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.0"
+}

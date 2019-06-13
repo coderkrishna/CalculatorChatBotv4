@@ -39,7 +39,14 @@ namespace CalculatorChatBot.Bots
         /// <returns>Returns a unit of execution.</returns>
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {turnContext.Activity.Text}"), cancellationToken);
+            if (turnContext.Activity.Text == "Take a tour")
+            {
+                await CalcChatBot.SendTourCarouselCard(turnContext, cancellationToken);
+            }
+            else
+            {
+                await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {turnContext.Activity.Text}"), cancellationToken);
+            }
         }
 
         /// <summary>
@@ -51,11 +58,13 @@ namespace CalculatorChatBot.Bots
         /// <returns>Returns a unit of execution.</returns>
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
+            this.logger.LogInformation("System activity happening here!");
             foreach (var member in membersAdded)
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
                 {
-                    await turnContext.SendActivityAsync(MessageFactory.Text($"Hello and Welcome!"), cancellationToken);
+                    var botDisplayName = this.configuration["BotDisplayName"];
+                    await CalcChatBot.SendProactiveWelcomeMessage(turnContext, cancellationToken, botDisplayName);
                 }
             }
         }
