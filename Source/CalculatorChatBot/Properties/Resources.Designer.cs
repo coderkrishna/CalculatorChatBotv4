@@ -97,6 +97,15 @@ namespace CalculatorChatBot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The statistical operations that I can do include, but are not limited to: the average; the median; the mode; the range; and other operations. The only way to find out whether or not I calculate a specific metric is to actually send me a command. As an example: mean 1,2,3 and I would return the result of 2.
+        /// </summary>
+        public static string StatisticalCarouselCardContent {
+            get {
+                return ResourceManager.GetString("StatisticalCarouselCardContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Statistical.
         /// </summary>
         public static string StatisticalCarouselCardTitleText {

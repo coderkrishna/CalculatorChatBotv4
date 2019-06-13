@@ -39,7 +39,14 @@ namespace CalculatorChatBot.Bots
         /// <returns>Returns a unit of execution.</returns>
         protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
         {
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {turnContext.Activity.Text}"), cancellationToken);
+            if (turnContext.Activity.Text == "Take a tour")
+            {
+                await turnContext.SendActivityAsync(MessageFactory.Text("The tour will be done soon"), cancellationToken);
+            }
+            else
+            {
+                await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {turnContext.Activity.Text}"), cancellationToken);
+            }
         }
 
         /// <summary>

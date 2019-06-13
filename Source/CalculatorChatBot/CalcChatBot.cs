@@ -4,8 +4,10 @@
 
 namespace CalculatorChatBot
 {
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using CalculatorChatBot.Helpers;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Schema;
 
@@ -23,7 +25,22 @@ namespace CalculatorChatBot
         /// <returns>A unit of execution.</returns>
         public static async Task SendProactiveWelcomeMessage(ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken, string botDisplayName)
         {
-            await turnContext.SendActivityAsync(MessageFactory.Text("Hit the welcome method"), cancellationToken);
+            var welcomeCardAttachment = Cards.GetWelcomeCardAttachment(botDisplayName);
+            await turnContext.SendActivityAsync(MessageFactory.Attachment(welcomeCardAttachment), cancellationToken);
+        }
+
+        public static async Task SendTourCarouselCard(ITurnContext turnContext, CancellationToken cancellationToken)
+        {
+            var tourCarouselReply = turnContext.Activity.CreateReply();
+            tourCarouselReply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
+            tourCarouselReply.Attachments = new List<Attachment>()
+            {
+                Cards.GetArithmeticCarouselAttachment(),
+                Cards.GetGeometricCarouselAttachment(),
+                Cards.GetStatisticalCarouselAttachment(),
+            };
+
+            await turnContext.SendActivityAsync(tourCarouselReply, cancellationToken);
         }
     }
 }

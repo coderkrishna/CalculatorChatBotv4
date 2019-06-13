@@ -78,17 +78,29 @@
             </summary>
             <returns>A unit of execution.</returns>
         </member>
-        <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.ArithmeticCarouselCard">
+        <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.ArithmeticCarouselAdaptiveCard">
             <summary>
             This class is generating the arithmetic carousel card.
             </summary>
         </member>
-        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.ArithmeticCarouselCard.GetCard">
+        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.ArithmeticCarouselAdaptiveCard.GetCard">
             <summary>
             Method that will generate the JSON string for the arithmetic carousel card. This card is one
             of 3 that will appear as part of the welcome tour.
             </summary>
             <returns>The JSON string for the adaptive card.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.GeometricCarouselAdaptiveCard">
+            <summary>
+            This class is generating the geometric carousel card.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.GeometricCarouselAdaptiveCard.GetCard">
+            <summary>
+            Method that will generate the JSON string for the arithmetic carousel card.This card is the second
+            of 3 that will appear as part of the welcome tour.
+            </summary>
+            <returns>JSON string of the adaptive card.</returns>
         </member>
         <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeAdaptiveCard">
             <summary>
@@ -101,6 +113,18 @@
             </summary>
             <param name="botDisplayName">The display name for the bot.</param>
             <returns>JSON string of the welcome adaptive card.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Helpers.Cards">
+            <summary>
+            Class that allows for the returning of attachments.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.Cards.GetWelcomeCardAttachment(System.String)">
+            <summary>
+            Method that returns the welcome card attachment.
+            </summary>
+            <param name="botDisplayName">The bot display name.</param>
+            <returns>Welcome card attachment that will be attached to the reply.</returns>
         </member>
         <member name="T:CalculatorChatBot.Program">
             <summary>
@@ -144,6 +168,21 @@
         <member name="P:CalculatorChatBot.Properties.Resources.ArithmeticCarouselCardTitleText">
             <summary>
               Looks up a localized string similar to Arithmetic.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.GeometricCarouselCardContent">
+            <summary>
+              Looks up a localized string similar to I can also perform some geometric operations such as: calculating the discriminant; calculating the roots of a quadratic equation; calculating the hypotenuse given two legs of a triangle; calculating the area and perimeter of polygons; and more....
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.GeometricCarouselCardTitleText">
+            <summary>
+              Looks up a localized string similar to Geometric.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.StatisticalCarouselCardTitleText">
+            <summary>
+              Looks up a localized string similar to Statistical.
             </summary>
         </member>
         <member name="P:CalculatorChatBot.Properties.Resources.TakeATourText">

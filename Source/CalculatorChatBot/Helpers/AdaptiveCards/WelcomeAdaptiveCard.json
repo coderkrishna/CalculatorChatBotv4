@@ -7,7 +7,7 @@
       "size": "Medium",
       "weight": "Bolder",
       "color": "Accent",
-      "text": "%welcomeCardTitle%"
+      "text": "%welcomeCardTitleText%"
     },
     {
       "type": "TextBlock",

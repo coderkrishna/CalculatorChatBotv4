@@ -15,6 +15,9 @@ namespace CalculatorChatBot.Helpers.AdaptiveCards
     {
         private static readonly string CardTemplate;
 
+        /// <summary>
+        /// Initializes static members of the <see cref="ArithmeticCarouselAdaptiveCard"/> class.
+        /// </summary>
         static ArithmeticCarouselAdaptiveCard()
         {
             var cardJsonFilePath = Path.Combine(".", "Helpers", "AdaptiveCards", "ArithmeticCarouselAdaptiveCard.json");
