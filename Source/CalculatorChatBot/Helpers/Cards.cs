@@ -4,11 +4,11 @@
 
 namespace CalculatorChatBot.Helpers
 {
+    using System.Collections.Generic;
     using CalculatorChatBot.Helpers.AdaptiveCards;
     using CalculatorChatBot.Properties;
     using Microsoft.Bot.Schema;
     using Newtonsoft.Json;
-    using System.Collections.Generic;
 
     /// <summary>
     /// Class that allows for the returning of attachments.
