@@ -50,7 +50,7 @@ namespace CalculatorChatBot.Bots
         }
 
         /// <summary>
-        /// Method that gets fired when there are system events being fired.
+        /// Method that gets fired when either the bot gets added to a new team, or a new user is added.
         /// </summary>
         /// <param name="membersAdded">The list of members being added.</param>
         /// <param name="turnContext">The current turn.</param>
@@ -66,6 +66,28 @@ namespace CalculatorChatBot.Bots
                     var botDisplayName = this.configuration["BotDisplayName"];
                     await CalcChatBot.SendProactiveWelcomeMessage(turnContext, cancellationToken, botDisplayName);
                 }
+                else
+                {
+                    await turnContext.SendActivityAsync(MessageFactory.Text("Yahtzee!"), cancellationToken);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Method which fires at the time there is a conversation update.
+        /// </summary>
+        /// <param name="turnContext">The turn context.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        protected override async Task OnConversationUpdateActivityAsync(ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
+        {
+            var eventType = turnContext.Activity.ChannelData["eventType"].ToString();
+            this.logger.LogInformation($"Event has been found: {eventType}");
+
+            if (eventType == "teamMemberAdded")
+            {
+                var membersAdded = turnContext.Activity.MembersAdded;
+                await this.OnMembersAddedAsync(membersAdded, turnContext, cancellationToken);
             }
         }
     }
