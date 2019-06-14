@@ -34,7 +34,7 @@ namespace CalculatorChatBot.Helpers.AdaptiveCards
             var welcomeCardBulletListItem1 = Resources.WelcomeCardBulletListItem1;
             var welcomeCardBulletListItem2 = Resources.WelcomeCardBulletListItem2;
             var welcomeCardBulletListItem3 = Resources.WelcomeCardBulletListItem3;
-            var takeATourText = Resources.TakeATourText;
+            var takeATourButtonText = Resources.TakeATourText;
 
             var variablesToValues = new Dictionary<string, string>()
             {
@@ -44,7 +44,7 @@ namespace CalculatorChatBot.Helpers.AdaptiveCards
                 { "welcomeCardBulletListItem1", welcomeCardBulletListItem1 },
                 { "welcomeCardBulletListItem2", welcomeCardBulletListItem2 },
                 { "welcomeCardBulletListItem3", welcomeCardBulletListItem3 },
-                { "takeATourText", takeATourText },
+                { "takeATourButtonText", takeATourButtonText },
             };
 
             var cardBody = CardTemplate;
