@@ -4,11 +4,13 @@
 
 namespace CalculatorChatBot
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using CalculatorChatBot.Helpers;
     using Microsoft.Bot.Builder;
+    using Microsoft.Bot.Connector;
     using Microsoft.Bot.Schema;
 
     /// <summary>
@@ -27,6 +29,14 @@ namespace CalculatorChatBot
         {
             var welcomeCardAttachment = Cards.GetWelcomeCardAttachment(botDisplayName);
             await turnContext.SendActivityAsync(MessageFactory.Attachment(welcomeCardAttachment), cancellationToken);
+        }
+
+        public static async Task SendUserWelcomeMessage(string memberId, string teamId, ITurnContext turnContext, CancellationToken cancellationToken)
+        {
+            var connectorClient = new ConnectorClient(new Uri(turnContext.Activity.ServiceUrl));
+            var allMembers = await connectorClient.Conversations.GetConversationMembersAsync(teamId);
+
+            await turnContext.SendActivityAsync(MessageFactory.Text("Yahtzee!"), cancellationToken);
         }
 
         /// <summary>

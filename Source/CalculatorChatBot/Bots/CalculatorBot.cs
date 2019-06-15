@@ -58,16 +58,17 @@ namespace CalculatorChatBot.Bots
         /// <returns>Returns a unit of execution.</returns>
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
-            this.logger.LogInformation("System activity happening here!");
+            this.logger.LogInformation("Members being added");
             foreach (var member in membersAdded)
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
                 {
-                    // This is for the team welcome message.
-                    await turnContext.SendActivityAsync(MessageFactory.Text("Yahtzee!"), cancellationToken);
+                    this.logger.LogInformation($"Welcoming user: {member.Id}");
+                    await CalcChatBot.SendUserWelcomeMessage(member.Id, turnContext, cancellationToken);
                 }
                 else
                 {
+                    this.logger.LogInformation($"Welcoming the team");
                     var botDisplayName = this.configuration["BotDisplayName"];
                     await CalcChatBot.SendProactiveWelcomeMessage(turnContext, cancellationToken, botDisplayName);
                 }
