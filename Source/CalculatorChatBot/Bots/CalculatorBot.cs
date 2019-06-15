@@ -63,12 +63,12 @@ namespace CalculatorChatBot.Bots
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
                 {
-                    var botDisplayName = this.configuration["BotDisplayName"];
-                    await CalcChatBot.SendProactiveWelcomeMessage(turnContext, cancellationToken, botDisplayName);
+                    await turnContext.SendActivityAsync(MessageFactory.Text("Yahtzee!"), cancellationToken);
                 }
                 else
                 {
-                    await turnContext.SendActivityAsync(MessageFactory.Text("Yahtzee!"), cancellationToken);
+                    var botDisplayName = this.configuration["BotDisplayName"];
+                    await CalcChatBot.SendProactiveWelcomeMessage(turnContext, cancellationToken, botDisplayName);
                 }
             }
         }
