@@ -63,6 +63,7 @@ namespace CalculatorChatBot.Bots
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
                 {
+                    // This is for the team welcome message.
                     await turnContext.SendActivityAsync(MessageFactory.Text("Yahtzee!"), cancellationToken);
                 }
                 else
