@@ -31,6 +31,14 @@ namespace CalculatorChatBot
             await turnContext.SendActivityAsync(MessageFactory.Attachment(welcomeCardAttachment), cancellationToken);
         }
 
+        /// <summary>
+        /// Sends a welcome message to the user.
+        /// </summary>
+        /// <param name="memberId">The newly added team member.</param>
+        /// <param name="teamId">The teamId.</param>
+        /// <param name="turnContext">The turn context.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
         public static async Task SendUserWelcomeMessage(string memberId, string teamId, ITurnContext turnContext, CancellationToken cancellationToken)
         {
             var connectorClient = new ConnectorClient(new Uri(turnContext.Activity.ServiceUrl));
