@@ -4,10 +4,12 @@
 
 namespace CalculatorChatBot.Bots
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Bot.Builder;
+    using Microsoft.Bot.Connector;
     using Microsoft.Bot.Schema;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.Logging;
@@ -58,13 +60,17 @@ namespace CalculatorChatBot.Bots
         /// <returns>Returns a unit of execution.</returns>
         protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
         {
+            var teamId = turnContext.Activity.ChannelData["team"]["id"].ToString();
+            var tenantId = turnContext.Activity.ChannelData["tenant"]["id"].ToString();
+
             this.logger.LogInformation("Members being added");
             foreach (var member in membersAdded)
             {
                 if (member.Id != turnContext.Activity.Recipient.Id)
                 {
                     this.logger.LogInformation($"Welcoming user: {member.Id}");
-                    await CalcChatBot.SendUserWelcomeMessage(member.Id, turnContext, cancellationToken);
+                    var connectorClient = new ConnectorClient(new Uri(turnContext.Activity.ServiceUrl), this.configuration["MicrosoftAppId"], this.configuration["MicrosoftAppPassword"]);
+                    await CalcChatBot.SendUserWelcomeMessage(member.Id, teamId, tenantId, turnContext.Activity.Recipient.Id, turnContext, cancellationToken, connectorClient);
                 }
                 else
                 {
