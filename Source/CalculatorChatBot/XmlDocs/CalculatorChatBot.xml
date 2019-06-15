@@ -26,12 +26,20 @@
         </member>
         <member name="M:CalculatorChatBot.Bots.CalculatorBot.OnMembersAddedAsync(System.Collections.Generic.IList{Microsoft.Bot.Schema.ChannelAccount},Microsoft.Bot.Builder.ITurnContext{Microsoft.Bot.Schema.IConversationUpdateActivity},System.Threading.CancellationToken)">
             <summary>
-            Method that gets fired when there are system events being fired.
+            Method that gets fired when either the bot gets added to a new team, or a new user is added.
             </summary>
             <param name="membersAdded">The list of members being added.</param>
             <param name="turnContext">The current turn.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>Returns a unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.Bots.CalculatorBot.OnConversationUpdateActivityAsync(Microsoft.Bot.Builder.ITurnContext{Microsoft.Bot.Schema.IConversationUpdateActivity},System.Threading.CancellationToken)">
+            <summary>
+            Method which fires at the time there is a conversation update.
+            </summary>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
         </member>
         <member name="T:CalculatorChatBot.CalcChatBot">
             <summary>
@@ -47,6 +55,19 @@
             <param name="botDisplayName">The bot display name.</param>
             <returns>A unit of execution.</returns>
         </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.SendUserWelcomeMessage(System.String,System.String,System.String,System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken,Microsoft.Bot.Connector.ConnectorClient)">
+            <summary>
+            Sends a welcome message to the user.
+            </summary>
+            <param name="memberAddedId">The newly added team member.</param>
+            <param name="teamId">The teamId.</param>
+            <param name="tenantId">The tenantId.</param>
+            <param name="botId">The botId.</param>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <param name="connectorClient">The connector client.</param>
+            <returns>A unit of execution.</returns>
+        </member>
         <member name="M:CalculatorChatBot.CalcChatBot.SendTourCarouselCard(Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
             <summary>
             Method that returns the necessary tour carousel card.
@@ -54,6 +75,18 @@
             <param name="turnContext">The turn context.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.NotifyUser(Microsoft.Bot.Builder.ITurnContext,Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Schema.ChannelAccount,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Notifies the user.
+            </summary>
+            <param name="turnContext">The turn context.</param>
+            <param name="connectorClient">The connector client.</param>
+            <param name="user">The user that joined the team.</param>
+            <param name="botId">The bot Id.</param>
+            <param name="tenantId">The tenantId.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution that contains a boolean value.</returns>
         </member>
         <member name="T:CalculatorChatBot.ConfigurationCredentialProvider">
             <summary>
