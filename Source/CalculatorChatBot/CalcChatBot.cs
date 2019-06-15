@@ -12,7 +12,6 @@ namespace CalculatorChatBot
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Connector;
     using Microsoft.Bot.Schema;
-    using Microsoft.Extensions.Configuration;
 
     /// <summary>
     /// This class will be allowing for the separation of logic.
