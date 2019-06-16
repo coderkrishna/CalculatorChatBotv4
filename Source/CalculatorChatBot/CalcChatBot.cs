@@ -21,14 +21,15 @@ namespace CalculatorChatBot
         /// <summary>
         /// Method which fires at the time the bot sends a proactive welcome message.
         /// </summary>
-        /// <param name="turnContext">The turn context.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <param name="teamId">The teamId.</param>
         /// <param name="botDisplayName">The bot display name.</param>
+        /// <param name="connectorClient">The connector client.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task SendProactiveWelcomeMessage(ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken, string botDisplayName)
+        public async Task SendTeamWelcomeMessage(string teamId, string botDisplayName, ConnectorClient connectorClient, CancellationToken cancellationToken)
         {
             var welcomeCardAttachment = Cards.GetWelcomeCardAttachment(botDisplayName);
-            await turnContext.SendActivityAsync(MessageFactory.Attachment(welcomeCardAttachment), cancellationToken);
+            await this.NotifyTeam(connectorClient, welcomeCardAttachment, teamId, cancellationToken);
         }
 
         /// <summary>
@@ -38,18 +39,16 @@ namespace CalculatorChatBot
         /// <param name="teamId">The teamId.</param>
         /// <param name="tenantId">The tenantId.</param>
         /// <param name="botId">The botId.</param>
-        /// <param name="turnContext">The turn context.</param>
+        /// <param name="connectorClient">The turn connector client.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
-        /// <param name="connectorClient">The connector client.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task SendUserWelcomeMessage(
+        public async Task SendUserWelcomeMessage(
             string memberAddedId,
             string teamId,
             string tenantId,
             string botId,
-            ITurnContext turnContext,
-            CancellationToken cancellationToken,
-            ConnectorClient connectorClient)
+            ConnectorClient connectorClient,
+            CancellationToken cancellationToken)
         {
             var allMembers = await connectorClient.Conversations.GetConversationMembersAsync(teamId, cancellationToken);
 
@@ -66,7 +65,7 @@ namespace CalculatorChatBot
 
             if (userThatJustJoined != null)
             {
-                await NotifyUser(turnContext, connectorClient, userThatJustJoined, botId, tenantId, cancellationToken);
+                await this.NotifyUser(connectorClient, userThatJustJoined, botId, tenantId, cancellationToken);
             }
         }
 
@@ -76,7 +75,7 @@ namespace CalculatorChatBot
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task SendTourCarouselCard(ITurnContext turnContext, CancellationToken cancellationToken)
+        public async Task SendTourCarouselCard(ITurnContext turnContext, CancellationToken cancellationToken)
         {
             var tourCarouselReply = turnContext.Activity.CreateReply();
             tourCarouselReply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
@@ -93,15 +92,13 @@ namespace CalculatorChatBot
         /// <summary>
         /// Notifies the user.
         /// </summary>
-        /// <param name="turnContext">The turn context.</param>
         /// <param name="connectorClient">The connector client.</param>
         /// <param name="user">The user that joined the team.</param>
         /// <param name="botId">The bot Id.</param>
         /// <param name="tenantId">The tenantId.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution that contains a boolean value.</returns>
-        private static async Task<bool> NotifyUser(
-            ITurnContext turnContext,
+        private async Task<bool> NotifyUser(
             ConnectorClient connectorClient,
             ChannelAccount user,
             string botId,
@@ -140,6 +137,32 @@ namespace CalculatorChatBot
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Method that will send out the team notification.
+        /// </summary>
+        /// <param name="connectorClient">The connector client.</param>
+        /// <param name="attachmentToAppend">The attachment/adaptive card to attach to the message.</param>
+        /// <param name="teamId">The team Id.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        private async Task NotifyTeam(ConnectorClient connectorClient, Attachment attachmentToAppend, string teamId, CancellationToken cancellationToken)
+        {
+            var activity = new Activity()
+            {
+                Type = ActivityTypes.Message,
+                Conversation = new ConversationAccount()
+                {
+                    Id = teamId,
+                },
+                Attachments = new List<Attachment>()
+                {
+                    attachmentToAppend,
+                },
+            };
+
+            await connectorClient.Conversations.SendToConversationAsync(teamId, activity, cancellationToken);
         }
     }
 }
