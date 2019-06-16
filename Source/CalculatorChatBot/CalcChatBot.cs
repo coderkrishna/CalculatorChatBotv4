@@ -26,10 +26,10 @@ namespace CalculatorChatBot
         /// <param name="connectorClient">The connector client.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task SendTeamWelcomeMessage(string teamId, string botDisplayName, ConnectorClient connectorClient, CancellationToken cancellationToken)
+        public static async Task SendTeamWelcomeMessage(string teamId, string botDisplayName, ConnectorClient connectorClient, CancellationToken cancellationToken)
         {
             var welcomeCardAttachment = Cards.GetWelcomeCardAttachment(botDisplayName);
-            await this.NotifyTeam(connectorClient, welcomeCardAttachment, teamId, cancellationToken);
+            await NotifyTeam(connectorClient, welcomeCardAttachment, teamId, cancellationToken);
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace CalculatorChatBot
         /// <param name="connectorClient">The turn connector client.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task SendUserWelcomeMessage(
+        public static async Task SendUserWelcomeMessage(
             string memberAddedId,
             string teamId,
             string tenantId,
@@ -65,7 +65,7 @@ namespace CalculatorChatBot
 
             if (userThatJustJoined != null)
             {
-                await this.NotifyUser(connectorClient, userThatJustJoined, botId, tenantId, cancellationToken);
+                await NotifyUser(connectorClient, userThatJustJoined, botId, tenantId, cancellationToken);
             }
         }
 
@@ -98,7 +98,7 @@ namespace CalculatorChatBot
         /// <param name="tenantId">The tenantId.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution that contains a boolean value.</returns>
-        private async Task<bool> NotifyUser(
+        private static async Task<bool> NotifyUser(
             ConnectorClient connectorClient,
             ChannelAccount user,
             string botId,
@@ -147,7 +147,11 @@ namespace CalculatorChatBot
         /// <param name="teamId">The team Id.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        private async Task NotifyTeam(ConnectorClient connectorClient, Attachment attachmentToAppend, string teamId, CancellationToken cancellationToken)
+        private static async Task NotifyTeam(
+            ConnectorClient connectorClient,
+            Attachment attachmentToAppend,
+            string teamId,
+            CancellationToken cancellationToken)
         {
             var activity = new Activity()
             {
