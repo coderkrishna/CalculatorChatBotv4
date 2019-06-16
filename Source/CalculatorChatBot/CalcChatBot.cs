@@ -75,7 +75,7 @@ namespace CalculatorChatBot
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task SendTourCarouselCard(ITurnContext turnContext, CancellationToken cancellationToken)
+        public static async Task SendTourCarouselCard(ITurnContext turnContext, CancellationToken cancellationToken)
         {
             var tourCarouselReply = turnContext.Activity.CreateReply();
             tourCarouselReply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
