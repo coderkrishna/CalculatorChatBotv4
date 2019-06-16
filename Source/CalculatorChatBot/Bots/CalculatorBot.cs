@@ -64,19 +64,24 @@ namespace CalculatorChatBot.Bots
             var tenantId = turnContext.Activity.ChannelData["tenant"]["id"].ToString();
 
             this.logger.LogInformation("Members being added");
-            foreach (var member in membersAdded)
+            using (var connectorClient = new ConnectorClient(
+                new Uri(turnContext.Activity.ServiceUrl),
+                this.configuration["MicrosoftAppId"],
+                this.configuration["MicrosoftAppPassword"]))
             {
-                if (member.Id != turnContext.Activity.Recipient.Id)
+                foreach (var member in membersAdded)
                 {
-                    this.logger.LogInformation($"Welcoming user: {member.Id}");
-                    var connectorClient = new ConnectorClient(new Uri(turnContext.Activity.ServiceUrl), this.configuration["MicrosoftAppId"], this.configuration["MicrosoftAppPassword"]);
-                    await CalcChatBot.SendUserWelcomeMessage(member.Id, teamId, tenantId, turnContext.Activity.Recipient.Id, turnContext, cancellationToken, connectorClient);
-                }
-                else
-                {
-                    this.logger.LogInformation($"Welcoming the team");
-                    var botDisplayName = this.configuration["BotDisplayName"];
-                    await CalcChatBot.SendProactiveWelcomeMessage(turnContext, cancellationToken, botDisplayName);
+                    if (member.Id != turnContext.Activity.Recipient.Id)
+                    {
+                        this.logger.LogInformation($"Welcoming user: {member.Id}");
+                        await CalcChatBot.SendUserWelcomeMessage(member.Id, teamId, tenantId, turnContext.Activity.Recipient.Id, connectorClient, cancellationToken);
+                    }
+                    else
+                    {
+                        this.logger.LogInformation($"Welcoming the team");
+                        var botDisplayName = this.configuration["BotDisplayName"];
+                        await CalcChatBot.SendTeamWelcomeMessage(teamId, botDisplayName, connectorClient, cancellationToken);
+                    }
                 }
             }
         }
