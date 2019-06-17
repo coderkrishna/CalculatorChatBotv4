@@ -28,8 +28,8 @@ namespace CalculatorChatBot
         /// <returns>A unit of execution.</returns>
         public static async Task SendTeamWelcomeMessage(string teamId, string botDisplayName, ConnectorClient connectorClient, CancellationToken cancellationToken)
         {
-            var welcomeCardAttachment = Cards.GetWelcomeCardAttachment(botDisplayName);
-            await NotifyTeam(connectorClient, welcomeCardAttachment, teamId, cancellationToken);
+            var welcomeTeamCardAttachment = Cards.WelcomeTeamCardAttachment(botDisplayName);
+            await NotifyTeam(connectorClient, welcomeTeamCardAttachment, teamId, cancellationToken);
         }
 
         /// <summary>
