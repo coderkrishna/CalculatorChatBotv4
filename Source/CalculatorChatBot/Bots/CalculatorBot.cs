@@ -47,6 +47,7 @@ namespace CalculatorChatBot.Bots
             }
             else
             {
+                // TODO: Ensure to have the ability to start the command parsing now
                 await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {turnContext.Activity.Text}"), cancellationToken);
             }
         }
