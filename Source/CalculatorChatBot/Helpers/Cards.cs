@@ -33,6 +33,23 @@ namespace CalculatorChatBot.Helpers
         }
 
         /// <summary>
+        /// Method that returns the welcome card attachment for a team.
+        /// </summary>
+        /// <param name="botDisplayName">The bot display name.</param>
+        /// <returns>Welcome adaptive card that is to be attached to the welcome message.</returns>
+        public static Attachment WelcomeTeamCardAttachment(string botDisplayName)
+        {
+            var welcomeTeamAttachmentString = WelcomeTeamAdaptiveCard.GetCard(botDisplayName);
+            var welcomeTeamCardAttachment = new Attachment()
+            {
+                ContentType = "application/vnd.microsoft.card.adaptive",
+                Content = JsonConvert.DeserializeObject(welcomeTeamAttachmentString),
+            };
+
+            return welcomeTeamCardAttachment;
+        }
+
+        /// <summary>
         /// Returns the arithmetic carousel card.
         /// </summary>
         /// <returns>Returns the attachment that is to be a part of the tour carousel card.</returns>
