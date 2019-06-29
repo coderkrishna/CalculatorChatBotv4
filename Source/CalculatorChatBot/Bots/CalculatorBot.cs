@@ -48,7 +48,10 @@ namespace CalculatorChatBot.Bots
             else
             {
                 // TODO: Ensure to have the ability to start the command parsing now
-                await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {turnContext.Activity.Text}"), cancellationToken);
+                var incomingTextArray = turnContext.Activity.Text.Split(' ');
+                var command = incomingTextArray[0];
+                var commandInputList = incomingTextArray[1];
+                await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {command} {commandInputList}"), cancellationToken);
             }
         }
 
