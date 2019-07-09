@@ -49,11 +49,19 @@ namespace CalculatorChatBot.Bots
             }
             else
             {
-                // TODO: Ensure to have the ability to start the command parsing now
                 var incomingTextArray = turnContext.Activity.Text.Split(' ');
                 var command = incomingTextArray[0];
                 var commandInputList = incomingTextArray[1];
-                await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {command} {commandInputList}"), cancellationToken);
+
+                switch (command)
+                {
+                    case "add":
+                        await 
+                        break;
+                    default:
+                        await turnContext.SendActivityAsync(MessageFactory.Text("I am not able to pick up a command"), cancellationToken);
+                        break;
+                }
             }
         }
 

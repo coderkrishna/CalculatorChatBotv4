@@ -19,14 +19,18 @@ namespace CalculatorChatBot
     public class CalcChatBot
     {
         /// <summary>
-        /// Method which fires at the time the bot sends a proactive welcome message.
+        /// Method which fires at the time the bot sends a proactive welcome message after being installed to a team.
         /// </summary>
         /// <param name="teamId">The teamId.</param>
         /// <param name="botDisplayName">The bot display name.</param>
         /// <param name="connectorClient">The connector client.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task SendTeamWelcomeMessage(string teamId, string botDisplayName, ConnectorClient connectorClient, CancellationToken cancellationToken)
+        public static async Task SendTeamWelcomeMessage(
+            string teamId,
+            string botDisplayName,
+            ConnectorClient connectorClient,
+            CancellationToken cancellationToken)
         {
             var welcomeTeamCardAttachment = Cards.WelcomeTeamCardAttachment(botDisplayName);
             await NotifyTeam(connectorClient, welcomeTeamCardAttachment, teamId, cancellationToken);
@@ -42,7 +46,13 @@ namespace CalculatorChatBot
         /// <param name="connectorClient">The turn connector client.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task SendUserWelcomeMessage(string memberAddedId, string teamId, string tenantId, string botId, ConnectorClient connectorClient, CancellationToken cancellationToken)
+        public static async Task SendUserWelcomeMessage(
+            string memberAddedId,
+            string teamId,
+            string tenantId,
+            string botId,
+            ConnectorClient connectorClient,
+            CancellationToken cancellationToken)
         {
             var allMembers = await connectorClient.Conversations.GetConversationMembersAsync(teamId, cancellationToken);
 
@@ -69,7 +79,9 @@ namespace CalculatorChatBot
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task SendTourCarouselCard(ITurnContext turnContext, CancellationToken cancellationToken)
+        public static async Task SendTourCarouselCard(
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
         {
             var tourCarouselReply = turnContext.Activity.CreateReply();
             tourCarouselReply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
@@ -92,7 +104,12 @@ namespace CalculatorChatBot
         /// <param name="tenantId">The tenantId.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution that contains a boolean value.</returns>
-        private static async Task<bool> NotifyUser(ConnectorClient connectorClient, ChannelAccount user, string botId, string tenantId, CancellationToken cancellationToken)
+        private static async Task<bool> NotifyUser(
+            ConnectorClient connectorClient,
+            ChannelAccount user,
+            string botId,
+            string tenantId,
+            CancellationToken cancellationToken)
         {
             try
             {
@@ -136,7 +153,11 @@ namespace CalculatorChatBot
         /// <param name="teamId">The team Id.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        private static async Task NotifyTeam(ConnectorClient connectorClient, Attachment attachmentToAppend, string teamId, CancellationToken cancellationToken)
+        private static async Task NotifyTeam(
+            ConnectorClient connectorClient,
+            Attachment attachmentToAppend,
+            string teamId,
+            CancellationToken cancellationToken)
         {
             var activity = new Activity()
             {
