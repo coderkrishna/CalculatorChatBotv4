@@ -39,7 +39,9 @@ namespace CalculatorChatBot.Bots
         /// <param name="turnContext">The current turn.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>Returns a unit of execution.</returns>
-        protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
+        protected override async Task OnMessageActivityAsync(
+            ITurnContext<IMessageActivity> turnContext,
+            CancellationToken cancellationToken)
         {
             if (turnContext.Activity.Text == "Take a tour")
             {
@@ -62,7 +64,10 @@ namespace CalculatorChatBot.Bots
         /// <param name="turnContext">The current turn.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>Returns a unit of execution.</returns>
-        protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
+        protected override async Task OnMembersAddedAsync(
+            IList<ChannelAccount> membersAdded,
+            ITurnContext<IConversationUpdateActivity> turnContext,
+            CancellationToken cancellationToken)
         {
             var teamId = turnContext.Activity.ChannelData["team"]["id"].ToString();
             var tenantId = turnContext.Activity.ChannelData["tenant"]["id"].ToString();
@@ -96,7 +101,9 @@ namespace CalculatorChatBot.Bots
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        protected override async Task OnConversationUpdateActivityAsync(ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
+        protected override async Task OnConversationUpdateActivityAsync(
+            ITurnContext<IConversationUpdateActivity> turnContext,
+            CancellationToken cancellationToken)
         {
             var eventType = turnContext.Activity.ChannelData["eventType"].ToString();
             this.logger.LogInformation($"Event has been found: {eventType}");
