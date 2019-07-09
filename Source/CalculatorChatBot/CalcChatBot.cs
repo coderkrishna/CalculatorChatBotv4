@@ -6,6 +6,7 @@ namespace CalculatorChatBot
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using CalculatorChatBot.Helpers;
@@ -93,6 +94,25 @@ namespace CalculatorChatBot
             };
 
             await turnContext.SendActivityAsync(tourCarouselReply, cancellationToken);
+        }
+
+        /// <summary>
+        /// Method which will fire whenever the sum is to be calculated.
+        /// </summary>
+        /// <param name="inputList">The list of numbers.</param>
+        /// <param name="turnContext">The turn context.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public static async Task CalculateSum(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            var inputStringArray = inputList.Split(',');
+            var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
+
+            var sum = inputInts.Sum();
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Sum = {sum}"), cancellationToken);
         }
 
         /// <summary>

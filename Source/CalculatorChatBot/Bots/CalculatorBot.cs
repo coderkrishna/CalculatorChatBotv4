@@ -56,7 +56,7 @@ namespace CalculatorChatBot.Bots
                 switch (command)
                 {
                     case "add":
-                        await 
+                        await CalcChatBot.CalculateSum(commandInputList, turnContext, cancellationToken);
                         break;
                     default:
                         await turnContext.SendActivityAsync(MessageFactory.Text("I am not able to pick up a command"), cancellationToken);
