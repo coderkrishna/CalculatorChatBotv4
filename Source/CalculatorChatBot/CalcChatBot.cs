@@ -116,6 +116,21 @@ namespace CalculatorChatBot
         }
 
         /// <summary>
+        /// Method that calculates the difference among a list of numbers.
+        /// </summary>
+        /// <param name="inputList">The incoming list of numbers.</param>
+        /// <param name="turnContext">The turn context.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public static async Task CalculateDifference(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            await turnContext.SendActivityAsync(MessageFactory.Text("This functionality is yet to be done"), cancellationToken); 
+        }
+
+        /// <summary>
         /// Notifies the user.
         /// </summary>
         /// <param name="connectorClient">The connector client.</param>
