@@ -127,7 +127,16 @@ namespace CalculatorChatBot
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
-            await turnContext.SendActivityAsync(MessageFactory.Text("This functionality is yet to be done"), cancellationToken); 
+            var inputStringArray = inputList.Split(',');
+            var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
+
+            var overallDiff = inputInts[0];
+            for (int i = 1; i < inputInts.Length - 1; i++)
+            {
+                overallDiff -= inputInts[i];
+            }
+
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Difference = {overallDiff}"), cancellationToken);
         }
 
         /// <summary>

@@ -60,6 +60,7 @@ namespace CalculatorChatBot.Bots
                         await CalcChatBot.CalculateSum(commandInputList, turnContext, cancellationToken);
                         break;
                     case "difference":
+                    case "minus":
                         await CalcChatBot.CalculateDifference(commandInputList, turnContext, cancellationToken);
                         break;
                     default:
