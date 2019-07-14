@@ -48,7 +48,7 @@
         </member>
         <member name="M:CalculatorChatBot.CalcChatBot.SendTeamWelcomeMessage(System.String,System.String,Microsoft.Bot.Connector.ConnectorClient,System.Threading.CancellationToken)">
             <summary>
-            Method which fires at the time the bot sends a proactive welcome message.
+            Method which fires at the time the bot sends a proactive welcome message after being installed to a team.
             </summary>
             <param name="teamId">The teamId.</param>
             <param name="botDisplayName">The bot display name.</param>
@@ -72,6 +72,33 @@
             <summary>
             Method that returns the necessary tour carousel card.
             </summary>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.CalculateSum(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method which will fire whenever the sum is to be calculated.
+            </summary>
+            <param name="inputList">The list of numbers.</param>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.CalculateDifference(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method that calculates the difference among a list of numbers.
+            </summary>
+            <param name="inputList">The incoming list of numbers.</param>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.CalculateProduct(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method that will calculate the product of a list of numbers.
+            </summary>
+            <param name="inputList">The input list of integers.</param>
             <param name="turnContext">The turn context.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution.</returns>
