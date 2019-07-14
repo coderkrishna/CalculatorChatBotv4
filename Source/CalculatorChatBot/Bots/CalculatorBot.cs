@@ -63,6 +63,10 @@ namespace CalculatorChatBot.Bots
                     case "minus":
                         await CalcChatBot.CalculateDifference(commandInputList, turnContext, cancellationToken);
                         break;
+                    case "multiplication":
+                    case "product":
+                        await CalcChatBot.CalculateProduct(commandInputList, turnContext, cancellationToken);
+                        break;
                     default:
                         await turnContext.SendActivityAsync(MessageFactory.Text("I am not able to pick up a command"), cancellationToken);
                         break;
