@@ -6,6 +6,7 @@ namespace CalculatorChatBot
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using CalculatorChatBot.Helpers;
@@ -19,14 +20,18 @@ namespace CalculatorChatBot
     public class CalcChatBot
     {
         /// <summary>
-        /// Method which fires at the time the bot sends a proactive welcome message.
+        /// Method which fires at the time the bot sends a proactive welcome message after being installed to a team.
         /// </summary>
         /// <param name="teamId">The teamId.</param>
         /// <param name="botDisplayName">The bot display name.</param>
         /// <param name="connectorClient">The connector client.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task SendTeamWelcomeMessage(string teamId, string botDisplayName, ConnectorClient connectorClient, CancellationToken cancellationToken)
+        public static async Task SendTeamWelcomeMessage(
+            string teamId,
+            string botDisplayName,
+            ConnectorClient connectorClient,
+            CancellationToken cancellationToken)
         {
             var welcomeTeamCardAttachment = Cards.WelcomeTeamCardAttachment(botDisplayName);
             await NotifyTeam(connectorClient, welcomeTeamCardAttachment, teamId, cancellationToken);
@@ -42,7 +47,13 @@ namespace CalculatorChatBot
         /// <param name="connectorClient">The turn connector client.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task SendUserWelcomeMessage(string memberAddedId, string teamId, string tenantId, string botId, ConnectorClient connectorClient, CancellationToken cancellationToken)
+        public static async Task SendUserWelcomeMessage(
+            string memberAddedId,
+            string teamId,
+            string tenantId,
+            string botId,
+            ConnectorClient connectorClient,
+            CancellationToken cancellationToken)
         {
             var allMembers = await connectorClient.Conversations.GetConversationMembersAsync(teamId, cancellationToken);
 
@@ -69,7 +80,9 @@ namespace CalculatorChatBot
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task SendTourCarouselCard(ITurnContext turnContext, CancellationToken cancellationToken)
+        public static async Task SendTourCarouselCard(
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
         {
             var tourCarouselReply = turnContext.Activity.CreateReply();
             tourCarouselReply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
@@ -84,6 +97,81 @@ namespace CalculatorChatBot
         }
 
         /// <summary>
+        /// Method which will fire whenever the sum is to be calculated.
+        /// </summary>
+        /// <param name="inputList">The list of numbers.</param>
+        /// <param name="turnContext">The turn context.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public static async Task CalculateSum(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            var inputStringArray = inputList.Split(',');
+            var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
+
+            var sum = inputInts.Sum();
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Sum = {sum}"), cancellationToken);
+        }
+
+        /// <summary>
+        /// Method that calculates the difference among a list of numbers.
+        /// </summary>
+        /// <param name="inputList">The incoming list of numbers.</param>
+        /// <param name="turnContext">The turn context.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public static async Task CalculateDifference(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            var inputStringArray = inputList.Split(',');
+            var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
+
+            var overallDiff = inputInts[0];
+            for (int i = 1; i < inputInts.Length - 1; i++)
+            {
+                overallDiff -= inputInts[i];
+            }
+
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Difference = {overallDiff}"), cancellationToken);
+        }
+
+        /// <summary>
+        /// Method that will calculate the product of a list of numbers.
+        /// </summary>
+        /// <param name="inputList">The input list of integers.</param>
+        /// <param name="turnContext">The turn context.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public static async Task CalculateProduct(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            var inputStringArray = inputList.Split(',');
+            var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
+
+            var containsZero = inputInts.Any(x => x == 0);
+            if (containsZero)
+            {
+                await turnContext.SendActivityAsync(MessageFactory.Text("Overall product = 0"), cancellationToken);
+            }
+            else
+            {
+                var overallProduct = inputInts[0];
+                for (int i = 1; i < inputInts.Length - 1; i++)
+                {
+                    overallProduct *= inputInts[i];
+                }
+
+                await turnContext.SendActivityAsync(MessageFactory.Text($"Overall product = {overallProduct}"), cancellationToken);
+            }
+        }
+
+        /// <summary>
         /// Notifies the user.
         /// </summary>
         /// <param name="connectorClient">The connector client.</param>
@@ -92,7 +180,12 @@ namespace CalculatorChatBot
         /// <param name="tenantId">The tenantId.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution that contains a boolean value.</returns>
-        private static async Task<bool> NotifyUser(ConnectorClient connectorClient, ChannelAccount user, string botId, string tenantId, CancellationToken cancellationToken)
+        private static async Task<bool> NotifyUser(
+            ConnectorClient connectorClient,
+            ChannelAccount user,
+            string botId,
+            string tenantId,
+            CancellationToken cancellationToken)
         {
             try
             {
@@ -136,7 +229,11 @@ namespace CalculatorChatBot
         /// <param name="teamId">The team Id.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        private static async Task NotifyTeam(ConnectorClient connectorClient, Attachment attachmentToAppend, string teamId, CancellationToken cancellationToken)
+        private static async Task NotifyTeam(
+            ConnectorClient connectorClient,
+            Attachment attachmentToAppend,
+            string teamId,
+            CancellationToken cancellationToken)
         {
             var activity = new Activity()
             {

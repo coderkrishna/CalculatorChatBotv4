@@ -39,7 +39,9 @@ namespace CalculatorChatBot.Bots
         /// <param name="turnContext">The current turn.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>Returns a unit of execution.</returns>
-        protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
+        protected override async Task OnMessageActivityAsync(
+            ITurnContext<IMessageActivity> turnContext,
+            CancellationToken cancellationToken)
         {
             if (turnContext.Activity.Text == "Take a tour")
             {
@@ -47,7 +49,28 @@ namespace CalculatorChatBot.Bots
             }
             else
             {
-                await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {turnContext.Activity.Text}"), cancellationToken);
+                var incomingTextArray = turnContext.Activity.Text.Split(' ');
+                var command = incomingTextArray[0];
+                var commandInputList = incomingTextArray[1];
+
+                switch (command)
+                {
+                    case "sum":
+                    case "add":
+                        await CalcChatBot.CalculateSum(commandInputList, turnContext, cancellationToken);
+                        break;
+                    case "difference":
+                    case "minus":
+                        await CalcChatBot.CalculateDifference(commandInputList, turnContext, cancellationToken);
+                        break;
+                    case "multiplication":
+                    case "product":
+                        await CalcChatBot.CalculateProduct(commandInputList, turnContext, cancellationToken);
+                        break;
+                    default:
+                        await turnContext.SendActivityAsync(MessageFactory.Text("I am not able to pick up a command"), cancellationToken);
+                        break;
+                }
             }
         }
 
@@ -58,7 +81,10 @@ namespace CalculatorChatBot.Bots
         /// <param name="turnContext">The current turn.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>Returns a unit of execution.</returns>
-        protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
+        protected override async Task OnMembersAddedAsync(
+            IList<ChannelAccount> membersAdded,
+            ITurnContext<IConversationUpdateActivity> turnContext,
+            CancellationToken cancellationToken)
         {
             var teamId = turnContext.Activity.ChannelData["team"]["id"].ToString();
             var tenantId = turnContext.Activity.ChannelData["tenant"]["id"].ToString();
@@ -92,7 +118,9 @@ namespace CalculatorChatBot.Bots
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        protected override async Task OnConversationUpdateActivityAsync(ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
+        protected override async Task OnConversationUpdateActivityAsync(
+            ITurnContext<IConversationUpdateActivity> turnContext,
+            CancellationToken cancellationToken)
         {
             var eventType = turnContext.Activity.ChannelData["eventType"].ToString();
             this.logger.LogInformation($"Event has been found: {eventType}");

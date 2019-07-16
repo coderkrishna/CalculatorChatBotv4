@@ -48,7 +48,7 @@
         </member>
         <member name="M:CalculatorChatBot.CalcChatBot.SendTeamWelcomeMessage(System.String,System.String,Microsoft.Bot.Connector.ConnectorClient,System.Threading.CancellationToken)">
             <summary>
-            Method which fires at the time the bot sends a proactive welcome message.
+            Method which fires at the time the bot sends a proactive welcome message after being installed to a team.
             </summary>
             <param name="teamId">The teamId.</param>
             <param name="botDisplayName">The bot display name.</param>
@@ -76,6 +76,33 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution.</returns>
         </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.CalculateSum(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method which will fire whenever the sum is to be calculated.
+            </summary>
+            <param name="inputList">The list of numbers.</param>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.CalculateDifference(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method that calculates the difference among a list of numbers.
+            </summary>
+            <param name="inputList">The incoming list of numbers.</param>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.CalculateProduct(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method that will calculate the product of a list of numbers.
+            </summary>
+            <param name="inputList">The input list of integers.</param>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
         <member name="M:CalculatorChatBot.CalcChatBot.NotifyUser(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Schema.ChannelAccount,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Notifies the user.
@@ -86,6 +113,16 @@
             <param name="tenantId">The tenantId.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution that contains a boolean value.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.NotifyTeam(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Schema.Attachment,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Method that will send out the team notification.
+            </summary>
+            <param name="connectorClient">The connector client.</param>
+            <param name="attachmentToAppend">The attachment/adaptive card to attach to the message.</param>
+            <param name="teamId">The team Id.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
         </member>
         <member name="T:CalculatorChatBot.ConfigurationCredentialProvider">
             <summary>
@@ -130,6 +167,23 @@
             <param name="botDisplayName">The display name for the bot.</param>
             <returns>JSON string of the welcome adaptive card.</returns>
         </member>
+        <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeTeamAdaptiveCard">
+            <summary>
+            This is the class for the welcome card in a Team - which would then trigger the welcome tour.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeTeamAdaptiveCard.#cctor">
+            <summary>
+            Initializes static members of the <see cref="T:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeTeamAdaptiveCard"/> class.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeTeamAdaptiveCard.GetCard(System.String)">
+            <summary>
+            Returns the JSON string for the welcome card.
+            </summary>
+            <param name="botDisplayName">The name of the bot.</param>
+            <returns>The JSON string of the attachment.</returns>
+        </member>
         <member name="T:CalculatorChatBot.Helpers.Cards">
             <summary>
             Class that allows for the returning of attachments.
@@ -141,6 +195,13 @@
             </summary>
             <param name="botDisplayName">The bot display name.</param>
             <returns>Welcome card attachment that will be attached to the reply.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.Cards.WelcomeTeamCardAttachment(System.String)">
+            <summary>
+            Method that returns the welcome card attachment for a team.
+            </summary>
+            <param name="botDisplayName">The bot display name.</param>
+            <returns>Welcome adaptive card that is to be attached to the welcome message.</returns>
         </member>
         <member name="M:CalculatorChatBot.Helpers.Cards.GetArithmeticCarouselAttachment">
             <summary>
