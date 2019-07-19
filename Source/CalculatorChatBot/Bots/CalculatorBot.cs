@@ -67,6 +67,10 @@ namespace CalculatorChatBot.Bots
                     case "product":
                         await CalcChatBot.CalculateProduct(commandInputList, turnContext, cancellationToken);
                         break;
+                    case "mean":
+                    case "average":
+                        await CalcChatBot.CalculateMean(commandInputList, turnContext, cancellationToken);
+                        break;
                     default:
                         await turnContext.SendActivityAsync(MessageFactory.Text("I am not able to pick up a command"), cancellationToken);
                         break;
