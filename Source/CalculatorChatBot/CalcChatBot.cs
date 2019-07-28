@@ -194,6 +194,21 @@ namespace CalculatorChatBot
         }
 
         /// <summary>
+        /// Method to calculate the median.
+        /// </summary>
+        /// <param name="inputList">The list of integers.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public static async Task CalculateMedian(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            await turnContext.SendActivityAsync(MessageFactory.Text("The current functionality is yet to be implemented"), cancellationToken);
+        }
+
+        /// <summary>
         /// Notifies the user.
         /// </summary>
         /// <param name="connectorClient">The connector client.</param>
