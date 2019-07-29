@@ -205,7 +205,26 @@ namespace CalculatorChatBot
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
-            await turnContext.SendActivityAsync(MessageFactory.Text("The current functionality is yet to be implemented"), cancellationToken);
+            decimal median;
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
+
+            int size = inputListInts.Length;
+            int[] copyArr = inputListInts;
+
+            // Sorting the array.
+            Array.Sort(copyArr);
+
+            if (size % 2 == 0)
+            {
+                median = Convert.ToDecimal(copyArr[(size / 2) - 1] + copyArr[size / 2]) / 2;
+            }
+            else
+            {
+                median = Convert.ToDecimal(copyArr[(size - 1) / 2]);
+            }
+
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Median = {decimal.Round(median, 2).ToString()}"), cancellationToken);
         }
 
         /// <summary>
