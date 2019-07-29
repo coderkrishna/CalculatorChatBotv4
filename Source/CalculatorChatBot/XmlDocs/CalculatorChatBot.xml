@@ -112,6 +112,15 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution.</returns>
         </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.CalculateMedian(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method to calculate the median.
+            </summary>
+            <param name="inputList">The list of integers.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
         <member name="M:CalculatorChatBot.CalcChatBot.NotifyUser(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Schema.ChannelAccount,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Notifies the user.
