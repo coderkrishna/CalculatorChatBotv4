@@ -228,6 +228,21 @@ namespace CalculatorChatBot
         }
 
         /// <summary>
+        /// Method to calculate the range of a list.
+        /// </summary>
+        /// <param name="inputList">The list of numbers.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public static async Task CalculateRange(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            await turnContext.SendActivityAsync(MessageFactory.Text("Current functionality is to be implemented"), cancellationToken);
+        }
+
+        /// <summary>
         /// Notifies the user.
         /// </summary>
         /// <param name="connectorClient">The connector client.</param>
