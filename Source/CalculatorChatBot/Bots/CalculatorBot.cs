@@ -74,10 +74,10 @@ namespace CalculatorChatBot.Bots
                         break;
                     case "median":
                     case "middle of the list":
-                        await CalcChatBot.CalculateMedian(commandInputList, turnContext, cancellationToken);
+                        await Statistics.CalculateMedian(commandInputList, turnContext, cancellationToken);
                         break;
                     case "range":
-                        await CalcChatBot.CalculateRange(commandInputList, turnContext, cancellationToken);
+                        await Statistics.CalculateRange(commandInputList, turnContext, cancellationToken);
                         break;
                     default:
                         await turnContext.SendActivityAsync(MessageFactory.Text("I am not able to pick up a command"), cancellationToken);
