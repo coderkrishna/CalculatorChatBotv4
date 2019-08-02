@@ -8,6 +8,7 @@ namespace CalculatorChatBot.Bots
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using CalculatorChatBot.OperationsLib;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Connector;
     using Microsoft.Bot.Schema;
@@ -57,11 +58,11 @@ namespace CalculatorChatBot.Bots
                 {
                     case "sum":
                     case "add":
-                        await CalcChatBot.CalculateSum(commandInputList, turnContext, cancellationToken);
+                        await Arithmetic.CalculateSum(commandInputList, turnContext, cancellationToken);
                         break;
                     case "difference":
                     case "minus":
-                        await CalcChatBot.CalculateDifference(commandInputList, turnContext, cancellationToken);
+                        await Arithmetic.CalculateDifference(commandInputList, turnContext, cancellationToken);
                         break;
                     case "multiplication":
                     case "product":
