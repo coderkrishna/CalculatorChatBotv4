@@ -239,7 +239,13 @@ namespace CalculatorChatBot
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
-            await turnContext.SendActivityAsync(MessageFactory.Text("Current functionality is to be implemented"), cancellationToken);
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
+            var inputListMax = inputListInts.Max();
+            var inputListMin = inputListInts.Min();
+            var range = inputListMax - inputListMin;
+
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Range = {range}"), cancellationToken);
         }
 
         /// <summary>
