@@ -97,60 +97,6 @@ namespace CalculatorChatBot
         }
 
         /// <summary>
-        /// Method that will calculate the product of a list of numbers.
-        /// </summary>
-        /// <param name="inputList">The input list of integers.</param>
-        /// <param name="turnContext">The turn context.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>A unit of execution.</returns>
-        public static async Task CalculateProduct(
-            string inputList,
-            ITurnContext turnContext,
-            CancellationToken cancellationToken)
-        {
-            var inputStringArray = inputList.Split(',');
-            var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
-
-            var containsZero = inputInts.Any(x => x == 0);
-            if (containsZero)
-            {
-                await turnContext.SendActivityAsync(MessageFactory.Text("Overall product = 0"), cancellationToken);
-            }
-            else
-            {
-                var overallProduct = inputInts[0];
-                for (int i = 1; i < inputInts.Length - 1; i++)
-                {
-                    overallProduct *= inputInts[i];
-                }
-
-                await turnContext.SendActivityAsync(MessageFactory.Text($"Overall product = {overallProduct}"), cancellationToken);
-            }
-        }
-
-        /// <summary>
-        /// Method that will calculate the average of the list of numbers.
-        /// </summary>
-        /// <param name="inputList">The list of integers.</param>
-        /// <param name="turnContext">The turn context.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>A unit of execution.</returns>
-        public static async Task CalculateMean(
-            string inputList,
-            ITurnContext turnContext,
-            CancellationToken cancellationToken)
-        {
-            var inputStringArray = inputList.Split(',');
-            var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
-
-            var listSum = inputInts.Sum();
-            var listLength = inputInts.Length;
-            var average = listSum / listLength;
-
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Average = {average}"), cancellationToken);
-        }
-
-        /// <summary>
         /// Method to calculate the median.
         /// </summary>
         /// <param name="inputList">The list of integers.</param>

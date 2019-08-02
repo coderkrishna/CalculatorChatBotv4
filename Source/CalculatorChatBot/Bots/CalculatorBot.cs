@@ -66,11 +66,11 @@ namespace CalculatorChatBot.Bots
                         break;
                     case "multiplication":
                     case "product":
-                        await CalcChatBot.CalculateProduct(commandInputList, turnContext, cancellationToken);
+                        await Arithmetic.CalculateProduct(commandInputList, turnContext, cancellationToken);
                         break;
                     case "mean":
                     case "average":
-                        await CalcChatBot.CalculateMean(commandInputList, turnContext, cancellationToken);
+                        await Statistics.CalculateMean(commandInputList, turnContext, cancellationToken);
                         break;
                     case "median":
                     case "middle of the list":
