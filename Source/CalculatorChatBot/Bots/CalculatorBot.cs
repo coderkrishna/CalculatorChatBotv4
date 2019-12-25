@@ -23,21 +23,25 @@ namespace CalculatorChatBot.Bots
         private readonly IConfiguration configuration;
         private readonly TelemetryClient telemetryClient;
         private readonly IArithmetic arithmetic;
+        private readonly ICalcChatBot calcChatBot;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CalculatorBot"/> class.
         /// </summary>
         /// <param name="configuration">The current configuration.</param>
         /// <param name="arithmetic">Arithmetic operations DI.</param>
+        /// <param name="calcChatBot">Calculator Chat Bot methods DI.</param>
         /// <param name="telemetryClient">ApplicationInsights DI.</param>
         public CalculatorBot(
             IConfiguration configuration,
             IArithmetic arithmetic,
+            ICalcChatBot calcChatBot,
             TelemetryClient telemetryClient)
         {
             this.configuration = configuration;
             this.arithmetic = arithmetic;
             this.telemetryClient = telemetryClient;
+            this.calcChatBot = calcChatBot;
         }
 
         /// <summary>
@@ -50,10 +54,15 @@ namespace CalculatorChatBot.Bots
             ITurnContext<IMessageActivity> turnContext,
             CancellationToken cancellationToken)
         {
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
             if (turnContext.Activity.Text == "Take a tour")
             {
                 this.telemetryClient.TrackTrace($"Called command: {turnContext.Activity.Text}");
-                await CalcChatBot.SendTourCarouselCard(turnContext, cancellationToken);
+                await this.calcChatBot.SendTourCarouselCard(turnContext, cancellationToken);
             }
             else
             {
@@ -105,6 +114,11 @@ namespace CalculatorChatBot.Bots
             ITurnContext<IConversationUpdateActivity> turnContext,
             CancellationToken cancellationToken)
         {
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
             var teamId = turnContext.Activity.ChannelData["team"]["id"].ToString();
             var tenantId = turnContext.Activity.ChannelData["tenant"]["id"].ToString();
 
@@ -114,18 +128,23 @@ namespace CalculatorChatBot.Bots
                 this.configuration["MicrosoftAppId"],
                 this.configuration["MicrosoftAppPassword"]))
             {
+                if (membersAdded is null)
+                {
+                    throw new NullReferenceException(nameof(membersAdded));
+                }
+
                 foreach (var member in membersAdded)
                 {
                     if (member.Id != turnContext.Activity.Recipient.Id)
                     {
                         this.telemetryClient.TrackTrace($"Welcoming user: {member.Id}");
-                        await CalcChatBot.SendUserWelcomeMessage(member.Id, teamId, tenantId, turnContext.Activity.Recipient.Id, connectorClient, cancellationToken);
+                        await this.calcChatBot.SendUserWelcomeMessage(member.Id, teamId, tenantId, turnContext.Activity.Recipient.Id, connectorClient, cancellationToken);
                     }
                     else
                     {
                         this.telemetryClient.TrackTrace($"Welcoming the team");
                         var botDisplayName = this.configuration["BotDisplayName"];
-                        await CalcChatBot.SendTeamWelcomeMessage(teamId, botDisplayName, connectorClient, cancellationToken);
+                        await this.calcChatBot.SendTeamWelcomeMessage(teamId, botDisplayName, connectorClient, cancellationToken);
                     }
                 }
             }
@@ -141,6 +160,11 @@ namespace CalculatorChatBot.Bots
             ITurnContext<IConversationUpdateActivity> turnContext,
             CancellationToken cancellationToken)
         {
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
             var eventType = turnContext.Activity.ChannelData["eventType"].ToString();
             this.telemetryClient.TrackTrace($"Event has been found: {eventType}");
 

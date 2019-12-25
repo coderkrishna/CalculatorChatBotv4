@@ -52,10 +52,14 @@ namespace CalculatorChatBot
             services.AddSingleton<IArithmetic>((provider) => new Arithmetic(
                 provider.GetRequiredService<TelemetryClient>()));
 
+            services.AddSingleton<ICalcChatBot>((provider) => new CalcChatBot(
+                provider.GetRequiredService<TelemetryClient>()));
+
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
             services.AddTransient<IBot>((provider) => new CalculatorBot(
                 provider.GetRequiredService<IConfiguration>(),
                 provider.GetRequiredService<IArithmetic>(),
+                provider.GetRequiredService<ICalcChatBot>(),
                 provider.GetRequiredService<TelemetryClient>()));
         }
 

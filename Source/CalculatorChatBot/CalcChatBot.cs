@@ -6,10 +6,10 @@ namespace CalculatorChatBot
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
     using CalculatorChatBot.Helpers;
+    using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Connector;
     using Microsoft.Bot.Schema;
@@ -17,8 +17,19 @@ namespace CalculatorChatBot
     /// <summary>
     /// This class will be allowing for the separation of logic.
     /// </summary>
-    public class CalcChatBot
+    public class CalcChatBot : ICalcChatBot
     {
+        private readonly TelemetryClient telemetryClient;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CalcChatBot"/> class.
+        /// </summary>
+        /// <param name="telemetryClient">ApplicationInsights DI.</param>
+        public CalcChatBot(TelemetryClient telemetryClient)
+        {
+            this.telemetryClient = telemetryClient;
+        }
+
         /// <summary>
         /// Method which fires at the time the bot sends a proactive welcome message after being installed to a team.
         /// </summary>
@@ -27,14 +38,14 @@ namespace CalculatorChatBot
         /// <param name="connectorClient">The connector client.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task SendTeamWelcomeMessage(
+        public async Task SendTeamWelcomeMessage(
             string teamId,
             string botDisplayName,
             ConnectorClient connectorClient,
             CancellationToken cancellationToken)
         {
             var welcomeTeamCardAttachment = Cards.WelcomeTeamCardAttachment(botDisplayName);
-            await NotifyTeam(connectorClient, welcomeTeamCardAttachment, teamId, cancellationToken);
+            await this.NotifyTeam(connectorClient, welcomeTeamCardAttachment, teamId, cancellationToken);
         }
 
         /// <summary>
@@ -47,7 +58,7 @@ namespace CalculatorChatBot
         /// <param name="connectorClient">The turn connector client.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task SendUserWelcomeMessage(
+        public async Task SendUserWelcomeMessage(
             string memberAddedId,
             string teamId,
             string tenantId,
@@ -70,7 +81,7 @@ namespace CalculatorChatBot
 
             if (userThatJustJoined != null)
             {
-                await NotifyUser(connectorClient, userThatJustJoined, botId, tenantId, cancellationToken);
+                await this.NotifyUser(connectorClient, userThatJustJoined, botId, tenantId, cancellationToken);
             }
         }
 
@@ -80,7 +91,7 @@ namespace CalculatorChatBot
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task SendTourCarouselCard(
+        public async Task SendTourCarouselCard(
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
@@ -105,7 +116,7 @@ namespace CalculatorChatBot
         /// <param name="tenantId">The tenantId.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution that contains a boolean value.</returns>
-        private static async Task<bool> NotifyUser(
+        private async Task<bool> NotifyUser(
             ConnectorClient connectorClient,
             ChannelAccount user,
             string botId,
@@ -140,9 +151,10 @@ namespace CalculatorChatBot
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
+                throw;
             }
         }
 
@@ -154,7 +166,7 @@ namespace CalculatorChatBot
         /// <param name="teamId">The team Id.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        private static async Task NotifyTeam(
+        private async Task NotifyTeam(
             ConnectorClient connectorClient,
             Attachment attachmentToAppend,
             string teamId,
