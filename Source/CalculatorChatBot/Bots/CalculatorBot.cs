@@ -1,5 +1,5 @@
-// <copyright file="CalculatorBot.cs" company="Microsoft">
-// Copyright (c) Microsoft. All rights reserved.
+// <copyright file="CalculatorBot.cs" company="Tata Consultancy Services Ltd.">
+// Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
 namespace CalculatorChatBot.Bots
@@ -9,11 +9,11 @@ namespace CalculatorChatBot.Bots
     using System.Threading;
     using System.Threading.Tasks;
     using CalculatorChatBot.OperationsLib;
+    using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Connector;
     using Microsoft.Bot.Schema;
     using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Initializes the CalculatorBot class.
@@ -21,17 +21,23 @@ namespace CalculatorChatBot.Bots
     public class CalculatorBot : ActivityHandler
     {
         private readonly IConfiguration configuration;
-        private readonly ILogger<CalculatorBot> logger;
+        private readonly TelemetryClient telemetryClient;
+        private readonly IArithmetic arithmetic;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CalculatorBot"/> class.
         /// </summary>
         /// <param name="configuration">The current configuration.</param>
-        /// <param name="logger">Use of the logging mechanisms.</param>
-        public CalculatorBot(IConfiguration configuration, ILogger<CalculatorBot> logger)
+        /// <param name="arithmetic">Arithmetic operations DI.</param>
+        /// <param name="telemetryClient">ApplicationInsights DI.</param>
+        public CalculatorBot(
+            IConfiguration configuration,
+            IArithmetic arithmetic,
+            TelemetryClient telemetryClient)
         {
-            this.logger = logger;
             this.configuration = configuration;
+            this.arithmetic = arithmetic;
+            this.telemetryClient = telemetryClient;
         }
 
         /// <summary>
@@ -46,6 +52,7 @@ namespace CalculatorChatBot.Bots
         {
             if (turnContext.Activity.Text == "Take a tour")
             {
+                this.telemetryClient.TrackTrace($"Called command: {turnContext.Activity.Text}");
                 await CalcChatBot.SendTourCarouselCard(turnContext, cancellationToken);
             }
             else
@@ -58,15 +65,15 @@ namespace CalculatorChatBot.Bots
                 {
                     case "sum":
                     case "add":
-                        await Arithmetic.CalculateSum(commandInputList, turnContext, cancellationToken);
+                        await this.arithmetic.CalculateSum(commandInputList, turnContext, cancellationToken);
                         break;
                     case "difference":
                     case "minus":
-                        await Arithmetic.CalculateDifference(commandInputList, turnContext, cancellationToken);
+                        await this.arithmetic.CalculateDifference(commandInputList, turnContext, cancellationToken);
                         break;
                     case "multiplication":
                     case "product":
-                        await Arithmetic.CalculateProduct(commandInputList, turnContext, cancellationToken);
+                        await this.arithmetic.CalculateProduct(commandInputList, turnContext, cancellationToken);
                         break;
                     case "mean":
                     case "average":
@@ -101,7 +108,7 @@ namespace CalculatorChatBot.Bots
             var teamId = turnContext.Activity.ChannelData["team"]["id"].ToString();
             var tenantId = turnContext.Activity.ChannelData["tenant"]["id"].ToString();
 
-            this.logger.LogInformation("Members being added");
+            this.telemetryClient.TrackTrace("Members being added");
             using (var connectorClient = new ConnectorClient(
                 new Uri(turnContext.Activity.ServiceUrl),
                 this.configuration["MicrosoftAppId"],
@@ -111,12 +118,12 @@ namespace CalculatorChatBot.Bots
                 {
                     if (member.Id != turnContext.Activity.Recipient.Id)
                     {
-                        this.logger.LogInformation($"Welcoming user: {member.Id}");
+                        this.telemetryClient.TrackTrace($"Welcoming user: {member.Id}");
                         await CalcChatBot.SendUserWelcomeMessage(member.Id, teamId, tenantId, turnContext.Activity.Recipient.Id, connectorClient, cancellationToken);
                     }
                     else
                     {
-                        this.logger.LogInformation($"Welcoming the team");
+                        this.telemetryClient.TrackTrace($"Welcoming the team");
                         var botDisplayName = this.configuration["BotDisplayName"];
                         await CalcChatBot.SendTeamWelcomeMessage(teamId, botDisplayName, connectorClient, cancellationToken);
                     }
@@ -135,7 +142,7 @@ namespace CalculatorChatBot.Bots
             CancellationToken cancellationToken)
         {
             var eventType = turnContext.Activity.ChannelData["eventType"].ToString();
-            this.logger.LogInformation($"Event has been found: {eventType}");
+            this.telemetryClient.TrackTrace($"Event has been found: {eventType}");
 
             if (eventType == "teamMemberAdded")
             {

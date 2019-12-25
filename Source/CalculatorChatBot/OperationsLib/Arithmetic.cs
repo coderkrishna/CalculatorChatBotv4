@@ -1,5 +1,5 @@
-﻿// <copyright file="Arithmetic.cs" company="Microsoft">
-// Copyright (c) Microsoft. All rights reserved.
+﻿// <copyright file="Arithmetic.cs" company="Tata Consultancy Services Ltd.">
+// Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
 namespace CalculatorChatBot.OperationsLib
@@ -8,13 +8,25 @@ namespace CalculatorChatBot.OperationsLib
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
 
     /// <summary>
     /// This class represents all of the arithmetic operations that are to be done.
     /// </summary>
-    public class Arithmetic
+    public class Arithmetic : IArithmetic
     {
+        private readonly TelemetryClient telemetryClient;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Arithmetic"/> class.
+        /// </summary>
+        /// <param name="telemetryClient">ApplicationInsights DI.</param>
+        public Arithmetic(TelemetryClient telemetryClient)
+        {
+            this.telemetryClient = telemetryClient;
+        }
+
         /// <summary>
         /// Method which will fire whenever the sum is to be calculated.
         /// </summary>
@@ -22,7 +34,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task CalculateSum(
+        public async Task CalculateSum(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
@@ -41,7 +53,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task CalculateDifference(
+        public async Task CalculateDifference(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
@@ -65,7 +77,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public static async Task CalculateProduct(
+        public async Task CalculateProduct(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)

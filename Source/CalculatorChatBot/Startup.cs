@@ -5,6 +5,8 @@
 namespace CalculatorChatBot
 {
     using CalculatorChatBot.Bots;
+    using CalculatorChatBot.OperationsLib;
+    using Microsoft.ApplicationInsights;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -47,8 +49,14 @@ namespace CalculatorChatBot
             // Create the Bot Framework Adapter.
             services.AddSingleton<IBotFrameworkHttpAdapter, BotFrameworkHttpAdapter>();
 
+            services.AddSingleton<IArithmetic>((provider) => new Arithmetic(
+                provider.GetRequiredService<TelemetryClient>()));
+
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
-            services.AddTransient<IBot, CalculatorBot>();
+            services.AddTransient<IBot>((provider) => new CalculatorBot(
+                provider.GetRequiredService<IConfiguration>(),
+                provider.GetRequiredService<IArithmetic>(),
+                provider.GetRequiredService<TelemetryClient>()));
         }
 
         /// <summary>
