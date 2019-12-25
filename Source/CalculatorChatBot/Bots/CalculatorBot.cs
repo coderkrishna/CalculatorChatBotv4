@@ -9,6 +9,7 @@ namespace CalculatorChatBot.Bots
     using System.Threading;
     using System.Threading.Tasks;
     using CalculatorChatBot.OperationsLib;
+    using CalculatorChatBot.Properties;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Connector;
@@ -96,7 +97,7 @@ namespace CalculatorChatBot.Bots
                         await Statistics.CalculateRange(commandInputList, turnContext, cancellationToken);
                         break;
                     default:
-                        await turnContext.SendActivityAsync(MessageFactory.Text("I am not able to pick up a command"), cancellationToken);
+                        await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CannotPickUpCommandText), cancellationToken);
                         break;
                 }
             }
@@ -142,7 +143,7 @@ namespace CalculatorChatBot.Bots
                     }
                     else
                     {
-                        this.telemetryClient.TrackTrace($"Welcoming the team");
+                        this.telemetryClient.TrackTrace($"Welcoming the team: {teamId}");
                         var botDisplayName = this.configuration["BotDisplayName"];
                         await this.calcChatBot.SendTeamWelcomeMessage(teamId, botDisplayName, connectorClient, cancellationToken);
                     }
