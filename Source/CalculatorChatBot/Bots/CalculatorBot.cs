@@ -25,6 +25,7 @@ namespace CalculatorChatBot.Bots
         private readonly TelemetryClient telemetryClient;
         private readonly IArithmetic arithmetic;
         private readonly ICalcChatBot calcChatBot;
+        private readonly IStatistics statistics;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CalculatorBot"/> class.
@@ -37,7 +38,8 @@ namespace CalculatorChatBot.Bots
             IConfiguration configuration,
             IArithmetic arithmetic,
             ICalcChatBot calcChatBot,
-            TelemetryClient telemetryClient)
+            TelemetryClient telemetryClient,
+            IStatistics statistics)
         {
             this.configuration = configuration;
             this.arithmetic = arithmetic;
