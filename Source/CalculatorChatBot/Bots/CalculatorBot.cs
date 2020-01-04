@@ -34,6 +34,7 @@ namespace CalculatorChatBot.Bots
         /// <param name="arithmetic">Arithmetic operations DI.</param>
         /// <param name="calcChatBot">Calculator Chat Bot methods DI.</param>
         /// <param name="telemetryClient">ApplicationInsights DI.</param>
+        /// <param name="statistics">Statistic operations DI.</param>
         public CalculatorBot(
             IConfiguration configuration,
             IArithmetic arithmetic,
@@ -45,6 +46,7 @@ namespace CalculatorChatBot.Bots
             this.arithmetic = arithmetic;
             this.telemetryClient = telemetryClient;
             this.calcChatBot = calcChatBot;
+            this.statistics = statistics;
         }
 
         /// <summary>
@@ -89,14 +91,14 @@ namespace CalculatorChatBot.Bots
                         break;
                     case "mean":
                     case "average":
-                        await Statistics.CalculateMean(commandInputList, turnContext, cancellationToken);
+                        await this.statistics.CalculateMean(commandInputList, turnContext, cancellationToken);
                         break;
                     case "median":
                     case "middle of the list":
-                        await Statistics.CalculateMedian(commandInputList, turnContext, cancellationToken);
+                        await this.statistics.CalculateMedian(commandInputList, turnContext, cancellationToken);
                         break;
                     case "range":
-                        await Statistics.CalculateRange(commandInputList, turnContext, cancellationToken);
+                        await this.statistics.CalculateRange(commandInputList, turnContext, cancellationToken);
                         break;
                     default:
                         await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CannotPickUpCommandText), cancellationToken);

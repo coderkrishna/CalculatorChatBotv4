@@ -5,6 +5,7 @@
 namespace CalculatorChatBot.OperationsLib
 {
     using System;
+    using System.Globalization;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -39,6 +40,9 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            var provider = CultureInfo.InvariantCulture;
+            this.telemetryClient.TrackTrace($"CalculateMean start at: {DateTime.Now.ToString(provider)}");
+
             if (inputList is null)
             {
                 throw new ArgumentNullException(nameof(inputList));
@@ -66,6 +70,7 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            var provider = CultureInfo.InvariantCulture;
             if (inputList is null)
             {
                 throw new ArgumentNullException(nameof(inputList));
@@ -90,7 +95,7 @@ namespace CalculatorChatBot.OperationsLib
                 median = Convert.ToDecimal(copyArr[(size - 1) / 2]);
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Median = {decimal.Round(median, 2).ToString()}"), cancellationToken);
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Median = {decimal.Round(median, 2).ToString(provider)}"), cancellationToken);
         }
 
         /// <summary>
