@@ -123,5 +123,20 @@ namespace CalculatorChatBot.OperationsLib
 
             await turnContext.SendActivityAsync(MessageFactory.Text($"Range = {range}"), cancellationToken);
         }
+
+        /// <summary>
+        /// The method that will calculate the mode from a list of numbers.
+        /// </summary>
+        /// <param name="inputList">The list of numbers.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public async Task CalculateMode(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            await turnContext.SendActivityAsync(MessageFactory.Text($"This current method is being implemented"), cancellationToken);
+        }
     }
 }
