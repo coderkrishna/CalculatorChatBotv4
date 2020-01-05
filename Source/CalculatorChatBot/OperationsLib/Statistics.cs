@@ -9,6 +9,7 @@ namespace CalculatorChatBot.OperationsLib
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using CalculatorChatBot.Properties;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
 
@@ -48,6 +49,11 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(inputList));
             }
 
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
             var inputStringArray = inputList.Split(',');
             var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
 
@@ -71,9 +77,15 @@ namespace CalculatorChatBot.OperationsLib
             CancellationToken cancellationToken)
         {
             var provider = CultureInfo.InvariantCulture;
+
             if (inputList is null)
             {
                 throw new ArgumentNullException(nameof(inputList));
+            }
+
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
             }
 
             decimal median;
@@ -115,6 +127,11 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(inputList));
             }
 
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
             var inputListArray = inputList.Split(',');
             var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
             var inputListMax = inputListInts.Max();
@@ -136,7 +153,32 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
-            await turnContext.SendActivityAsync(MessageFactory.Text($"This current method is being implemented"), cancellationToken);
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
+            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken);
+        }
+
+        /// <summary>
+        /// This method will calculate the variance from a list of numbers.
+        /// </summary>
+        /// <param name="inputList">The list of numbers.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public async Task CalculateVariance(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
+            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken);
         }
     }
 }

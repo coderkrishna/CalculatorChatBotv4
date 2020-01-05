@@ -129,6 +129,10 @@
     <value>I'm not able to decipher any input commands here!</value>
     <comment>The default text when the bot is not able to pick up any commands.</comment>
   </data>
+  <data name="CurrentMethodBeingImplementedMessage" xml:space="preserve">
+    <value>This current method is being implemented, I cannot return any results right now!</value>
+    <comment>The message for the current functionality implementation being at the "in-progress" stage.</comment>
+  </data>
   <data name="GeometricCarouselCardContent" xml:space="preserve">
     <value>I can also perform some geometric operations such as: calculating the discriminant; calculating the roots of a quadratic equation; calculating the hypotenuse given two legs of a triangle; calculating the area and perimeter of polygons; and more...</value>
     <comment>The card content of the geometric carousel card</comment>

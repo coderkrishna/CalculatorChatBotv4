@@ -88,6 +88,15 @@ namespace CalculatorChatBot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This current method is being implemented, I cannot return any results right now!.
+        /// </summary>
+        public static string CurrentMethodBeingImplementedMessage {
+            get {
+                return ResourceManager.GetString("CurrentMethodBeingImplementedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I can also perform some geometric operations such as: calculating the discriminant; calculating the roots of a quadratic equation; calculating the hypotenuse given two legs of a triangle; calculating the area and perimeter of polygons; and more....
         /// </summary>
         public static string GeometricCarouselCardContent {
