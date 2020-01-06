@@ -51,7 +51,7 @@ namespace CalculatorChatBot
 
             services.AddSingleton<IArithmetic>((provider) => new Arithmetic(
                 provider.GetRequiredService<TelemetryClient>()));
-            services.AddSingleton<IStatistics>((provider) => new Statistics(
+            services.AddSingleton<IStatistic>((provider) => new Statistic(
                 provider.GetRequiredService<TelemetryClient>()));
 
             services.AddSingleton<ICalcChatBot>((provider) => new CalcChatBot(
@@ -63,7 +63,7 @@ namespace CalculatorChatBot
                 provider.GetRequiredService<IArithmetic>(),
                 provider.GetRequiredService<ICalcChatBot>(),
                 provider.GetRequiredService<TelemetryClient>(),
-                provider.GetRequiredService<IStatistics>()));
+                provider.GetRequiredService<IStatistic>()));
 
             services.AddApplicationInsightsTelemetry();
         }

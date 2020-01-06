@@ -1,4 +1,4 @@
-﻿// <copyright file="Statistics.cs" company="Microsoft">
+﻿// <copyright file="Statistic.cs" company="Microsoft">
 // Copyright (c) Microsoft. All rights reserved.
 // </copyright>
 
@@ -16,15 +16,15 @@ namespace CalculatorChatBot.OperationsLib
     /// <summary>
     /// The class that encapsulates all of the statistical methods.
     /// </summary>
-    public class Statistics : IStatistics
+    public class Statistic : IStatistic
     {
         private readonly TelemetryClient telemetryClient;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Statistics"/> class.
+        /// Initializes a new instance of the <see cref="Statistic"/> class.
         /// </summary>
         /// <param name="telemetryClient">ApplicationInsights DI.</param>
-        public Statistics(TelemetryClient telemetryClient)
+        public Statistic(TelemetryClient telemetryClient)
         {
             this.telemetryClient = telemetryClient;
         }
