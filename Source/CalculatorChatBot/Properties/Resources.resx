@@ -141,6 +141,10 @@
     <value>Geometric</value>
     <comment>The title text for second of the three carousel cards in the welcome tour for the calculator chat bot</comment>
   </data>
+  <data name="MembersBeingAddedMessage" xml:space="preserve">
+    <value>Members being added</value>
+    <comment>Telemetry message at the time when this bot is being installed in either a personal or teams scope.</comment>
+  </data>
   <data name="StatisticalCarouselCardContent" xml:space="preserve">
     <value>The statistical operations that I can do include, but are not limited to: the average; the median; the mode; the range; and other operations. The only way to find out whether or not I calculate a specific metric is to actually send me a command. As an example: mean 1,2,3 and I would return the result of 2</value>
     <comment>The card content of the statistical carousel card</comment>

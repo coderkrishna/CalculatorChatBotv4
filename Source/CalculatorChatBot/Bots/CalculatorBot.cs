@@ -26,6 +26,7 @@ namespace CalculatorChatBot.Bots
         private readonly IArithmetic arithmetic;
         private readonly ICalcChatBot calcChatBot;
         private readonly IStatistic statistics;
+        private readonly IGeometric geometrics;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CalculatorBot"/> class.
@@ -35,18 +36,21 @@ namespace CalculatorChatBot.Bots
         /// <param name="calcChatBot">Calculator Chat Bot methods DI.</param>
         /// <param name="telemetryClient">ApplicationInsights DI.</param>
         /// <param name="statistics">Statistic operations DI.</param>
+        /// <param name="geometrics">Geometric operations DI.</param>
         public CalculatorBot(
             IConfiguration configuration,
             IArithmetic arithmetic,
             ICalcChatBot calcChatBot,
             TelemetryClient telemetryClient,
-            IStatistic statistics)
+            IStatistic statistics,
+            IGeometric geometrics)
         {
             this.configuration = configuration;
             this.arithmetic = arithmetic;
             this.telemetryClient = telemetryClient;
             this.calcChatBot = calcChatBot;
             this.statistics = statistics;
+            this.geometrics = geometrics;
         }
 
         /// <summary>
@@ -127,7 +131,7 @@ namespace CalculatorChatBot.Bots
             var teamId = turnContext.Activity.ChannelData["team"]["id"].ToString();
             var tenantId = turnContext.Activity.ChannelData["tenant"]["id"].ToString();
 
-            this.telemetryClient.TrackTrace("Members being added");
+            this.telemetryClient.TrackTrace(Resources.MembersBeingAddedMessage);
             using (var connectorClient = new ConnectorClient(
                 new Uri(turnContext.Activity.ServiceUrl),
                 this.configuration["MicrosoftAppId"],
@@ -135,7 +139,7 @@ namespace CalculatorChatBot.Bots
             {
                 if (membersAdded is null)
                 {
-                    throw new NullReferenceException(nameof(membersAdded));
+                    throw new ArgumentNullException(nameof(membersAdded));
                 }
 
                 foreach (var member in membersAdded)
