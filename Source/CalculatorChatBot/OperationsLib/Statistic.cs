@@ -77,6 +77,7 @@ namespace CalculatorChatBot.OperationsLib
             CancellationToken cancellationToken)
         {
             var provider = CultureInfo.InvariantCulture;
+            this.telemetryClient.TrackTrace($"CalculateMedian start at: {DateTime.Now.ToString("O", provider)}");
 
             if (inputList is null)
             {
@@ -122,6 +123,9 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            var provider = CultureInfo.InvariantCulture;
+            this.telemetryClient.TrackTrace($"CalculateRange start at: {DateTime.Now.ToString("O", provider)}");
+
             if (inputList is null)
             {
                 throw new ArgumentNullException(nameof(inputList));
