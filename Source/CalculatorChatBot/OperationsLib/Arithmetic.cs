@@ -39,6 +39,16 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
             var inputStringArray = inputList.Split(',');
             var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
 
@@ -58,6 +68,16 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
             var inputStringArray = inputList.Split(',');
             var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
 
@@ -82,17 +102,27 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
+            int overallProduct;
             var inputStringArray = inputList.Split(',');
             var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
-
             var containsZero = inputInts.Any(x => x == 0);
             if (containsZero)
             {
-                await turnContext.SendActivityAsync(MessageFactory.Text("Overall product = 0"), cancellationToken);
+                await turnContext.SendActivityAsync(MessageFactory.Text($"Overall product = {overallProduct = 0}"), cancellationToken);
             }
             else
             {
-                var overallProduct = inputInts[0];
+                overallProduct = inputInts[0];
                 for (int i = 1; i < inputInts.Length - 1; i++)
                 {
                     overallProduct *= inputInts[i];

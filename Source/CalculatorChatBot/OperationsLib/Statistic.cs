@@ -42,7 +42,7 @@ namespace CalculatorChatBot.OperationsLib
             CancellationToken cancellationToken)
         {
             var provider = CultureInfo.InvariantCulture;
-            this.telemetryClient.TrackTrace($"CalculateMean start at: {DateTime.Now.ToString(provider)}");
+            this.telemetryClient.TrackTrace($"CalculateMean start at: {DateTime.Now.ToString("O", provider)}");
 
             if (inputList is null)
             {
@@ -60,6 +60,8 @@ namespace CalculatorChatBot.OperationsLib
             var listSum = inputInts.Sum();
             var listLength = inputInts.Length;
             var average = listSum / listLength;
+
+            this.telemetryClient.TrackTrace($"CalculateMean end at: {DateTime.Now.ToString("O", provider)}");
 
             await turnContext.SendActivityAsync(MessageFactory.Text($"Average = {average}"), cancellationToken);
         }
@@ -108,6 +110,8 @@ namespace CalculatorChatBot.OperationsLib
                 median = Convert.ToDecimal(copyArr[(size - 1) / 2]);
             }
 
+            this.telemetryClient.TrackTrace($"CalculateMedian end at: {DateTime.Now.ToString("O", provider)}");
+
             await turnContext.SendActivityAsync(MessageFactory.Text($"Median = {decimal.Round(median, 2).ToString(provider)}"), cancellationToken);
         }
 
@@ -141,6 +145,8 @@ namespace CalculatorChatBot.OperationsLib
             var inputListMax = inputListInts.Max();
             var inputListMin = inputListInts.Min();
             var range = inputListMax - inputListMin;
+
+            this.telemetryClient.TrackTrace($"CalculateRange end at: {DateTime.Now.ToString("O", provider)}");
 
             await turnContext.SendActivityAsync(MessageFactory.Text($"Range = {range}"), cancellationToken);
         }
