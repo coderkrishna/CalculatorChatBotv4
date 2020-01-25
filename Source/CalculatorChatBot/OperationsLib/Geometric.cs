@@ -53,9 +53,9 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
-            this.telemetryClient.TrackTrace($"CalculateDiscriminant end at: {DateTime.Now.ToString("O", provider)}");
-
             await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken);
+
+            this.telemetryClient.TrackTrace($"CalculateDiscriminant end at: {DateTime.Now.ToString("O", provider)}");
         }
     }
 }
