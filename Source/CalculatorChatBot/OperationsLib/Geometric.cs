@@ -1,4 +1,4 @@
-﻿// <copyright file="Geometric.cs" company="Tata Consultancy Services Ltd.">
+﻿// <copyright file="Geometric.cs" company="Tata Consultancy Services Ltd">
 // Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
@@ -55,7 +55,7 @@ namespace CalculatorChatBot.OperationsLib
 
             this.telemetryClient.TrackTrace($"CalculateDiscriminant end at: {DateTime.Now.ToString("O", provider)}");
 
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken);
+            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿// <copyright file="Arithmetic.cs" company="Tata Consultancy Services Ltd.">
+﻿// <copyright file="Arithmetic.cs" company="Tata Consultancy Services Ltd">
 // Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
@@ -9,6 +9,7 @@ namespace CalculatorChatBot.OperationsLib
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using CalculatorChatBot.Properties;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
 
@@ -56,7 +57,7 @@ namespace CalculatorChatBot.OperationsLib
             var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
 
             var sum = inputInts.Sum();
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Sum = {sum}"), cancellationToken);
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Sum = {sum}"), cancellationToken).ConfigureAwait(false);
             this.telemetryClient.TrackTrace($"CalculateSum end at: {DateTime.Now.ToString("O", provider)}");
         }
 
@@ -93,7 +94,7 @@ namespace CalculatorChatBot.OperationsLib
                 overallDiff -= inputInts[i];
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Difference = {overallDiff}"), cancellationToken);
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Difference = {overallDiff}"), cancellationToken).ConfigureAwait(false);
             this.telemetryClient.TrackTrace($"CalculateDifference end at: {DateTime.Now.ToString("O", provider)}");
         }
 
@@ -127,7 +128,7 @@ namespace CalculatorChatBot.OperationsLib
             var containsZero = inputInts.Any(x => x == 0);
             if (containsZero)
             {
-                await turnContext.SendActivityAsync(MessageFactory.Text($"Overall product = {overallProduct = 0}"), cancellationToken);
+                await turnContext.SendActivityAsync(MessageFactory.Text($"Overall product = {overallProduct = 0}"), cancellationToken).ConfigureAwait(false);
                 this.telemetryClient.TrackTrace($"CalculateProduct end at: {DateTime.Now.ToString("O", provider)}");
             }
             else
@@ -138,9 +139,34 @@ namespace CalculatorChatBot.OperationsLib
                     overallProduct *= inputInts[i];
                 }
 
-                await turnContext.SendActivityAsync(MessageFactory.Text($"Overall product = {overallProduct}"), cancellationToken);
+                await turnContext.SendActivityAsync(MessageFactory.Text($"Overall product = {overallProduct}"), cancellationToken).ConfigureAwait(false);
                 this.telemetryClient.TrackTrace($"CalculateProduct end at: {DateTime.Now.ToString("O", provider)}");
             }
+        }
+
+        /// <summary>
+        /// Method that will calculate the product of a list of numbers.
+        /// </summary>
+        /// <param name="inputList">The input list of integers.</param>
+        /// <param name="turnContext">The turn context.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public async Task CalculateQuotient(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
+            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
         }
     }
 }

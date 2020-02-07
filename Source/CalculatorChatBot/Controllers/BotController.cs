@@ -1,5 +1,5 @@
-// <copyright file="BotController.cs" company="Microsoft">
-// Copyright (c) Microsoft. All rights reserved.
+// <copyright file="BotController.cs" company="Tata Consultancy Services Ltd">
+// Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
 namespace CalculatorChatBot.Controllers
@@ -41,7 +41,7 @@ namespace CalculatorChatBot.Controllers
         {
             // Delegate the processing of the HTTP POST to the adapter.
             // The adapter will invoke the bot.
-            await this.adapter.ProcessAsync(this.Request, this.Response, this.bot);
+            await this.adapter.ProcessAsync(this.Request, this.Response, this.bot).ConfigureAwait(false);
         }
     }
 }

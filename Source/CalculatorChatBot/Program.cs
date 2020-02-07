@@ -1,5 +1,5 @@
-﻿// <copyright file="Program.cs" company="Microsoft">
-// Copyright (c) Microsoft. All rights reserved.
+﻿// <copyright file="Program.cs" company="Tata Consultancy Services Ltd">
+// Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
 namespace CalculatorChatBot
@@ -10,7 +10,7 @@ namespace CalculatorChatBot
     /// <summary>
     /// The main point of execution.
     /// </summary>
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// The main method of execution at the time the solution is running.

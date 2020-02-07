@@ -1,4 +1,4 @@
-﻿// <copyright file="IGeometric.cs" company="Tata Consultancy Services Ltd.">
+﻿// <copyright file="IGeometric.cs" company="Tata Consultancy Services Ltd">
 // Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 

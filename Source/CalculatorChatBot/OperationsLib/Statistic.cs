@@ -1,5 +1,5 @@
-﻿// <copyright file="Statistic.cs" company="Microsoft">
-// Copyright (c) Microsoft. All rights reserved.
+﻿// <copyright file="Statistic.cs" company="Tata Consultancy Services Ltd">
+// Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
 namespace CalculatorChatBot.OperationsLib
@@ -63,7 +63,7 @@ namespace CalculatorChatBot.OperationsLib
 
             this.telemetryClient.TrackTrace($"CalculateMean end at: {DateTime.Now.ToString("O", provider)}");
 
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Average = {average}"), cancellationToken);
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Average = {average}"), cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace CalculatorChatBot.OperationsLib
 
             this.telemetryClient.TrackTrace($"CalculateMedian end at: {DateTime.Now.ToString("O", provider)}");
 
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Median = {decimal.Round(median, 2).ToString(provider)}"), cancellationToken);
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Median = {decimal.Round(median, 2).ToString(provider)}"), cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace CalculatorChatBot.OperationsLib
 
             this.telemetryClient.TrackTrace($"CalculateRange end at: {DateTime.Now.ToString("O", provider)}");
 
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Range = {range}"), cancellationToken);
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Range = {range}"), cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -168,7 +168,7 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken);
+            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -188,7 +188,7 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken);
+            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
         }
     }
 }

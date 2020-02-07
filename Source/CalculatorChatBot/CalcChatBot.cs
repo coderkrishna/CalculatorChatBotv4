@@ -1,5 +1,5 @@
-﻿// <copyright file="CalcChatBot.cs" company="Microsoft">
-// Copyright (c) Microsoft. All rights reserved.
+﻿// <copyright file="CalcChatBot.cs" company="Tata Consultancy Services Ltd">
+// Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
 namespace CalculatorChatBot
@@ -9,6 +9,7 @@ namespace CalculatorChatBot
     using System.Threading;
     using System.Threading.Tasks;
     using CalculatorChatBot.Helpers;
+    using CalculatorChatBot.Properties;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
     using Microsoft.Bot.Connector;
@@ -38,14 +39,19 @@ namespace CalculatorChatBot
         /// <param name="connectorClient">The connector client.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task SendTeamWelcomeMessage(
+        public async Task SendTeamWelcomeMessageAsync(
             string teamId,
             string botDisplayName,
             ConnectorClient connectorClient,
             CancellationToken cancellationToken)
         {
+            if (connectorClient is null)
+            {
+                throw new ArgumentNullException(nameof(connectorClient));
+            }
+
             var welcomeTeamCardAttachment = Cards.WelcomeTeamCardAttachment(botDisplayName);
-            await this.NotifyTeam(connectorClient, welcomeTeamCardAttachment, teamId, cancellationToken);
+            await this.NotifyTeam(connectorClient, welcomeTeamCardAttachment, teamId, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -58,7 +64,7 @@ namespace CalculatorChatBot
         /// <param name="connectorClient">The turn connector client.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task SendUserWelcomeMessage(
+        public async Task SendUserWelcomeMessageAsync(
             string memberAddedId,
             string teamId,
             string tenantId,
@@ -66,7 +72,12 @@ namespace CalculatorChatBot
             ConnectorClient connectorClient,
             CancellationToken cancellationToken)
         {
-            var allMembers = await connectorClient.Conversations.GetConversationMembersAsync(teamId, cancellationToken);
+            if (connectorClient is null)
+            {
+                throw new ArgumentNullException(nameof(connectorClient));
+            }
+
+            var allMembers = await connectorClient.Conversations.GetConversationMembersAsync(teamId, cancellationToken).ConfigureAwait(false);
 
             ChannelAccount userThatJustJoined = null;
             foreach (var m in allMembers)
@@ -81,7 +92,7 @@ namespace CalculatorChatBot
 
             if (userThatJustJoined != null)
             {
-                await this.NotifyUser(connectorClient, userThatJustJoined, botId, tenantId, cancellationToken);
+                await this.NotifyUser(connectorClient, userThatJustJoined, botId, tenantId, cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -95,6 +106,11 @@ namespace CalculatorChatBot
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
             var tourCarouselReply = turnContext.Activity.CreateReply();
             tourCarouselReply.AttachmentLayout = AttachmentLayoutTypes.Carousel;
             tourCarouselReply.Attachments = new List<Attachment>()
@@ -104,7 +120,7 @@ namespace CalculatorChatBot
                 Cards.GetStatisticalCarouselAttachment(),
             };
 
-            await turnContext.SendActivityAsync(tourCarouselReply, cancellationToken);
+            await turnContext.SendActivityAsync(tourCarouselReply, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -123,6 +139,11 @@ namespace CalculatorChatBot
             string tenantId,
             CancellationToken cancellationToken)
         {
+            if (connectorClient is null)
+            {
+                throw new ArgumentNullException(nameof(connectorClient));
+            }
+
             try
             {
                 // ensure conversation exists
@@ -137,23 +158,23 @@ namespace CalculatorChatBot
                     TenantId = tenantId,
                 };
 
-                var response = await connectorClient.Conversations.CreateConversationAsync(conversationParameters, cancellationToken);
+                var response = await connectorClient.Conversations.CreateConversationAsync(conversationParameters, cancellationToken).ConfigureAwait(false);
 
                 var conversationId = response.Id;
 
                 var activity = new Activity()
                 {
                     Type = ActivityTypes.Message,
-                    Text = "Hello from the Calculator Chat Bot",
+                    Text = Resources.WelcomeCardTitle,
                 };
 
-                await connectorClient.Conversations.SendToConversationAsync(conversationId, activity);
+                await connectorClient.Conversations.SendToConversationAsync(conversationId, activity).ConfigureAwait(false);
 
                 return true;
             }
             catch (Exception ex)
             {
-                return false;
+                this.telemetryClient.TrackException(ex);
                 throw;
             }
         }
@@ -172,6 +193,11 @@ namespace CalculatorChatBot
             string teamId,
             CancellationToken cancellationToken)
         {
+            if (connectorClient is null)
+            {
+                throw new ArgumentNullException(nameof(connectorClient));
+            }
+
             var activity = new Activity()
             {
                 Type = ActivityTypes.Message,
@@ -185,7 +211,7 @@ namespace CalculatorChatBot
                 },
             };
 
-            await connectorClient.Conversations.SendToConversationAsync(teamId, activity, cancellationToken);
+            await connectorClient.Conversations.SendToConversationAsync(teamId, activity, cancellationToken).ConfigureAwait(false);
         }
     }
 }

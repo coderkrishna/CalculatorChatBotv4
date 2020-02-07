@@ -1,21 +1,25 @@
-﻿// <copyright file="WelcomeAdaptiveCard.cs" company="Microsoft">
-// Copyright (c) Microsoft. All rights reserved.
+﻿// <copyright file="WelcomeAdaptiveCard.cs" company="Tata Consultancy Services Ltd">
+// Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
 namespace CalculatorChatBot.Helpers.AdaptiveCards
 {
+    using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.IO;
     using CalculatorChatBot.Properties;
 
     /// <summary>
     /// This class is responsible for the generation of the welcome adaptive card.
     /// </summary>
-    public class WelcomeAdaptiveCard
+    public static class WelcomeAdaptiveCard
     {
         private static readonly string CardTemplate;
 
+#pragma warning disable CA1810 // Initialize reference type static fields inline
         static WelcomeAdaptiveCard()
+#pragma warning restore CA1810 // Initialize reference type static fields inline
         {
             var cardJsonFilePath = Path.Combine(".", "Helpers", "AdaptiveCards", "WelcomeAdaptiveCard.json");
             CardTemplate = File.ReadAllText(cardJsonFilePath);
@@ -29,7 +33,7 @@ namespace CalculatorChatBot.Helpers.AdaptiveCards
         public static string GetCard(string botDisplayName)
         {
             var welcomeCardTitleText = Resources.WelcomeCardTitle;
-            var welcomeCardContentPart1 = string.Format(Resources.WelcomeCardContentPart1, botDisplayName);
+            var welcomeCardContentPart1 = string.Format(CultureInfo.InvariantCulture, Resources.WelcomeCardContentPart1, botDisplayName);
             var welcomeCardContentPart2 = Resources.WelcomeCardContentPart2;
             var welcomeCardBulletListItem1 = Resources.WelcomeCardBulletListItem1;
             var welcomeCardBulletListItem2 = Resources.WelcomeCardBulletListItem2;
@@ -50,7 +54,7 @@ namespace CalculatorChatBot.Helpers.AdaptiveCards
             var cardBody = CardTemplate;
             foreach (var kvp in variablesToValues)
             {
-                cardBody = cardBody.Replace($"%{kvp.Key}%", kvp.Value);
+                cardBody = cardBody.Replace($"%{kvp.Key}%", kvp.Value, StringComparison.InvariantCulture);
             }
 
             return cardBody;

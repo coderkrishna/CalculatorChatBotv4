@@ -1,4 +1,4 @@
-﻿// <copyright file="ICalcChatBot.cs" company="Tata Consultancy Services Ltd.">
+﻿// <copyright file="ICalcChatBot.cs" company="Tata Consultancy Services Ltd">
 // Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
@@ -17,12 +17,12 @@ namespace CalculatorChatBot
         /// <summary>
         /// Method definition to send a team welcome message.
         /// </summary>
-        /// <param name="teamId"></param>
-        /// <param name="botDisplayName"></param>
-        /// <param name="connectorClient"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        Task SendTeamWelcomeMessage(
+        /// <param name="teamId">The team ID.</param>
+        /// <param name="botDisplayName">The bot display name.</param>
+        /// <param name="connectorClient">The connector client.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        Task SendTeamWelcomeMessageAsync(
             string teamId,
             string botDisplayName,
             ConnectorClient connectorClient,
@@ -31,14 +31,14 @@ namespace CalculatorChatBot
         /// <summary>
         /// Method defintion to send a user welcome message.
         /// </summary>
-        /// <param name="memberAddedId"></param>
-        /// <param name="teamId"></param>
-        /// <param name="tenantId"></param>
-        /// <param name="botId"></param>
-        /// <param name="connectorClient"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        Task SendUserWelcomeMessage(
+        /// <param name="memberAddedId">The Id of the new member added.</param>
+        /// <param name="teamId">The Team ID.</param>
+        /// <param name="tenantId">The tenant ID.</param>
+        /// <param name="botId">The bot ID.</param>
+        /// <param name="connectorClient">The connector client.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        Task SendUserWelcomeMessageAsync(
             string memberAddedId,
             string teamId,
             string tenantId,
@@ -49,9 +49,9 @@ namespace CalculatorChatBot
         /// <summary>
         /// Method definition of sending a tour carousel card.
         /// </summary>
-        /// <param name="turnContext"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <param name="turnContext">The turn context.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
         Task SendTourCarouselCard(
             ITurnContext turnContext,
             CancellationToken cancellationToken);

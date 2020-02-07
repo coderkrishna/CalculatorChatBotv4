@@ -1,4 +1,4 @@
-// <copyright file="CalculatorBot.cs" company="Tata Consultancy Services Ltd.">
+// <copyright file="CalculatorBot.cs" company="Tata Consultancy Services Ltd">
 // Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
@@ -71,7 +71,7 @@ namespace CalculatorChatBot.Bots
             if (turnContext.Activity.Text == "Take a tour")
             {
                 this.telemetryClient.TrackTrace($"Called command: {turnContext.Activity.Text}");
-                await this.calcChatBot.SendTourCarouselCard(turnContext, cancellationToken);
+                await this.calcChatBot.SendTourCarouselCard(turnContext, cancellationToken).ConfigureAwait(false);
             }
             else
             {
@@ -83,29 +83,29 @@ namespace CalculatorChatBot.Bots
                 {
                     case "sum":
                     case "add":
-                        await this.arithmetic.CalculateSum(commandInputList, turnContext, cancellationToken);
+                        await this.arithmetic.CalculateSum(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
                         break;
                     case "difference":
                     case "minus":
-                        await this.arithmetic.CalculateDifference(commandInputList, turnContext, cancellationToken);
+                        await this.arithmetic.CalculateDifference(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
                         break;
                     case "multiplication":
                     case "product":
-                        await this.arithmetic.CalculateProduct(commandInputList, turnContext, cancellationToken);
+                        await this.arithmetic.CalculateProduct(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
                         break;
                     case "mean":
                     case "average":
-                        await this.statistics.CalculateMean(commandInputList, turnContext, cancellationToken);
+                        await this.statistics.CalculateMean(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
                         break;
                     case "median":
                     case "middle of the list":
-                        await this.statistics.CalculateMedian(commandInputList, turnContext, cancellationToken);
+                        await this.statistics.CalculateMedian(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
                         break;
                     case "range":
-                        await this.statistics.CalculateRange(commandInputList, turnContext, cancellationToken);
+                        await this.statistics.CalculateRange(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
                         break;
                     default:
-                        await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CannotPickUpCommandText), cancellationToken);
+                        await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CannotPickUpCommandText), cancellationToken).ConfigureAwait(false);
                         break;
                 }
             }
@@ -147,13 +147,13 @@ namespace CalculatorChatBot.Bots
                     if (member.Id != turnContext.Activity.Recipient.Id)
                     {
                         this.telemetryClient.TrackTrace($"Welcoming user: {member.Id}");
-                        await this.calcChatBot.SendUserWelcomeMessage(member.Id, teamId, tenantId, turnContext.Activity.Recipient.Id, connectorClient, cancellationToken);
+                        await this.calcChatBot.SendUserWelcomeMessageAsync(member.Id, teamId, tenantId, turnContext.Activity.Recipient.Id, connectorClient, cancellationToken).ConfigureAwait(false);
                     }
                     else
                     {
                         this.telemetryClient.TrackTrace($"Welcoming the team: {teamId}");
                         var botDisplayName = this.configuration["BotDisplayName"];
-                        await this.calcChatBot.SendTeamWelcomeMessage(teamId, botDisplayName, connectorClient, cancellationToken);
+                        await this.calcChatBot.SendTeamWelcomeMessageAsync(teamId, botDisplayName, connectorClient, cancellationToken).ConfigureAwait(false);
                     }
                 }
             }
@@ -180,7 +180,7 @@ namespace CalculatorChatBot.Bots
             if (eventType == "teamMemberAdded")
             {
                 var membersAdded = turnContext.Activity.MembersAdded;
-                await this.OnMembersAddedAsync(membersAdded, turnContext, cancellationToken);
+                await this.OnMembersAddedAsync(membersAdded, turnContext, cancellationToken).ConfigureAwait(false);
             }
         }
     }
