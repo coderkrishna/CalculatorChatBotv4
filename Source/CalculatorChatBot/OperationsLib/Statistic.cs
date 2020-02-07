@@ -163,12 +163,15 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            var provider = CultureInfo.InvariantCulture;
+            this.telemetryClient.TrackTrace($"CalculateMode start at: {DateTime.Now.ToString("O", provider)}");
             if (turnContext is null)
             {
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
+            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken);
+            this.telemetryClient.TrackTrace($"CalculateMode end at: {DateTime.Now.ToString("O", provider)}");
         }
 
         /// <summary>
@@ -183,12 +186,15 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            var provider = CultureInfo.InvariantCulture;
+            this.telemetryClient.TrackTrace($"CalculateVariance start at: {DateTime.Now.ToString("O", provider)}");
             if (turnContext is null)
             {
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
+            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken);
+            this.telemetryClient.TrackTrace($"CalcuateVariance end at: {DateTime.Now.ToString("O", provider)}");
         }
     }
 }
