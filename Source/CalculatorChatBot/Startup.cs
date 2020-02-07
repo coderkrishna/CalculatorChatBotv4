@@ -39,7 +39,9 @@ namespace CalculatorChatBot
         /// Method that gets called by the runtime.
         /// </summary>
         /// <param name="services">All of the services that are required.</param>
+#pragma warning disable CA1822 // Mark members as static
         public void ConfigureServices(IServiceCollection services)
+#pragma warning restore CA1822 // Mark members as static
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -76,7 +78,9 @@ namespace CalculatorChatBot
         /// </summary>
         /// <param name="app">The current built application.</param>
         /// <param name="env">All of the environment settings.</param>
+#pragma warning disable CA1822 // Mark members as static
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+#pragma warning restore CA1822 // Mark members as static
         {
             if (env.IsDevelopment())
             {

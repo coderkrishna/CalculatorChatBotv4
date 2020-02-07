@@ -1,9 +1,0 @@
-﻿// <copyright file="GlobalSuppressions.cs" company="Tata Consultancy Services Ltd">
-// Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
-// </copyright>
-
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Acceptable coding standards.", Scope = "member", Target = "~M:CalculatorChatBot.OperationsLib.Statistic.CalculateMean(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)~System.Threading.Tasks.Task")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Acceptable coding standards.", Scope = "member", Target = "~M:CalculatorChatBot.OperationsLib.Statistic.CalculateMedian(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)~System.Threading.Tasks.Task")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Acceptable coding standards.", Scope = "member", Target = "~M:CalculatorChatBot.OperationsLib.Statistic.CalculateRange(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)~System.Threading.Tasks.Task")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Acceptable coding standards.", Scope = "member", Target = "~M:CalculatorChatBot.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Acceptable coding standards.", Scope = "member", Target = "~M:CalculatorChatBot.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)")]
