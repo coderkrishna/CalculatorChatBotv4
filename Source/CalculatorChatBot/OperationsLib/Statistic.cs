@@ -170,7 +170,7 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken);
+            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
             this.telemetryClient.TrackTrace($"CalculateMode end at: {DateTime.Now.ToString("O", provider)}");
         }
 
