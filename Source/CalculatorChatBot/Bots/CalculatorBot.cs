@@ -93,6 +93,10 @@ namespace CalculatorChatBot.Bots
                     case "product":
                         await this.arithmetic.CalculateProduct(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
                         break;
+                    case "division":
+                    case "quotient":
+                        await this.arithmetic.CalculateQuotient(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        break;
                     case "mean":
                     case "average":
                         await this.statistics.CalculateMean(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
