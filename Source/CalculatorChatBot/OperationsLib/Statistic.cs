@@ -123,8 +123,7 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
-            var provider = CultureInfo.InvariantCulture;
-            this.telemetryClient.TrackTrace($"CalculateRange start at: {DateTime.Now.ToString("O", provider)}");
+            this.telemetryClient.TrackTrace("CalculateRange start");
 
             if (inputList is null)
             {
@@ -142,8 +141,7 @@ namespace CalculatorChatBot.OperationsLib
             var inputListMin = inputListInts.Min();
             var range = inputListMax - inputListMin;
 
-            this.telemetryClient.TrackTrace($"CalculateRange end at: {DateTime.Now.ToString("O", provider)}");
-
+            this.telemetryClient.TrackTrace("CalculateRange end");
             await turnContext.SendActivityAsync(MessageFactory.Text($"Range = {range}"), cancellationToken).ConfigureAwait(false);
         }
 

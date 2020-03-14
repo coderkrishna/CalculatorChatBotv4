@@ -111,6 +111,9 @@ namespace CalculatorChatBot.Bots
                     case "variance":
                         await this.statistics.CalculateVariance(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
                         break;
+                    case "standard deviation":
+                        await this.statistics.CalculateStandardDeviation(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        break;
                     default:
                         await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CannotPickUpCommandText), cancellationToken).ConfigureAwait(false);
                         break;
