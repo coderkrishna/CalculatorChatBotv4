@@ -41,8 +41,7 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
-            var provider = CultureInfo.InvariantCulture;
-            this.telemetryClient.TrackTrace($"CalculateMean start at: {DateTime.Now.ToString("O", provider)}");
+            this.telemetryClient.TrackTrace("CalculateMean start");
 
             if (inputList is null)
             {
@@ -61,8 +60,7 @@ namespace CalculatorChatBot.OperationsLib
             var listLength = inputInts.Length;
             var average = listSum / listLength;
 
-            this.telemetryClient.TrackTrace($"CalculateMean end at: {DateTime.Now.ToString("O", provider)}");
-
+            this.telemetryClient.TrackTrace("CalculateMean end");
             await turnContext.SendActivityAsync(MessageFactory.Text($"Average = {average}"), cancellationToken).ConfigureAwait(false);
         }
 
@@ -78,8 +76,7 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
-            var provider = CultureInfo.InvariantCulture;
-            this.telemetryClient.TrackTrace($"CalculateMedian start at: {DateTime.Now.ToString("O", provider)}");
+            this.telemetryClient.TrackTrace("CalculateMedian start");
 
             if (inputList is null)
             {
@@ -110,9 +107,8 @@ namespace CalculatorChatBot.OperationsLib
                 median = Convert.ToDecimal(copyArr[(size - 1) / 2]);
             }
 
-            this.telemetryClient.TrackTrace($"CalculateMedian end at: {DateTime.Now.ToString("O", provider)}");
-
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Median = {decimal.Round(median, 2).ToString(provider)}"), cancellationToken).ConfigureAwait(false);
+            this.telemetryClient.TrackTrace("CalculateMedian end");
+            await turnContext.SendActivityAsync(MessageFactory.Text($"Median = {decimal.Round(median, 2).ToString(CultureInfo.InvariantCulture)}"), cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -163,15 +159,14 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
-            var provider = CultureInfo.InvariantCulture;
-            this.telemetryClient.TrackTrace($"CalculateMode start at: {DateTime.Now.ToString("O", provider)}");
+            this.telemetryClient.TrackTrace("CalculateMode start");
             if (turnContext is null)
             {
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
             await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
-            this.telemetryClient.TrackTrace($"CalculateMode end at: {DateTime.Now.ToString("O", provider)}");
+            this.telemetryClient.TrackTrace("CalculateMode end");
         }
 
         /// <summary>
@@ -186,15 +181,36 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
-            var provider = CultureInfo.InvariantCulture;
-            this.telemetryClient.TrackTrace($"CalculateVariance start at: {DateTime.Now.ToString("O", provider)}");
+            this.telemetryClient.TrackTrace("CalculateVariance start");
             if (turnContext is null)
             {
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken);
-            this.telemetryClient.TrackTrace($"CalcuateVariance end at: {DateTime.Now.ToString("O", provider)}");
+            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
+            this.telemetryClient.TrackTrace("CalcuateVariance end");
+        }
+
+        /// <summary>
+        /// This method will calculate the standard deviation from a list of numbers.
+        /// </summary>
+        /// <param name="inputList">The list of integers.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public async Task CalculateStandardDeviation(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            this.telemetryClient.TrackTrace("CalculateStandardDeviation start");
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
+            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
+            this.telemetryClient.TrackTrace("CalculateStandardDeviation end");
         }
     }
 }
