@@ -201,14 +201,29 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
-            this.telemetryClient.TrackTrace("CalculateStandardDeviation start");
+            this.telemetryClient.TrackTrace("CalculateStandardDeviation started");
             if (turnContext is null)
             {
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
             await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
-            this.telemetryClient.TrackTrace("CalculateStandardDeviation end");
+            this.telemetryClient.TrackTrace("CalculateStandardDeviation ended");
+        }
+
+        /// <summary>
+        /// Method that calculates the geometric mean.
+        /// </summary>
+        /// <param name="inputList"></param>
+        /// <param name="turnContext"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public async Task CalculateGeometricMean(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            this.telemetryClient.TrackTrace("CalculateGeometricMean started");
         }
     }
 }

@@ -84,5 +84,17 @@ namespace CalculatorChatBot.OperationsLib
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Method definition to calculate the geometric mean from a list of numbers.
+        /// </summary>
+        /// <param name="inputList">The list of integers.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        Task CalculateGeometricMean(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken);
     }
 }
