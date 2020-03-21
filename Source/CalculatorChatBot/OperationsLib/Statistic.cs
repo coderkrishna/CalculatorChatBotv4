@@ -214,16 +214,23 @@ namespace CalculatorChatBot.OperationsLib
         /// <summary>
         /// Method that calculates the geometric mean.
         /// </summary>
-        /// <param name="inputList"></param>
-        /// <param name="turnContext"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <param name="inputList">The list of integers.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
         public async Task CalculateGeometricMean(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
             this.telemetryClient.TrackTrace("CalculateGeometricMean started");
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
+            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
+            this.telemetryClient.TrackTrace("CalculateGeometricMean ended");
         }
     }
 }
