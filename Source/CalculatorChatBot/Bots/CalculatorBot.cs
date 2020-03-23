@@ -114,6 +114,9 @@ namespace CalculatorChatBot.Bots
                     case "standard deviation":
                         await this.statistics.CalculateStandardDeviation(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
                         break;
+                    case "geometric mean":
+                        await this.statistics.CalculateGeometricMean(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        break;
                     default:
                         await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CannotPickUpCommandText), cancellationToken).ConfigureAwait(false);
                         break;

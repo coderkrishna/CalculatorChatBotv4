@@ -40,8 +40,7 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
-            var provider = CultureInfo.InvariantCulture;
-            this.telemetryClient.TrackTrace($"CalculateDiscriminant start at: {DateTime.Now.ToString("O", provider)}");
+            this.telemetryClient.TrackTrace("CalculateDiscriminant started");
 
             if (inputList is null)
             {
@@ -53,9 +52,57 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
-            this.telemetryClient.TrackTrace($"CalculateDiscriminant end at: {DateTime.Now.ToString("O", provider)}");
+            this.telemetryClient.TrackTrace("CalculateDiscriminant ended");
 
             await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// This method calculates the distance between 2 points on a line/line segment.
+        /// </summary>
+        /// <param name="inputList">The list of integers that represent P1 and P2 that are points.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public Task CalculateDistance(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// This method calculates the midpoint between 2 points on a line/line segment.
+        /// </summary>
+        /// <param name="inputList">The list of integers that represent P1 and P2 that are points.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public Task CalculateMidpoint(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// This method calculates the pythagorean triple.
+        /// </summary>
+        /// <param name="inputList">The list of integers that will be used for calculating the hypotenuse.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public Task CalculatePythagoreanTriple(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// This method calculates the quadratic roots of an equation.
+        /// </summary>
+        /// <param name="inputList">The list of integers that represent the values of A, B, and C.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public Task CalculateQuadraticRoots(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
         }
     }
 }

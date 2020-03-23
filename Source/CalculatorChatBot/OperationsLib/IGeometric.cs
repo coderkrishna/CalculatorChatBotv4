@@ -24,5 +24,53 @@ namespace CalculatorChatBot.OperationsLib
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Method definition to calculate the roots of the quadratic equation.
+        /// </summary>
+        /// <param name="inputList">The values for a, b, and c.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        Task CalculateQuadraticRoots(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Method definition to calculate the pythagorean triple.
+        /// </summary>
+        /// <param name="inputList">The input list of integers.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        Task CalculatePythagoreanTriple(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Method definition to calculate the midpoint of a line segment.
+        /// </summary>
+        /// <param name="inputList">The list of integers that would be the points P1 and P2.</param>
+        /// <param name="turnContext">The current turn context/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        Task CalculateMidpoint(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Method definition to calculate the distance between two points of a line segment.
+        /// </summary>
+        /// <param name="inputList">The list of integers that would be the points P1 and P2.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        Task CalculateDistance(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken);
     }
 }
