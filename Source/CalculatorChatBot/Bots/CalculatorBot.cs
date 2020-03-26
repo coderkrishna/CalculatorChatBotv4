@@ -117,6 +117,15 @@ namespace CalculatorChatBot.Bots
                     case "geometric mean":
                         await this.statistics.CalculateGeometricMean(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
                         break;
+                    case "quadratic roots":
+                        await this.geometrics.CalculateQuadraticRoots(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        break;
+                    case "discriminant":
+                        await this.geometrics.CalculateDiscriminant(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        break;
+                    case "midpoint":
+                        await this.geometrics.CalculateMidpoint(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        break;
                     default:
                         await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CannotPickUpCommandText), cancellationToken).ConfigureAwait(false);
                         break;
