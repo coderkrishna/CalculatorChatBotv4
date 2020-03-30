@@ -126,6 +126,12 @@ namespace CalculatorChatBot.Bots
                     case "midpoint":
                         await this.geometrics.CalculateMidpoint(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
                         break;
+                    case "distance":
+                        await this.geometrics.CalculateDistance(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        break;
+                    case "pythagorean triple":
+                        await this.geometrics.CalculatePythagoreanTriple(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        break;
                     default:
                         await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CannotPickUpCommandText), cancellationToken).ConfigureAwait(false);
                         break;
