@@ -52,13 +52,13 @@ namespace CalculatorChatBot.OperationsLib
             }
 
             var inputStringArray = inputList.Split(',');
-            var provider = CultureInfo.InvariantCulture;
-            this.telemetryClient.TrackTrace($"CalculateSum start at: {DateTime.Now.ToString("O", provider)}");
+
+            this.telemetryClient.TrackTrace("CalculateSum start");
             var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
 
             var sum = inputInts.Sum();
             await turnContext.SendActivityAsync(MessageFactory.Text($"Sum = {sum}"), cancellationToken).ConfigureAwait(false);
-            this.telemetryClient.TrackTrace($"CalculateSum end at: {DateTime.Now.ToString("O", provider)}");
+            this.telemetryClient.TrackTrace("CalculateSum end");
         }
 
         /// <summary>
@@ -84,8 +84,8 @@ namespace CalculatorChatBot.OperationsLib
             }
 
             var inputStringArray = inputList.Split(',');
-            var provider = CultureInfo.InvariantCulture;
-            this.telemetryClient.TrackTrace($"CalculateDifference start at: {DateTime.Now.ToString("O", provider)}");
+
+            this.telemetryClient.TrackTrace("CalculateDifference start");
             var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
 
             var overallDiff = inputInts[0];
@@ -95,7 +95,7 @@ namespace CalculatorChatBot.OperationsLib
             }
 
             await turnContext.SendActivityAsync(MessageFactory.Text($"Difference = {overallDiff}"), cancellationToken).ConfigureAwait(false);
-            this.telemetryClient.TrackTrace($"CalculateDifference end at: {DateTime.Now.ToString("O", provider)}");
+            this.telemetryClient.TrackTrace("CalculateDifference end");
         }
 
         /// <summary>
@@ -123,13 +123,13 @@ namespace CalculatorChatBot.OperationsLib
             int overallProduct;
             var inputStringArray = inputList.Split(',');
             var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
-            var provider = CultureInfo.InvariantCulture;
-            this.telemetryClient.TrackTrace($"CalculateProduct start at: {DateTime.Now.ToString("O", provider)}");
+
+            this.telemetryClient.TrackTrace("CalculateProduct start");
             var containsZero = inputInts.Any(x => x == 0);
             if (containsZero)
             {
                 await turnContext.SendActivityAsync(MessageFactory.Text($"Overall product = {overallProduct = 0}"), cancellationToken).ConfigureAwait(false);
-                this.telemetryClient.TrackTrace($"CalculateProduct end at: {DateTime.Now.ToString("O", provider)}");
+                this.telemetryClient.TrackTrace("CalculateProduct end");
             }
             else
             {
@@ -140,7 +140,7 @@ namespace CalculatorChatBot.OperationsLib
                 }
 
                 await turnContext.SendActivityAsync(MessageFactory.Text($"Overall product = {overallProduct}"), cancellationToken).ConfigureAwait(false);
-                this.telemetryClient.TrackTrace($"CalculateProduct end at: {DateTime.Now.ToString("O", provider)}");
+                this.telemetryClient.TrackTrace("CalculateProduct end");
             }
         }
 
