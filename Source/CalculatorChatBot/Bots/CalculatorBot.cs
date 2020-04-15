@@ -83,19 +83,19 @@ namespace CalculatorChatBot.Bots
                 {
                     case "sum":
                     case "add":
-                        await this.arithmetic.CalculateSum(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var sum = this.arithmetic.CalculateSum(commandInputList, turnContext, cancellationToken);
                         break;
                     case "difference":
                     case "minus":
-                        await this.arithmetic.CalculateDifference(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var diff = this.arithmetic.CalculateDifference(commandInputList, turnContext, cancellationToken);
                         break;
                     case "multiplication":
                     case "product":
-                        await this.arithmetic.CalculateProduct(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var product = this.arithmetic.CalculateProduct(commandInputList, turnContext, cancellationToken);
                         break;
                     case "division":
                     case "quotient":
-                        await this.arithmetic.CalculateQuotient(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var quotient = this.arithmetic.CalculateQuotient(commandInputList, turnContext, cancellationToken);
                         break;
                     case "mean":
                     case "average":
