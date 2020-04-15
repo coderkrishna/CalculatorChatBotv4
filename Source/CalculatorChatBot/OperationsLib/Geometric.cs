@@ -152,6 +152,15 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
+            if (inputList.Length == 3)
+            {
+                this.telemetryClient.TrackTrace("The inputList is of the correct length");
+            }
+            else
+            {
+                await turnContext.SendActivityAsync(MessageFactory.Text("The inputList needs to have a length of 3 in order for me to calculate the roots."), cancellationToken).ConfigureAwait(false);
+            }
+
             this.telemetryClient.TrackTrace("CalculateQuadraticRoots ended");
             await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
         }
