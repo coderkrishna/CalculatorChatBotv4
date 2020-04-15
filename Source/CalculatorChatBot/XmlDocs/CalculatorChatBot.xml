@@ -306,6 +306,42 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution.</returns>
         </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Geometric.CalculateDistance(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            This method calculates the distance between 2 points on a line/line segment.
+            </summary>
+            <param name="inputList">The list of integers that represent P1 and P2 that are points.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Geometric.CalculateMidpoint(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            This method calculates the midpoint between 2 points on a line/line segment.
+            </summary>
+            <param name="inputList">The list of integers that represent P1 and P2 that are points.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Geometric.CalculatePythagoreanTriple(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            This method calculates the pythagorean triple.
+            </summary>
+            <param name="inputList">The list of integers that will be used for calculating the hypotenuse.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Geometric.CalculateQuadraticRoots(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            This method calculates the quadratic roots of an equation.
+            </summary>
+            <param name="inputList">The list of integers that represent the values of A, B, and C.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
         <member name="T:CalculatorChatBot.OperationsLib.IArithmetic">
             <summary>
             This interface defines the necessary methods for arithmetic operations.
@@ -361,6 +397,42 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution.</returns>
         </member>
+        <member name="M:CalculatorChatBot.OperationsLib.IGeometric.CalculateQuadraticRoots(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method definition to calculate the roots of the quadratic equation.
+            </summary>
+            <param name="inputList">The values for a, b, and c.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.IGeometric.CalculatePythagoreanTriple(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method definition to calculate the pythagorean triple.
+            </summary>
+            <param name="inputList">The input list of integers.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.IGeometric.CalculateMidpoint(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method definition to calculate the midpoint of a line segment.
+            </summary>
+            <param name="inputList">The list of integers that would be the points P1 and P2.</param>
+            <param name="turnContext">The current turn context/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.IGeometric.CalculateDistance(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method definition to calculate the distance between two points of a line segment.
+            </summary>
+            <param name="inputList">The list of integers that would be the points P1 and P2.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
         <member name="T:CalculatorChatBot.OperationsLib.IStatistic">
             <summary>
             This interface defines the methods for statistical calculations.
@@ -405,6 +477,24 @@
         <member name="M:CalculatorChatBot.OperationsLib.IStatistic.CalculateVariance(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
             <summary>
             Method definition to calculate the variance from a list of numbers.
+            </summary>
+            <param name="inputList">The list of integers.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.IStatistic.CalculateStandardDeviation(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method definition to calculate the standard deviation from a list of numbers.
+            </summary>
+            <param name="inputList">The list of integers.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.IStatistic.CalculateGeometricMean(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method definition to calculate the geometric mean from a list of numbers.
             </summary>
             <param name="inputList">The list of integers.</param>
             <param name="turnContext">The current turn/execution flow.</param>
@@ -463,6 +553,24 @@
             This method will calculate the variance from a list of numbers.
             </summary>
             <param name="inputList">The list of numbers.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Statistic.CalculateStandardDeviation(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            This method will calculate the standard deviation from a list of numbers.
+            </summary>
+            <param name="inputList">The list of integers.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Statistic.CalculateGeometricMean(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method that calculates the geometric mean.
+            </summary>
+            <param name="inputList">The list of integers.</param>
             <param name="turnContext">The current turn/execution flow.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution.</returns>
