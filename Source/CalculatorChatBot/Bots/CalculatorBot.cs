@@ -99,38 +99,38 @@ namespace CalculatorChatBot.Bots
                         break;
                     case "mean":
                     case "average":
-                        await this.statistics.CalculateMean(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var mean = this.statistics.CalculateMean(commandInputList, turnContext, cancellationToken);
                         break;
                     case "median":
                     case "middle of the list":
-                        await this.statistics.CalculateMedian(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var median = this.statistics.CalculateMedian(commandInputList, turnContext, cancellationToken);
                         break;
                     case "range":
-                        await this.statistics.CalculateRange(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var range = this.statistics.CalculateRange(commandInputList, turnContext, cancellationToken);
                         break;
                     case "variance":
-                        await this.statistics.CalculateVariance(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var variance = this.statistics.CalculateVariance(commandInputList, turnContext, cancellationToken);
                         break;
                     case "standard deviation":
-                        await this.statistics.CalculateStandardDeviation(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var stdDev = this.statistics.CalculateStandardDeviation(commandInputList, turnContext, cancellationToken);
                         break;
                     case "geometric mean":
-                        await this.statistics.CalculateGeometricMean(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var geometricMean = this.statistics.CalculateGeometricMean(commandInputList, turnContext, cancellationToken);
                         break;
                     case "quadratic roots":
-                        await this.geometrics.CalculateQuadraticRoots(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var quadRoots = this.geometrics.CalculateQuadraticRoots(commandInputList, turnContext, cancellationToken);
                         break;
                     case "discriminant":
-                        await this.geometrics.CalculateDiscriminant(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var discriminant = this.geometrics.CalculateDiscriminant(commandInputList, turnContext, cancellationToken);
                         break;
                     case "midpoint":
-                        await this.geometrics.CalculateMidpoint(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var midpoint = this.geometrics.CalculateMidpoint(commandInputList, turnContext, cancellationToken);
                         break;
                     case "distance":
-                        await this.geometrics.CalculateDistance(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var distance = this.geometrics.CalculateDistance(commandInputList, turnContext, cancellationToken);
                         break;
                     case "pythagorean triple":
-                        await this.geometrics.CalculatePythagoreanTriple(commandInputList, turnContext, cancellationToken).ConfigureAwait(false);
+                        var pythagoreanTriple = this.geometrics.CalculatePythagoreanTriple(commandInputList, turnContext, cancellationToken);
                         break;
                     default:
                         await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CannotPickUpCommandText), cancellationToken).ConfigureAwait(false);

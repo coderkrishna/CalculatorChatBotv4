@@ -20,7 +20,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateMean(
+        decimal CalculateMean(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
@@ -32,7 +32,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateMedian(
+        decimal CalculateMedian(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
@@ -44,7 +44,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateRange(
+        decimal CalculateRange(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
@@ -56,7 +56,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateMode(
+        decimal CalculateMode(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
@@ -68,7 +68,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateVariance(
+        decimal CalculateVariance(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
@@ -80,7 +80,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateStandardDeviation(
+        decimal CalculateStandardDeviation(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
@@ -92,7 +92,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateGeometricMean(
+        decimal CalculateGeometricMean(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);

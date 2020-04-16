@@ -36,7 +36,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateMean(
+        public decimal CalculateMean(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
@@ -58,10 +58,10 @@ namespace CalculatorChatBot.OperationsLib
 
             var listSum = inputInts.Sum();
             var listLength = inputInts.Length;
-            var average = listSum / listLength;
+            var average = Convert.ToDecimal(listSum) / listLength;
 
             this.telemetryClient.TrackTrace("CalculateMean end");
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Average = {average}"), cancellationToken).ConfigureAwait(false);
+            return decimal.Round(average, 2);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateMedian(
+        public decimal CalculateMedian(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
@@ -108,7 +108,8 @@ namespace CalculatorChatBot.OperationsLib
             }
 
             this.telemetryClient.TrackTrace("CalculateMedian end");
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Median = {decimal.Round(median, 2).ToString(CultureInfo.InvariantCulture)}"), cancellationToken).ConfigureAwait(false);
+
+            return decimal.Round(median, 2);
         }
 
         /// <summary>
@@ -118,7 +119,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateRange(
+        public decimal CalculateRange(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
@@ -141,8 +142,10 @@ namespace CalculatorChatBot.OperationsLib
             var inputListMin = inputListInts.Min();
             var range = inputListMax - inputListMin;
 
+            var decRange = Convert.ToDecimal(range);
+
             this.telemetryClient.TrackTrace("CalculateRange end");
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Range = {range}"), cancellationToken).ConfigureAwait(false);
+            return decimal.Round(decRange, 2);
         }
 
         /// <summary>
@@ -152,7 +155,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateMode(
+        public decimal CalculateMode(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
@@ -163,8 +166,8 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
             this.telemetryClient.TrackTrace("CalculateMode end");
+            return 0;
         }
 
         /// <summary>
@@ -174,7 +177,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateVariance(
+        public decimal CalculateVariance(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
@@ -185,8 +188,8 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
             this.telemetryClient.TrackTrace("CalcuateVariance end");
+            return 0;
         }
 
         /// <summary>
@@ -196,7 +199,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateStandardDeviation(
+        public decimal CalculateStandardDeviation(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
@@ -207,8 +210,8 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
             this.telemetryClient.TrackTrace("CalculateStandardDeviation ended");
+            return 0;
         }
 
         /// <summary>
@@ -218,7 +221,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateGeometricMean(
+        public decimal CalculateGeometricMean(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
@@ -229,8 +232,8 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
             this.telemetryClient.TrackTrace("CalculateGeometricMean ended");
+            return 0;
         }
     }
 }

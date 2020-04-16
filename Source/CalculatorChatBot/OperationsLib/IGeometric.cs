@@ -20,7 +20,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn context/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateDiscriminant(
+        int CalculateDiscriminant(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
@@ -32,7 +32,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateQuadraticRoots(
+        string CalculateQuadraticRoots(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
@@ -44,7 +44,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculatePythagoreanTriple(
+        string CalculatePythagoreanTriple(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
@@ -56,7 +56,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn context/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateMidpoint(
+        string CalculateMidpoint(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
@@ -68,7 +68,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateDistance(
+        double CalculateDistance(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);

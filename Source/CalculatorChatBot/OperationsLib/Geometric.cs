@@ -34,7 +34,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateDiscriminant(
+        public int CalculateDiscriminant(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
@@ -52,8 +52,7 @@ namespace CalculatorChatBot.OperationsLib
             }
 
             this.telemetryClient.TrackTrace("CalculateDiscriminant ended");
-
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
+            return 0;
         }
 
         /// <summary>
@@ -63,7 +62,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateDistance(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
+        public double CalculateDistance(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
         {
             this.telemetryClient.TrackTrace("ClaculateDistance started");
 
@@ -78,7 +77,7 @@ namespace CalculatorChatBot.OperationsLib
             }
 
             this.telemetryClient.TrackTrace("CalculateDistance ended");
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
+            return 0;
         }
 
         /// <summary>
@@ -88,7 +87,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateMidpoint(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
+        public string CalculateMidpoint(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
         {
             this.telemetryClient.TrackTrace("CalculateMidpoint started");
 
@@ -103,7 +102,7 @@ namespace CalculatorChatBot.OperationsLib
             }
 
             this.telemetryClient.TrackTrace("CalculateMidpoint ended");
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
+            return string.Empty;
         }
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculatePythagoreanTriple(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
+        public string CalculatePythagoreanTriple(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
         {
             this.telemetryClient.TrackTrace("CalculatePythagoreanTriple started");
 
@@ -128,7 +127,7 @@ namespace CalculatorChatBot.OperationsLib
             }
 
             this.telemetryClient.TrackTrace("CalculatePythagoreanTriple ended");
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
+            return string.Empty;
         }
 
         /// <summary>
@@ -138,7 +137,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateQuadraticRoots(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
+        public string CalculateQuadraticRoots(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
         {
             this.telemetryClient.TrackTrace("CalculateQuadraticRoots started");
 
@@ -158,11 +157,11 @@ namespace CalculatorChatBot.OperationsLib
             }
             else
             {
-                await turnContext.SendActivityAsync(MessageFactory.Text("The inputList needs to have a length of 3 in order for me to calculate the roots."), cancellationToken).ConfigureAwait(false);
+                this.telemetryClient.TrackTrace("The inputList needs to have a length of 3 in order for me to calculate the roots.");
             }
 
             this.telemetryClient.TrackTrace("CalculateQuadraticRoots ended");
-            await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CurrentMethodBeingImplementedMessage), cancellationToken).ConfigureAwait(false);
+            return string.Empty;
         }
     }
 }
