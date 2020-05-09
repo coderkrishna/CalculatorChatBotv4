@@ -5,11 +5,8 @@
 namespace CalculatorChatBot.OperationsLib
 {
     using System;
-    using System.Globalization;
     using System.Linq;
     using System.Threading;
-    using System.Threading.Tasks;
-    using CalculatorChatBot.Properties;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
 
