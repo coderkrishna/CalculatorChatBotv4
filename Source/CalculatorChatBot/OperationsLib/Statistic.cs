@@ -5,11 +5,8 @@
 namespace CalculatorChatBot.OperationsLib
 {
     using System;
-    using System.Globalization;
     using System.Linq;
     using System.Threading;
-    using System.Threading.Tasks;
-    using CalculatorChatBot.Properties;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
 
@@ -166,6 +163,14 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
+
             this.telemetryClient.TrackTrace("CalculateMode end");
             return 0;
         }
@@ -187,6 +192,14 @@ namespace CalculatorChatBot.OperationsLib
             {
                 throw new ArgumentNullException(nameof(turnContext));
             }
+
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
 
             this.telemetryClient.TrackTrace("CalcuateVariance end");
             return 0;
@@ -210,6 +223,14 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
+
             this.telemetryClient.TrackTrace("CalculateStandardDeviation ended");
             return 0;
         }
@@ -231,6 +252,14 @@ namespace CalculatorChatBot.OperationsLib
             {
                 throw new ArgumentNullException(nameof(turnContext));
             }
+
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
 
             this.telemetryClient.TrackTrace("CalculateGeometricMean ended");
             return 0;

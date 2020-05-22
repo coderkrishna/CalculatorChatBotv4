@@ -186,6 +186,7 @@ namespace CalculatorChatBot.OperationsLib
             }
             else
             {
+                this.telemetryClient.TrackTrace("The length of the input array is not 2 exactly, or the first element of the list is 0!");
                 this.telemetryClient.TrackTrace("CalculateQuotient end");
                 return 0;
             }

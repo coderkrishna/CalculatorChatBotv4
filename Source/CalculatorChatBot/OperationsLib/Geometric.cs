@@ -6,8 +6,6 @@ namespace CalculatorChatBot.OperationsLib
 {
     using System;
     using System.Threading;
-    using System.Threading.Tasks;
-    using CalculatorChatBot.Properties;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
 
@@ -51,6 +49,9 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
+
             this.telemetryClient.TrackTrace("CalculateDiscriminant ended");
             return 0;
         }
@@ -75,6 +76,9 @@ namespace CalculatorChatBot.OperationsLib
             {
                 throw new ArgumentNullException(nameof(turnContext));
             }
+
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
 
             this.telemetryClient.TrackTrace("CalculateDistance ended");
             return 0;
@@ -101,6 +105,9 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(turnContext));
             }
 
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
+
             this.telemetryClient.TrackTrace("CalculateMidpoint ended");
             return string.Empty;
         }
@@ -125,6 +132,9 @@ namespace CalculatorChatBot.OperationsLib
             {
                 throw new ArgumentNullException(nameof(turnContext));
             }
+
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
 
             this.telemetryClient.TrackTrace("CalculatePythagoreanTriple ended");
             return string.Empty;
@@ -159,6 +169,9 @@ namespace CalculatorChatBot.OperationsLib
             {
                 this.telemetryClient.TrackTrace("The inputList needs to have a length of 3 in order for me to calculate the roots.");
             }
+
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
 
             this.telemetryClient.TrackTrace("CalculateQuadraticRoots ended");
             return string.Empty;
