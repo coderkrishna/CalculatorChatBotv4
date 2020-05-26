@@ -5,6 +5,8 @@
 namespace CalculatorChatBot.OperationsLib
 {
     using System;
+    using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Threading;
     using Microsoft.ApplicationInsights;
@@ -152,7 +154,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public decimal CalculateMode(
+        public int[] CalculateMode(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
@@ -168,11 +170,40 @@ namespace CalculatorChatBot.OperationsLib
                 throw new ArgumentNullException(nameof(inputList));
             }
 
-            var inputListArray = inputList.Split(',');
-            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
+            var inputStringArr = inputList.Split(',');
+            var inputIntArr = Array.ConvertAll(inputStringArr, int.Parse);
+
+            // originalList is the original list of numbers
+            List<int> originalList = new List<int>(inputIntArr);
+
+            // This is the return/output - modes.ToArray();
+            List<int> modes = new List<int>();
+
+            // The below code will have the data showing each element
+            // and how many times each element appears in the list.
+            var query = from numbers in originalList
+                        group numbers by numbers
+                            into groupedNumbers
+                        select new
+                        {
+                            Number = groupedNumbers.Key,
+                            Count = groupedNumbers.Count(),
+                        };
+
+            int max = query.Max(g => g.Count);
+
+            if (max == 1)
+            {
+                int mode = 0;
+                modes.Add(mode);
+            }
+            else
+            {
+                modes = query.Where(x => x.Count == max).Select(x => x.Number).ToList();
+            }
 
             this.telemetryClient.TrackTrace("CalculateMode end");
-            return 0;
+            return modes.ToArray();
         }
 
         /// <summary>
@@ -261,8 +292,17 @@ namespace CalculatorChatBot.OperationsLib
             var inputListArray = inputList.Split(',');
             var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
 
+            int numberOfElements = inputListInts.Length;
+            int finalProduct = inputListInts[0];
+            for (int i = 1; i < inputListInts.Length; i++)
+            {
+                finalProduct *= inputListInts[i];
+            }
+
+            var geoMean = Math.Pow(finalProduct, 1 / numberOfElements);
             this.telemetryClient.TrackTrace("CalculateGeometricMean ended");
-            return 0;
+
+            return Convert.ToDecimal(geoMean, CultureInfo.InvariantCulture);
         }
     }
 }

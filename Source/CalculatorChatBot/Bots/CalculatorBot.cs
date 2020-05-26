@@ -111,6 +111,9 @@ namespace CalculatorChatBot.Bots
                     case "variance":
                         var variance = this.statistics.CalculateVariance(commandInputList, turnContext, cancellationToken);
                         break;
+                    case "mode":
+                        var modeList = this.statistics.CalculateMode(commandInputList, turnContext, cancellationToken);
+                        break;
                     case "standard deviation":
                         var stdDev = this.statistics.CalculateStandardDeviation(commandInputList, turnContext, cancellationToken);
                         break;

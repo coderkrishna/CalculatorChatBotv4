@@ -55,7 +55,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        decimal CalculateMode(
+        int[] CalculateMode(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
