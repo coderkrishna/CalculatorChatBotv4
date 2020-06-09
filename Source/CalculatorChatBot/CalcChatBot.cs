@@ -51,7 +51,7 @@ namespace CalculatorChatBot
             }
 
             var welcomeTeamCardAttachment = Cards.WelcomeTeamCardAttachment(botDisplayName);
-            await this.NotifyTeam(connectorClient, welcomeTeamCardAttachment, teamId, cancellationToken).ConfigureAwait(false);
+            await NotifyTeam(connectorClient, welcomeTeamCardAttachment, teamId, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -124,6 +124,41 @@ namespace CalculatorChatBot
         }
 
         /// <summary>
+        /// Method that will send out the team notification.
+        /// </summary>
+        /// <param name="connectorClient">The connector client.</param>
+        /// <param name="attachmentToAppend">The attachment/adaptive card to attach to the message.</param>
+        /// <param name="teamId">The team Id.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        private static async Task NotifyTeam(
+            ConnectorClient connectorClient,
+            Attachment attachmentToAppend,
+            string teamId,
+            CancellationToken cancellationToken)
+        {
+            if (connectorClient is null)
+            {
+                throw new ArgumentNullException(nameof(connectorClient));
+            }
+
+            var activity = new Activity()
+            {
+                Type = ActivityTypes.Message,
+                Conversation = new ConversationAccount()
+                {
+                    Id = teamId,
+                },
+                Attachments = new List<Attachment>()
+                {
+                    attachmentToAppend,
+                },
+            };
+
+            await connectorClient.Conversations.SendToConversationAsync(teamId, activity, cancellationToken).ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// Notifies the user.
         /// </summary>
         /// <param name="connectorClient">The connector client.</param>
@@ -177,41 +212,6 @@ namespace CalculatorChatBot
                 this.telemetryClient.TrackException(ex);
                 throw;
             }
-        }
-
-        /// <summary>
-        /// Method that will send out the team notification.
-        /// </summary>
-        /// <param name="connectorClient">The connector client.</param>
-        /// <param name="attachmentToAppend">The attachment/adaptive card to attach to the message.</param>
-        /// <param name="teamId">The team Id.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>A unit of execution.</returns>
-        private async Task NotifyTeam(
-            ConnectorClient connectorClient,
-            Attachment attachmentToAppend,
-            string teamId,
-            CancellationToken cancellationToken)
-        {
-            if (connectorClient is null)
-            {
-                throw new ArgumentNullException(nameof(connectorClient));
-            }
-
-            var activity = new Activity()
-            {
-                Type = ActivityTypes.Message,
-                Conversation = new ConversationAccount()
-                {
-                    Id = teamId,
-                },
-                Attachments = new List<Attachment>()
-                {
-                    attachmentToAppend,
-                },
-            };
-
-            await connectorClient.Conversations.SendToConversationAsync(teamId, activity, cancellationToken).ConfigureAwait(false);
         }
     }
 }

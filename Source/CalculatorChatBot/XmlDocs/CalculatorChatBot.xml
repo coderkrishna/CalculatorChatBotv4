@@ -86,6 +86,16 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution.</returns>
         </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.NotifyTeam(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Schema.Attachment,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Method that will send out the team notification.
+            </summary>
+            <param name="connectorClient">The connector client.</param>
+            <param name="attachmentToAppend">The attachment/adaptive card to attach to the message.</param>
+            <param name="teamId">The team Id.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
         <member name="M:CalculatorChatBot.CalcChatBot.NotifyUser(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Schema.ChannelAccount,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Notifies the user.
@@ -96,16 +106,6 @@
             <param name="tenantId">The tenantId.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution that contains a boolean value.</returns>
-        </member>
-        <member name="M:CalculatorChatBot.CalcChatBot.NotifyTeam(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Schema.Attachment,System.String,System.Threading.CancellationToken)">
-            <summary>
-            Method that will send out the team notification.
-            </summary>
-            <param name="connectorClient">The connector client.</param>
-            <param name="attachmentToAppend">The attachment/adaptive card to attach to the message.</param>
-            <param name="teamId">The team Id.</param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A unit of execution.</returns>
         </member>
         <member name="T:CalculatorChatBot.ConfigurationCredentialProvider">
             <summary>
