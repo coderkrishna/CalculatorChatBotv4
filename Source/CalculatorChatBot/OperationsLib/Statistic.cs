@@ -232,8 +232,19 @@ namespace CalculatorChatBot.OperationsLib
             var inputListArray = inputList.Split(',');
             var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
 
+            var mean = Convert.ToDouble(this.CalculateMean(inputList, turnContext, cancellationToken));
+            double squareDiffs = 0;
+            int n = inputListInts.Length;
+
+            for (int i = 0; i < inputListInts.Length; i++)
+            {
+                squareDiffs += Math.Pow(Math.Abs(Convert.ToDouble(inputListInts[i]) - mean), 2);
+            }
+
+            var decResult = Convert.ToDecimal(squareDiffs / n);
+
             this.telemetryClient.TrackTrace("CalcuateVariance end");
-            return 0;
+            return decimal.Round(decResult, 2);
         }
 
         /// <summary>
