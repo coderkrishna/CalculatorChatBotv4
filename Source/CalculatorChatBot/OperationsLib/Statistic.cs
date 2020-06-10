@@ -313,7 +313,7 @@ namespace CalculatorChatBot.OperationsLib
             var geoMean = Math.Pow(finalProduct, 1 / numberOfElements);
             this.telemetryClient.TrackTrace("CalculateGeometricMean ended");
 
-            return Convert.ToDecimal(geoMean, CultureInfo.InvariantCulture);
+            return decimal.Round(Convert.ToDecimal(geoMean, CultureInfo.InvariantCulture), 2);
         }
     }
 }
