@@ -273,8 +273,11 @@ namespace CalculatorChatBot.OperationsLib
             var inputListArray = inputList.Split(',');
             var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
 
+            var calculatedVariance = this.CalculateVariance(inputList, turnContext, cancellationToken);
+            decimal standardDev = decimal.Round(Convert.ToDecimal(Math.Sqrt((double)calculatedVariance)), 2);
+
             this.telemetryClient.TrackTrace("CalculateStandardDeviation ended");
-            return 0;
+            return decimal.Round(standardDev, 2);
         }
 
         /// <summary>
