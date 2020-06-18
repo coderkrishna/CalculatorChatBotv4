@@ -23,7 +23,16 @@ namespace CalculatorChatBot.Helpers
         {
             AdaptiveCard welcomeTeamAdaptiveCard = new AdaptiveCard(new AdaptiveSchemaVersion(1, 2))
             {
-
+                Body = new List<AdaptiveElement>
+                {
+                    new AdaptiveTextBlock
+                    {
+                        Text = Resources.WelcomeCardTitle,
+                        Separator = true,
+                        Weight = AdaptiveTextWeight.Bolder,
+                        Size = AdaptiveTextSize.Medium,
+                    },
+                },
             };
 
             return new Attachment
@@ -32,32 +41,14 @@ namespace CalculatorChatBot.Helpers
                 Content = welcomeTeamAdaptiveCard,
             };
 
-            //var welcomeCardTitleText = Resources.WelcomeCardTitle;
-            //var welcomeCardContentPart1 = string.Format(Resources.WelcomeCardContentPart1, botDisplayName);
-            //var welcomeCardContentPart2 = Resources.WelcomeCardContentPart2;
-            //var welcomeCardBulletListItem1 = Resources.WelcomeCardBulletListItem1;
-            //var welcomeCardBulletListItem2 = Resources.WelcomeCardBulletListItem2;
-            //var welcomeCardBulletListItem3 = Resources.WelcomeCardBulletListItem3;
-            //var takeATourTeamButtonText = Resources.TakeATourText;
-
-            //var variablesToValues = new Dictionary<string, string>()
-            //{
-            //    { "welcomeCardTitleText", welcomeCardTitleText },
-            //    { "welcomeCardContentPart1", welcomeCardContentPart1 },
-            //    { "welcomeCardContentPart2", welcomeCardContentPart2 },
-            //    { "welcomeCardBulletListItem1", welcomeCardBulletListItem1 },
-            //    { "welcomeCardBulletListItem2", welcomeCardBulletListItem2 },
-            //    { "welcomeCardBulletListItem3", welcomeCardBulletListItem3 },
-            //    { "takeATourButtonText", takeATourTeamButtonText },
-            //};
-
-            //var cardBody = CardTemplate;
-            //foreach (var kvp in variablesToValues)
-            //{
-            //    cardBody = cardBody.Replace($"%{kvp.Key}%", kvp.Value);
-            //}
-
-            //return cardBody;
+            // var welcomeCardTitleText = Resources.WelcomeCardTitle;
+            // var welcomeCardContentPart1 = string.Format(Resources.WelcomeCardContentPart1, botDisplayName);
+            // var welcomeCardContentPart2 = Resources.WelcomeCardContentPart2;
+            // var welcomeCardBulletListItem1 = Resources.WelcomeCardBulletListItem1;
+            // var welcomeCardBulletListItem2 = Resources.WelcomeCardBulletListItem2;
+            // var welcomeCardBulletListItem3 = Resources.WelcomeCardBulletListItem3;
+            // var takeATourTeamButtonText = Resources.TakeATourText;
+            // return cardBody;
         }
     }
 }
