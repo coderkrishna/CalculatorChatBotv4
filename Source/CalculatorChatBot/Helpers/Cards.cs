@@ -5,10 +5,8 @@
 namespace CalculatorChatBot.Helpers
 {
     using System.Collections.Generic;
-    using CalculatorChatBot.Helpers.AdaptiveCards;
     using CalculatorChatBot.Properties;
     using Microsoft.Bot.Schema;
-    using Newtonsoft.Json;
 
     /// <summary>
     /// Class that allows for the returning of attachments.
@@ -16,36 +14,13 @@ namespace CalculatorChatBot.Helpers
     public static class Cards
     {
         /// <summary>
-        /// Method that returns the welcome card attachment.
-        /// </summary>
-        /// <param name="botDisplayName">The bot display name.</param>
-        /// <returns>Welcome card attachment that will be attached to the reply.</returns>
-        public static Attachment GetWelcomeCardAttachment(string botDisplayName)
-        {
-            var welcomeCardAttachmentString = WelcomeAdaptiveCard.GetCard(botDisplayName);
-            var welcomeCardAttachment = new Attachment()
-            {
-                ContentType = "application/vnd.microsoft.card.adaptive",
-                Content = JsonConvert.DeserializeObject(welcomeCardAttachmentString),
-            };
-
-            return welcomeCardAttachment;
-        }
-
-        /// <summary>
         /// Method that returns the welcome card attachment for a team.
         /// </summary>
         /// <param name="botDisplayName">The bot display name.</param>
         /// <returns>Welcome adaptive card that is to be attached to the welcome message.</returns>
         public static Attachment WelcomeTeamCardAttachment(string botDisplayName)
         {
-            var welcomeTeamAttachmentString = WelcomeTeamAdaptiveCard.GetCard(botDisplayName);
-            var welcomeTeamCardAttachment = new Attachment()
-            {
-                ContentType = "application/vnd.microsoft.card.adaptive",
-                Content = JsonConvert.DeserializeObject(welcomeTeamAttachmentString),
-            };
-
+            var welcomeTeamCardAttachment = WelcomeTeamAdaptiveCard.GetCard(botDisplayName);
             return welcomeTeamCardAttachment;
         }
 
