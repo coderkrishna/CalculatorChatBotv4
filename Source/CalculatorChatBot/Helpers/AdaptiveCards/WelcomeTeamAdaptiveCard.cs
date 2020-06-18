@@ -1,5 +1,5 @@
-﻿// <copyright file="WelcomeTeamAdaptiveCard.cs" company="Microsoft">
-// Copyright (c) Microsoft. All rights reserved.
+﻿// <copyright file="WelcomeTeamAdaptiveCard.cs" company="Tata Consultancy Services Ltd">
+// Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
 namespace CalculatorChatBot.Helpers.AdaptiveCards

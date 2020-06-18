@@ -1,5 +1,5 @@
-﻿// <copyright file="CalcChatBot.cs" company="Microsoft">
-// Copyright (c) Microsoft. All rights reserved.
+﻿// <copyright file="CalcChatBot.cs" company="Tata Consultancy Services Ltd">
+// Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 
 namespace CalculatorChatBot
@@ -93,7 +93,7 @@ namespace CalculatorChatBot
                 Cards.GetStatisticalCarouselAttachment(),
             };
 
-            await turnContext.SendActivityAsync(tourCarouselReply, cancellationToken);
+            await turnContext.SendActivityAsync(tourCarouselReply, cancellationToken).ConfigureAwait(false);
         }
 
         /// <summary>
