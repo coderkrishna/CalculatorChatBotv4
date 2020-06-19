@@ -5,7 +5,9 @@
 namespace CalculatorChatBot.Helpers
 {
     using System.Collections.Generic;
+    using System.Globalization;
     using AdaptiveCards;
+    using CalculatorChatBot.Properties;
     using Microsoft.Bot.Schema;
 
     /// <summary>
@@ -24,6 +26,38 @@ namespace CalculatorChatBot.Helpers
             {
                 Body = new List<AdaptiveElement>
                 {
+                    new AdaptiveTextBlock
+                    {
+                        Text = Resources.WelcomeCardTitle,
+                        Separator = true,
+                        Weight = AdaptiveTextWeight.Bolder,
+                        Size = AdaptiveTextSize.Medium,
+                    },
+                    new AdaptiveTextBlock
+                    {
+                        Text = string.Format(CultureInfo.InvariantCulture, Resources.WelcomeCardContentPart1, botDisplayName),
+                        Wrap = true,
+                    },
+                    new AdaptiveTextBlock
+                    {
+                        Text = Resources.WelcomeCardContentPart2,
+                        Wrap = true,
+                    },
+                    new AdaptiveTextBlock
+                    {
+                        Text = Resources.WelcomeCardBulletListItem1,
+                        Wrap = true,
+                    },
+                    new AdaptiveTextBlock
+                    {
+                        Text = Resources.WelcomeCardBulletListItem2,
+                        Wrap = true,
+                    },
+                    new AdaptiveTextBlock
+                    {
+                        Text = Resources.WelcomeCardBulletListItem3,
+                        Wrap = true,
+                    },
                 },
             };
 
