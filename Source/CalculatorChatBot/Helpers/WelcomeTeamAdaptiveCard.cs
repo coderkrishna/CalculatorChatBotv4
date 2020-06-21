@@ -59,6 +59,22 @@ namespace CalculatorChatBot.Helpers
                         Wrap = true,
                     },
                 },
+                Actions = new List<AdaptiveAction>
+                {
+                    new AdaptiveSubmitAction
+                    {
+                        Title = Resources.TakeATourText,
+                        Data = new TeamsAdaptiveSubmitActionData
+                        {
+                            MsTeams = new CardAction
+                            {
+                                Title = Resources.TakeATourText,
+                                DisplayText = Resources.TakeATourText,
+                                Text = Constants.TakeATour,
+                            },
+                        },
+                    },
+                },
             };
 
             return new Attachment
@@ -66,15 +82,6 @@ namespace CalculatorChatBot.Helpers
                 ContentType = AdaptiveCard.ContentType,
                 Content = welcomeTeamAdaptiveCard,
             };
-
-            // var welcomeCardTitleText = Resources.WelcomeCardTitle;
-            // var welcomeCardContentPart1 = string.Format(Resources.WelcomeCardContentPart1, botDisplayName);
-            // var welcomeCardContentPart2 = Resources.WelcomeCardContentPart2;
-            // var welcomeCardBulletListItem1 = Resources.WelcomeCardBulletListItem1;
-            // var welcomeCardBulletListItem2 = Resources.WelcomeCardBulletListItem2;
-            // var welcomeCardBulletListItem3 = Resources.WelcomeCardBulletListItem3;
-            // var takeATourTeamButtonText = Resources.TakeATourText;
-            // return cardBody;
         }
     }
 }
