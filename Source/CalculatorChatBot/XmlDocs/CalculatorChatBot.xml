@@ -1,0 +1,437 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CalculatorChatBot</name>
+    </assembly>
+    <members>
+        <member name="T:CalculatorChatBot.Bots.CalculatorBot">
+            <summary>
+            Initializes the CalculatorBot class.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Bots.CalculatorBot.#ctor(Microsoft.Extensions.Configuration.IConfiguration,CalculatorChatBot.OperationsLib.IArithmetic,Microsoft.ApplicationInsights.TelemetryClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CalculatorChatBot.Bots.CalculatorBot"/> class.
+            </summary>
+            <param name="configuration">The current configuration.</param>
+            <param name="arithmetic">Arithmetic operations DI.</param>
+            <param name="telemetryClient">ApplicationInsights DI.</param>
+        </member>
+        <member name="M:CalculatorChatBot.Bots.CalculatorBot.OnMessageActivityAsync(Microsoft.Bot.Builder.ITurnContext{Microsoft.Bot.Schema.IMessageActivity},System.Threading.CancellationToken)">
+            <summary>
+            Method that gets fired when a message comes in.
+            </summary>
+            <param name="turnContext">The current turn.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.Bots.CalculatorBot.OnMembersAddedAsync(System.Collections.Generic.IList{Microsoft.Bot.Schema.ChannelAccount},Microsoft.Bot.Builder.ITurnContext{Microsoft.Bot.Schema.IConversationUpdateActivity},System.Threading.CancellationToken)">
+            <summary>
+            Method that gets fired when either the bot gets added to a new team, or a new user is added.
+            </summary>
+            <param name="membersAdded">The list of members being added.</param>
+            <param name="turnContext">The current turn.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns a unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.Bots.CalculatorBot.OnConversationUpdateActivityAsync(Microsoft.Bot.Builder.ITurnContext{Microsoft.Bot.Schema.IConversationUpdateActivity},System.Threading.CancellationToken)">
+            <summary>
+            Method which fires at the time there is a conversation update.
+            </summary>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.CalcChatBot">
+            <summary>
+            This class will be allowing for the separation of logic.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.SendTeamWelcomeMessage(System.String,System.String,Microsoft.Bot.Connector.ConnectorClient,System.Threading.CancellationToken)">
+            <summary>
+            Method which fires at the time the bot sends a proactive welcome message after being installed to a team.
+            </summary>
+            <param name="teamId">The teamId.</param>
+            <param name="botDisplayName">The bot display name.</param>
+            <param name="connectorClient">The connector client.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.SendUserWelcomeMessage(System.String,System.String,System.String,System.String,Microsoft.Bot.Connector.ConnectorClient,System.Threading.CancellationToken)">
+            <summary>
+            Sends a welcome message to the user.
+            </summary>
+            <param name="memberAddedId">The newly added team member.</param>
+            <param name="teamId">The teamId.</param>
+            <param name="tenantId">The tenantId.</param>
+            <param name="botId">The botId.</param>
+            <param name="connectorClient">The turn connector client.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.SendTourCarouselCard(Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method that returns the necessary tour carousel card.
+            </summary>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.NotifyUser(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Schema.ChannelAccount,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Notifies the user.
+            </summary>
+            <param name="connectorClient">The connector client.</param>
+            <param name="user">The user that joined the team.</param>
+            <param name="botId">The bot Id.</param>
+            <param name="tenantId">The tenantId.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution that contains a boolean value.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.CalcChatBot.NotifyTeam(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Schema.Attachment,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Method that will send out the team notification.
+            </summary>
+            <param name="connectorClient">The connector client.</param>
+            <param name="attachmentToAppend">The attachment/adaptive card to attach to the message.</param>
+            <param name="teamId">The team Id.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.ConfigurationCredentialProvider">
+            <summary>
+            Initializes the configuration credential provider.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.ConfigurationCredentialProvider.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CalculatorChatBot.ConfigurationCredentialProvider"/> class.
+            </summary>
+            <param name="configuration">The current configuration settings.</param>
+        </member>
+        <member name="T:CalculatorChatBot.Constants">
+            <summary>
+            This class defines the constants that are going to be used throughout this project.
+            </summary>
+        </member>
+        <member name="F:CalculatorChatBot.Constants.TakeATour">
+            <summary>
+            This constant defines the take a tour command.
+            </summary>
+        </member>
+        <member name="T:CalculatorChatBot.Controllers.BotController">
+            <summary>
+            This ASP Controller is created to handle a request. Dependency Injection will provide the Adapter and IBot
+            implementation at runtime. Multiple different IBot implementations running at different endpoints can be
+            achieved by specifying a more specific type for the bot constructor argument.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Controllers.BotController.#ctor(Microsoft.Bot.Builder.Integration.AspNet.Core.IBotFrameworkHttpAdapter,Microsoft.Bot.Builder.IBot)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CalculatorChatBot.Controllers.BotController"/> class.
+            </summary>
+            <param name="adapter">The bot framework adapter.</param>
+            <param name="bot">The bot itself.</param>
+        </member>
+        <member name="M:CalculatorChatBot.Controllers.BotController.PostAsync">
+            <summary>
+            Posting method.
+            </summary>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Helpers.Cards">
+            <summary>
+            Class that allows for the returning of attachments.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.Cards.WelcomeTeamCardAttachment(System.String)">
+            <summary>
+            Method that returns the welcome card attachment for a team.
+            </summary>
+            <param name="botDisplayName">The bot display name.</param>
+            <returns>Welcome adaptive card that is to be attached to the welcome message.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.Cards.GetArithmeticCarouselAttachment">
+            <summary>
+            Returns the arithmetic carousel card.
+            </summary>
+            <returns>Returns the attachment that is to be a part of the tour carousel card.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.Cards.GetGeometricCarouselAttachment">
+            <summary>
+            Returns the geometric carousel card.
+            </summary>
+            <returns>Returns the attachment that is to be a part of the tour carousel card.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.Cards.GetStatisticalCarouselAttachment">
+            <summary>
+            Returns the statistical carousel card.
+            </summary>
+            <returns>Returns the attachment that is to be part of the tour carousel card.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Helpers.WelcomeAdaptiveCard">
+            <summary>
+            This class is responsible for the generation of the welcome adaptive card.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.WelcomeAdaptiveCard.GetCard(System.String)">
+            <summary>
+            Generates the JSON string of the adaptive card.
+            </summary>
+            <param name="botDisplayName">The display name for the bot.</param>
+            <returns>JSON string of the welcome adaptive card.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Helpers.WelcomeTeamAdaptiveCard">
+            <summary>
+            This is the class for the welcome card in a Team - which would then trigger the welcome tour.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.WelcomeTeamAdaptiveCard.GetCard(System.String)">
+            <summary>
+            Returns the JSON string for the welcome card.
+            </summary>
+            <param name="botDisplayName">The name of the bot.</param>
+            <returns>The JSON string of the attachment.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.OperationsLib.Arithmetic">
+            <summary>
+            This class represents all of the arithmetic operations that are to be done.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Arithmetic.#ctor(Microsoft.ApplicationInsights.TelemetryClient)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CalculatorChatBot.OperationsLib.Arithmetic"/> class.
+            </summary>
+            <param name="telemetryClient">ApplicationInsights DI.</param>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Arithmetic.CalculateSum(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method which will fire whenever the sum is to be calculated.
+            </summary>
+            <param name="inputList">The list of numbers.</param>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Arithmetic.CalculateDifference(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method that calculates the difference among a list of numbers.
+            </summary>
+            <param name="inputList">The incoming list of numbers.</param>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Arithmetic.CalculateProduct(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method that will calculate the product of a list of numbers.
+            </summary>
+            <param name="inputList">The input list of integers.</param>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.OperationsLib.IArithmetic">
+            <summary>
+            This interface defines the necessary methods for arithmetic operations.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.IArithmetic.CalculateSum(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method definition for calculating the sum of a list of numbers.
+            </summary>
+            <param name="inputList">The list of numbers.</param>
+            <param name="turnContext">The turn context/current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.IArithmetic.CalculateDifference(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method definition for calculating the difference of a list of numbers.
+            </summary>
+            <param name="inputList">The list of numbers.</param>
+            <param name="turnContext">The turn context/current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.IArithmetic.CalculateProduct(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method definition for calculating the product of a list of numbers.
+            </summary>
+            <param name="inputList">The list of integers.</param>
+            <param name="turnContext">The turn context/current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.OperationsLib.Statistics">
+            <summary>
+            The class that encapsulates all of the statistical methods.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Statistics.CalculateMean(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method that will calculate the average of the list of numbers.
+            </summary>
+            <param name="inputList">The list of integers.</param>
+            <param name="turnContext">The turn context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Statistics.CalculateMedian(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method to calculate the median.
+            </summary>
+            <param name="inputList">The list of integers.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.OperationsLib.Statistics.CalculateRange(System.String,Microsoft.Bot.Builder.ITurnContext,System.Threading.CancellationToken)">
+            <summary>
+            Method to calculate the range of a list.
+            </summary>
+            <param name="inputList">The list of numbers.</param>
+            <param name="turnContext">The current turn/execution flow.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A unit of execution.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Program">
+            <summary>
+            The main point of execution.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Program.Main(System.String[])">
+            <summary>
+            The main method of execution at the time the solution is running.
+            </summary>
+            <param name="args">Command line arguments.</param>
+        </member>
+        <member name="M:CalculatorChatBot.Program.CreateWebHostBuilder(System.String[])">
+            <summary>
+            Creates the Web Host.
+            </summary>
+            <param name="args">A string array of arguments.</param>
+            <returns>An interface for having the application scaffolded.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.ArithmeticCarouselCardContent">
+            <summary>
+              Looks up a localized string similar to The arithmetic operations are the most rudimentary operations that I perform. To be precise, I can calculate: the sum; the difference; the product; the quotient; and the remainder for a list of numbers. I also will throw up errors if I need to..
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.ArithmeticCarouselCardTitleText">
+            <summary>
+              Looks up a localized string similar to Arithmetic.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.GeometricCarouselCardContent">
+            <summary>
+              Looks up a localized string similar to I can also perform some geometric operations such as: calculating the discriminant; calculating the roots of a quadratic equation; calculating the hypotenuse given two legs of a triangle; calculating the area and perimeter of polygons; and more....
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.GeometricCarouselCardTitleText">
+            <summary>
+              Looks up a localized string similar to Geometric.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.StatisticalCarouselCardContent">
+            <summary>
+              Looks up a localized string similar to The statistical operations that I can do include, but are not limited to: the average; the median; the mode; the range; and other operations. The only way to find out whether or not I calculate a specific metric is to actually send me a command. As an example: mean 1,2,3 and I would return the result of 2.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.StatisticalCarouselCardTitleText">
+            <summary>
+              Looks up a localized string similar to Statistical.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.TakeATourText">
+            <summary>
+              Looks up a localized string similar to Take a tour.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardBulletListItem1">
+            <summary>
+              Looks up a localized string similar to * Arithmetic.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardBulletListItem2">
+            <summary>
+              Looks up a localized string similar to * Geometric.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardBulletListItem3">
+            <summary>
+              Looks up a localized string similar to * Statistical.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardContentPart1">
+            <summary>
+              Looks up a localized string similar to I am the new and improved {0} - unlike my cousin in v3, I can work a little better. Yes I can do everything my cousin can, and possibly a little more...in due ⏰.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardContentPart2">
+            <summary>
+              Looks up a localized string similar to Curious are we? Here are the categories of operations that I can do:.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.Properties.Resources.WelcomeCardTitle">
+            <summary>
+              Looks up a localized string similar to Hello 👋.
+            </summary>
+        </member>
+        <member name="T:CalculatorChatBot.Startup">
+            <summary>
+            Initializes the members of the Startup class.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CalculatorChatBot.Startup"/> class.
+            </summary>
+            <param name="configuration">All configurations done.</param>
+        </member>
+        <member name="P:CalculatorChatBot.Startup.Configuration">
+            <summary>
+            Gets the configuration properties.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Method that gets called by the runtime.
+            </summary>
+            <param name="services">All of the services that are required.</param>
+        </member>
+        <member name="M:CalculatorChatBot.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IHostingEnvironment)">
+            <summary>
+            This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            </summary>
+            <param name="app">The current built application.</param>
+            <param name="env">All of the environment settings.</param>
+        </member>
+        <member name="T:CalculatorChatBot.TeamsAdaptiveSubmitActionData">
+            <summary>
+            Defines Teams-specific behavior for an adaptive card submit action.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.TeamsAdaptiveSubmitActionData.MsTeams">
+            <summary>
+            Gets or sets the Teams-specific action.
+            </summary>
+        </member>
+    </members>
+</doc>
