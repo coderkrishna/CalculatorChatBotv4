@@ -67,6 +67,7 @@ namespace CalculatorChatBot
         public async Task SendUserWelcomeMessageAsync(
             string memberAddedId,
             string teamId,
+            string botDisplayName,
             string tenantId,
             string botId,
             ConnectorClient connectorClient,
@@ -92,7 +93,8 @@ namespace CalculatorChatBot
 
             if (userThatJustJoined != null)
             {
-                await this.NotifyUser(connectorClient, userThatJustJoined, botId, tenantId, cancellationToken).ConfigureAwait(false);
+                var welcomeUserCardAttachment = WelcomeAdaptiveCard.GetCard(botDisplayName);
+                await this.NotifyUser(connectorClient, userThatJustJoined, welcomeUserCardAttachment, botId, tenantId, cancellationToken).ConfigureAwait(false);
             }
         }
 
@@ -170,6 +172,7 @@ namespace CalculatorChatBot
         private async Task<bool> NotifyUser(
             ConnectorClient connectorClient,
             ChannelAccount user,
+            Attachment attachmentToAppend,
             string botId,
             string tenantId,
             CancellationToken cancellationToken)
@@ -200,7 +203,10 @@ namespace CalculatorChatBot
                 var activity = new Activity()
                 {
                     Type = ActivityTypes.Message,
-                    Text = Resources.WelcomeCardTitle,
+                    Attachments = new List<Attachment>()
+                    {
+                        attachmentToAppend,
+                    },
                 };
 
                 await connectorClient.Conversations.SendToConversationAsync(conversationId, activity).ConfigureAwait(false);

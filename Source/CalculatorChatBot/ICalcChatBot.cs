@@ -41,6 +41,7 @@ namespace CalculatorChatBot
         Task SendUserWelcomeMessageAsync(
             string memberAddedId,
             string teamId,
+            string botDisplayName,
             string tenantId,
             string botId,
             ConnectorClient connectorClient,

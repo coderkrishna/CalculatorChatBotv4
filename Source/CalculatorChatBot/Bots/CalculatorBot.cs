@@ -161,6 +161,7 @@ namespace CalculatorChatBot.Bots
 
             var teamId = turnContext.Activity.ChannelData["team"]["id"].ToString();
             var tenantId = turnContext.Activity.ChannelData["tenant"]["id"].ToString();
+            var botDisplayName = this.configuration["BotDisplayName"];
 
             this.telemetryClient.TrackTrace(Resources.MembersBeingAddedMessage);
             using (var connectorClient = new ConnectorClient(
@@ -178,12 +179,11 @@ namespace CalculatorChatBot.Bots
                     if (member.Id != turnContext.Activity.Recipient.Id)
                     {
                         this.telemetryClient.TrackTrace($"Welcoming user: {member.Id}");
-                        await this.calcChatBot.SendUserWelcomeMessageAsync(member.Id, teamId, tenantId, turnContext.Activity.Recipient.Id, connectorClient, cancellationToken).ConfigureAwait(false);
+                        await this.calcChatBot.SendUserWelcomeMessageAsync(member.Id, teamId, botDisplayName, tenantId, turnContext.Activity.Recipient.Id, connectorClient, cancellationToken).ConfigureAwait(false);
                     }
                     else
                     {
                         this.telemetryClient.TrackTrace($"Welcoming the team: {teamId}");
-                        var botDisplayName = this.configuration["BotDisplayName"];
                         await this.calcChatBot.SendTeamWelcomeMessageAsync(teamId, botDisplayName, connectorClient, cancellationToken).ConfigureAwait(false);
                     }
                 }
