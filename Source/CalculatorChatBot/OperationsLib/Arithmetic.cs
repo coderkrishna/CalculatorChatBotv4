@@ -1,4 +1,4 @@
-﻿// <copyright file="Arithmetic.cs" company="Tata Consultancy Services Ltd.">
+﻿// <copyright file="Arithmetic.cs" company="Tata Consultancy Services Ltd">
 // Copyright (c) Tata Consultancy Services Ltd. All rights reserved.
 // </copyright>
 

@@ -109,6 +109,16 @@
             </summary>
             <param name="configuration">The current configuration settings.</param>
         </member>
+        <member name="T:CalculatorChatBot.Constants">
+            <summary>
+            This class defines the constants that are going to be used throughout this project.
+            </summary>
+        </member>
+        <member name="F:CalculatorChatBot.Constants.TakeATour">
+            <summary>
+            This constant defines the take a tour command.
+            </summary>
+        </member>
         <member name="T:CalculatorChatBot.Controllers.BotController">
             <summary>
             This ASP Controller is created to handle a request. Dependency Injection will provide the Adapter and IBot
@@ -129,46 +139,10 @@
             </summary>
             <returns>A unit of execution.</returns>
         </member>
-        <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeAdaptiveCard">
-            <summary>
-            This class is responsible for the generation of the welcome adaptive card.
-            </summary>
-        </member>
-        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeAdaptiveCard.GetCard(System.String)">
-            <summary>
-            Generates the JSON string of the adaptive card.
-            </summary>
-            <param name="botDisplayName">The display name for the bot.</param>
-            <returns>JSON string of the welcome adaptive card.</returns>
-        </member>
-        <member name="T:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeTeamAdaptiveCard">
-            <summary>
-            This is the class for the welcome card in a Team - which would then trigger the welcome tour.
-            </summary>
-        </member>
-        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeTeamAdaptiveCard.#cctor">
-            <summary>
-            Initializes static members of the <see cref="T:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeTeamAdaptiveCard"/> class.
-            </summary>
-        </member>
-        <member name="M:CalculatorChatBot.Helpers.AdaptiveCards.WelcomeTeamAdaptiveCard.GetCard(System.String)">
-            <summary>
-            Returns the JSON string for the welcome card.
-            </summary>
-            <param name="botDisplayName">The name of the bot.</param>
-            <returns>The JSON string of the attachment.</returns>
-        </member>
         <member name="T:CalculatorChatBot.Helpers.Cards">
             <summary>
             Class that allows for the returning of attachments.
             </summary>
-        </member>
-        <member name="M:CalculatorChatBot.Helpers.Cards.GetWelcomeCardAttachment(System.String)">
-            <summary>
-            Method that returns the welcome card attachment.
-            </summary>
-            <param name="botDisplayName">The bot display name.</param>
-            <returns>Welcome card attachment that will be attached to the reply.</returns>
         </member>
         <member name="M:CalculatorChatBot.Helpers.Cards.WelcomeTeamCardAttachment(System.String)">
             <summary>
@@ -194,6 +168,30 @@
             Returns the statistical carousel card.
             </summary>
             <returns>Returns the attachment that is to be part of the tour carousel card.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Helpers.WelcomeAdaptiveCard">
+            <summary>
+            This class is responsible for the generation of the welcome adaptive card.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.WelcomeAdaptiveCard.GetCard(System.String)">
+            <summary>
+            Generates the JSON string of the adaptive card.
+            </summary>
+            <param name="botDisplayName">The display name for the bot.</param>
+            <returns>JSON string of the welcome adaptive card.</returns>
+        </member>
+        <member name="T:CalculatorChatBot.Helpers.WelcomeTeamAdaptiveCard">
+            <summary>
+            This is the class for the welcome card in a Team - which would then trigger the welcome tour.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.WelcomeTeamAdaptiveCard.GetCard(System.String)">
+            <summary>
+            Returns the JSON string for the welcome card.
+            </summary>
+            <param name="botDisplayName">The name of the bot.</param>
+            <returns>The JSON string of the attachment.</returns>
         </member>
         <member name="T:CalculatorChatBot.OperationsLib.Arithmetic">
             <summary>
@@ -424,6 +422,16 @@
             </summary>
             <param name="app">The current built application.</param>
             <param name="env">All of the environment settings.</param>
+        </member>
+        <member name="T:CalculatorChatBot.TeamsAdaptiveSubmitActionData">
+            <summary>
+            Defines Teams-specific behavior for an adaptive card submit action.
+            </summary>
+        </member>
+        <member name="P:CalculatorChatBot.TeamsAdaptiveSubmitActionData.MsTeams">
+            <summary>
+            Gets or sets the Teams-specific action.
+            </summary>
         </member>
     </members>
 </doc>
