@@ -33,6 +33,7 @@ namespace CalculatorChatBot
         /// </summary>
         /// <param name="memberAddedId">The Id of the new member added.</param>
         /// <param name="teamId">The Team ID.</param>
+        /// <param name="botDisplayName">The bot display name in Teams.</param>
         /// <param name="tenantId">The tenant ID.</param>
         /// <param name="botId">The bot ID.</param>
         /// <param name="connectorClient">The connector client.</param>

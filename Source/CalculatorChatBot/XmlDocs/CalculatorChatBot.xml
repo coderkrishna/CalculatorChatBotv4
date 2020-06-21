@@ -66,12 +66,13 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution.</returns>
         </member>
-        <member name="M:CalculatorChatBot.CalcChatBot.SendUserWelcomeMessageAsync(System.String,System.String,System.String,System.String,Microsoft.Bot.Connector.ConnectorClient,System.Threading.CancellationToken)">
+        <member name="M:CalculatorChatBot.CalcChatBot.SendUserWelcomeMessageAsync(System.String,System.String,System.String,System.String,System.String,Microsoft.Bot.Connector.ConnectorClient,System.Threading.CancellationToken)">
             <summary>
             Sends a welcome message to the user.
             </summary>
             <param name="memberAddedId">The newly added team member.</param>
             <param name="teamId">The teamId.</param>
+            <param name="botDisplayName">The bot display name.</param>
             <param name="tenantId">The tenantId.</param>
             <param name="botId">The botId.</param>
             <param name="connectorClient">The turn connector client.</param>
@@ -96,12 +97,13 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution.</returns>
         </member>
-        <member name="M:CalculatorChatBot.CalcChatBot.NotifyUser(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Schema.ChannelAccount,System.String,System.String,System.Threading.CancellationToken)">
+        <member name="M:CalculatorChatBot.CalcChatBot.NotifyUser(Microsoft.Bot.Connector.ConnectorClient,Microsoft.Bot.Schema.ChannelAccount,Microsoft.Bot.Schema.Attachment,System.String,System.String,System.Threading.CancellationToken)">
             <summary>
             Notifies the user.
             </summary>
             <param name="connectorClient">The connector client.</param>
             <param name="user">The user that joined the team.</param>
+            <param name="attachmentToAppend">The attachment to send.</param>
             <param name="botId">The bot Id.</param>
             <param name="tenantId">The tenantId.</param>
             <param name="cancellationToken">The cancellation token.</param>
@@ -217,12 +219,13 @@
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A unit of execution.</returns>
         </member>
-        <member name="M:CalculatorChatBot.ICalcChatBot.SendUserWelcomeMessageAsync(System.String,System.String,System.String,System.String,Microsoft.Bot.Connector.ConnectorClient,System.Threading.CancellationToken)">
+        <member name="M:CalculatorChatBot.ICalcChatBot.SendUserWelcomeMessageAsync(System.String,System.String,System.String,System.String,System.String,Microsoft.Bot.Connector.ConnectorClient,System.Threading.CancellationToken)">
             <summary>
             Method defintion to send a user welcome message.
             </summary>
             <param name="memberAddedId">The Id of the new member added.</param>
             <param name="teamId">The Team ID.</param>
+            <param name="botDisplayName">The bot display name in Teams.</param>
             <param name="tenantId">The tenant ID.</param>
             <param name="botId">The bot ID.</param>
             <param name="connectorClient">The connector client.</param>

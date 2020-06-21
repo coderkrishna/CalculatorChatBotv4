@@ -59,6 +59,7 @@ namespace CalculatorChatBot
         /// </summary>
         /// <param name="memberAddedId">The newly added team member.</param>
         /// <param name="teamId">The teamId.</param>
+        /// <param name="botDisplayName">The bot display name.</param>
         /// <param name="tenantId">The tenantId.</param>
         /// <param name="botId">The botId.</param>
         /// <param name="connectorClient">The turn connector client.</param>
@@ -165,6 +166,7 @@ namespace CalculatorChatBot
         /// </summary>
         /// <param name="connectorClient">The connector client.</param>
         /// <param name="user">The user that joined the team.</param>
+        /// <param name="attachmentToAppend">The attachment to send.</param>
         /// <param name="botId">The bot Id.</param>
         /// <param name="tenantId">The tenantId.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
