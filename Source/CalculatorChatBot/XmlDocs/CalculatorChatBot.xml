@@ -180,6 +180,11 @@
             </summary>
             <returns>Returns the attachment that is to be part of the tour carousel card.</returns>
         </member>
+        <member name="T:CalculatorChatBot.Helpers.ResponseCard">
+            <summary>
+            This is the class that will return the response cards accordingly.
+            </summary>
+        </member>
         <member name="T:CalculatorChatBot.Helpers.WelcomeAdaptiveCard">
             <summary>
             This class is responsible for the generation of the welcome adaptive card.
