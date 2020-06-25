@@ -52,17 +52,7 @@ namespace CalculatorChatBot.OperationsLib
 
             var inputStringArray = inputList.Split(',');
             var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
-
-            int sum;
-            if (inputInts.Length > 1)
-            {
-                sum = inputInts.Sum();
-            }
-            else
-            {
-                sum = 0;
-            }
-
+            int sum = inputInts.Length > 1 ? inputInts.Sum() : 0;
             this.telemetryClient.TrackTrace("CalculateSum end");
             return sum;
         }
