@@ -39,9 +39,11 @@ namespace CalculatorChatBot
         /// Method that gets called by the runtime.
         /// </summary>
         /// <param name="services">All of the services that are required.</param>
+#pragma warning disable CA1822 // Mark members as static
         public void ConfigureServices(IServiceCollection services)
+#pragma warning restore CA1822 // Mark members as static
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Create the credential provider to be used with the Bot Framework Adapter.
             services.AddSingleton<ICredentialProvider, ConfigurationCredentialProvider>();
@@ -51,12 +53,24 @@ namespace CalculatorChatBot
 
             services.AddSingleton<IArithmetic>((provider) => new Arithmetic(
                 provider.GetRequiredService<TelemetryClient>()));
+            services.AddSingleton<IStatistic>((provider) => new Statistic(
+                provider.GetRequiredService<TelemetryClient>()));
+            services.AddSingleton<IGeometric>((provider) => new Geometric(
+                provider.GetRequiredService<TelemetryClient>()));
+
+            services.AddSingleton<ICalcChatBot>((provider) => new CalcChatBot(
+                provider.GetRequiredService<TelemetryClient>()));
 
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
             services.AddTransient<IBot>((provider) => new CalculatorBot(
                 provider.GetRequiredService<IConfiguration>(),
                 provider.GetRequiredService<IArithmetic>(),
-                provider.GetRequiredService<TelemetryClient>()));
+                provider.GetRequiredService<ICalcChatBot>(),
+                provider.GetRequiredService<TelemetryClient>(),
+                provider.GetRequiredService<IStatistic>(),
+                provider.GetRequiredService<IGeometric>()));
+
+            services.AddApplicationInsightsTelemetry();
         }
 
         /// <summary>
@@ -64,7 +78,9 @@ namespace CalculatorChatBot
         /// </summary>
         /// <param name="app">The current built application.</param>
         /// <param name="env">All of the environment settings.</param>
+#pragma warning disable CA1822 // Mark members as static
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+#pragma warning restore CA1822 // Mark members as static
         {
             if (env.IsDevelopment())
             {

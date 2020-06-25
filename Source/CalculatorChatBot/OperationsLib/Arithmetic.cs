@@ -7,7 +7,6 @@ namespace CalculatorChatBot.OperationsLib
     using System;
     using System.Linq;
     using System.Threading;
-    using System.Threading.Tasks;
     using Microsoft.ApplicationInsights;
     using Microsoft.Bot.Builder;
 
@@ -34,16 +33,28 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateSum(
+        public int CalculateSum(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            this.telemetryClient.TrackTrace("CalculateSum start");
+
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
             var inputStringArray = inputList.Split(',');
             var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
-
-            var sum = inputInts.Sum();
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Sum = {sum}"), cancellationToken);
+            int sum = inputInts.Length > 1 ? inputInts.Sum() : 0;
+            this.telemetryClient.TrackTrace("CalculateSum end");
+            return sum;
         }
 
         /// <summary>
@@ -53,11 +64,22 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateDifference(
+        public int CalculateDifference(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            this.telemetryClient.TrackTrace("CalculateDifference start");
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
             var inputStringArray = inputList.Split(',');
             var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
 
@@ -67,7 +89,8 @@ namespace CalculatorChatBot.OperationsLib
                 overallDiff -= inputInts[i];
             }
 
-            await turnContext.SendActivityAsync(MessageFactory.Text($"Difference = {overallDiff}"), cancellationToken);
+            this.telemetryClient.TrackTrace("CalculateDifference end");
+            return overallDiff;
         }
 
         /// <summary>
@@ -77,28 +100,85 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The turn context.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        public async Task CalculateProduct(
+        public int CalculateProduct(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            this.telemetryClient.TrackTrace("CalculateProduct start");
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
+            int overallProduct;
             var inputStringArray = inputList.Split(',');
             var inputInts = Array.ConvertAll(inputStringArray, int.Parse);
 
+            this.telemetryClient.TrackTrace("CalculateProduct start");
             var containsZero = inputInts.Any(x => x == 0);
             if (containsZero)
             {
-                await turnContext.SendActivityAsync(MessageFactory.Text("Overall product = 0"), cancellationToken);
+                overallProduct = 0;
+                this.telemetryClient.TrackTrace("CalculateProduct end");
             }
             else
             {
-                var overallProduct = inputInts[0];
+                overallProduct = inputInts[0];
                 for (int i = 1; i < inputInts.Length - 1; i++)
                 {
                     overallProduct *= inputInts[i];
                 }
 
-                await turnContext.SendActivityAsync(MessageFactory.Text($"Overall product = {overallProduct}"), cancellationToken);
+                this.telemetryClient.TrackTrace("CalculateProduct end");
+            }
+
+            return overallProduct;
+        }
+
+        /// <summary>
+        /// Method that will calculate the product of a list of numbers.
+        /// </summary>
+        /// <param name="inputList">The input list of integers.</param>
+        /// <param name="turnContext">The turn context.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        public decimal CalculateQuotient(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            this.telemetryClient.TrackTrace("CalculateQuotient start");
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            if (turnContext is null)
+            {
+                throw new ArgumentNullException(nameof(turnContext));
+            }
+
+            var inputArrayStr = inputList.Split(',');
+            int[] inputInts = Array.ConvertAll(inputArrayStr, int.Parse);
+
+            decimal quotient = 0;
+            if (inputInts.Length == 2 && inputInts[1] != 0)
+            {
+                quotient = Convert.ToDecimal(inputInts[0]) / inputInts[1];
+                this.telemetryClient.TrackTrace("CalculateQuotient end");
+                return decimal.Round(quotient, 2);
+            }
+            else
+            {
+                this.telemetryClient.TrackTrace("The length of the input array is not 2 exactly, or the first element of the list is 0!");
+                this.telemetryClient.TrackTrace("CalculateQuotient end");
+                return 0;
             }
         }
     }

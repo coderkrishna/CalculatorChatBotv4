@@ -10,7 +10,7 @@ namespace CalculatorChatBot
     /// <summary>
     /// The main point of execution.
     /// </summary>
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// The main method of execution at the time the solution is running.

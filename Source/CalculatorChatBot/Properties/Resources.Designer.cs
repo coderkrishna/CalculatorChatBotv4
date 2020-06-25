@@ -79,6 +79,24 @@ namespace CalculatorChatBot.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I&apos;m not able to decipher any input commands here!.
+        /// </summary>
+        public static string CannotPickUpCommandText {
+            get {
+                return ResourceManager.GetString("CannotPickUpCommandText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This current method is being implemented, I cannot return any results right now!.
+        /// </summary>
+        public static string CurrentMethodBeingImplementedMessage {
+            get {
+                return ResourceManager.GetString("CurrentMethodBeingImplementedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I can also perform some geometric operations such as: calculating the discriminant; calculating the roots of a quadratic equation; calculating the hypotenuse given two legs of a triangle; calculating the area and perimeter of polygons; and more....
         /// </summary>
         public static string GeometricCarouselCardContent {
@@ -93,6 +111,15 @@ namespace CalculatorChatBot.Properties {
         public static string GeometricCarouselCardTitleText {
             get {
                 return ResourceManager.GetString("GeometricCarouselCardTitleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Members being added.
+        /// </summary>
+        public static string MembersBeingAddedMessage {
+            get {
+                return ResourceManager.GetString("MembersBeingAddedMessage", resourceCulture);
             }
         }
         

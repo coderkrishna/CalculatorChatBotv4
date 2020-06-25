@@ -5,7 +5,6 @@
 namespace CalculatorChatBot.OperationsLib
 {
     using System.Threading;
-    using System.Threading.Tasks;
     using Microsoft.Bot.Builder;
 
     /// <summary>
@@ -20,7 +19,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The turn context/current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateSum(
+        int CalculateSum(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
@@ -32,7 +31,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The turn context/current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateDifference(
+        int CalculateDifference(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
@@ -44,7 +43,19 @@ namespace CalculatorChatBot.OperationsLib
         /// <param name="turnContext">The turn context/current turn/execution flow.</param>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>A unit of execution.</returns>
-        Task CalculateProduct(
+        int CalculateProduct(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// This method definition will calculate the quotient.
+        /// </summary>
+        /// <param name="inputList">The comma-separated list of integers.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>A unit of execution.</returns>
+        decimal CalculateQuotient(
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
