@@ -8,6 +8,7 @@ namespace CalculatorChatBot.Bots
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
+    using CalculatorChatBot.Helpers;
     using CalculatorChatBot.OperationsLib;
     using CalculatorChatBot.Properties;
     using Microsoft.ApplicationInsights;
@@ -78,20 +79,24 @@ namespace CalculatorChatBot.Bots
                 var incomingTextArray = turnContext.Activity.Text.Split(' ');
                 var command = incomingTextArray[0];
                 var commandInputList = incomingTextArray[1];
+                Attachment responseAttachment;
 
                 switch (command)
                 {
                     case "sum":
                     case "add":
                         var sum = this.arithmetic.CalculateSum(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithIntResult(sum, command);
                         break;
                     case "difference":
                     case "minus":
                         var diff = this.arithmetic.CalculateDifference(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithIntResult(diff, command);
                         break;
                     case "multiplication":
                     case "product":
                         var product = this.arithmetic.CalculateProduct(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithIntResult(product, command);
                         break;
                     case "division":
                     case "quotient":
