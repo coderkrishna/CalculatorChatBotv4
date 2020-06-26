@@ -101,20 +101,25 @@ namespace CalculatorChatBot.Bots
                     case "division":
                     case "quotient":
                         var quotient = this.arithmetic.CalculateQuotient(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithDecimalResult(quotient, command);
                         break;
                     case "mean":
                     case "average":
                         var mean = this.statistics.CalculateMean(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithDecimalResult(mean, command);
                         break;
                     case "median":
                     case "middle of the list":
                         var median = this.statistics.CalculateMedian(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithDecimalResult(median, command);
                         break;
                     case "range":
                         var range = this.statistics.CalculateRange(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithDecimalResult(range, command);
                         break;
                     case "variance":
                         var variance = this.statistics.CalculateVariance(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithDecimalResult(variance, command);
                         break;
                     case "mode":
                         var modeList = this.statistics.CalculateMode(commandInputList, turnContext, cancellationToken);
@@ -127,9 +132,11 @@ namespace CalculatorChatBot.Bots
                         break;
                     case "quadratic roots":
                         var quadRoots = this.geometrics.CalculateQuadraticRoots(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithStringResult(quadRoots, command);
                         break;
                     case "discriminant":
                         var discriminant = this.geometrics.CalculateDiscriminant(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithIntResult(discriminant, command);
                         break;
                     case "midpoint":
                         var midpoint = this.geometrics.CalculateMidpoint(commandInputList, turnContext, cancellationToken);
@@ -139,6 +146,7 @@ namespace CalculatorChatBot.Bots
                         break;
                     case "pythagorean triple":
                         var pythagoreanTriple = this.geometrics.CalculatePythagoreanTriple(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithStringResult(pythagoreanTriple, command);
                         break;
                     default:
                         await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CannotPickUpCommandText), cancellationToken).ConfigureAwait(false);
