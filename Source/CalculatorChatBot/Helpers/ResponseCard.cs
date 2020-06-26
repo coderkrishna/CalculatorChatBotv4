@@ -4,8 +4,8 @@
 
 namespace CalculatorChatBot.Helpers
 {
-    using AdaptiveCards;
     using System.Collections.Generic;
+    using AdaptiveCards;
     using Microsoft.Bot.Schema;
 
     /// <summary>
