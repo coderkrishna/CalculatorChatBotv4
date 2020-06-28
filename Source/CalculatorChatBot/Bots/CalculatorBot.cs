@@ -79,7 +79,7 @@ namespace CalculatorChatBot.Bots
                 var incomingTextArray = turnContext.Activity.Text.Split(' ');
                 var command = incomingTextArray[0];
                 var commandInputList = incomingTextArray[1];
-                Attachment responseAttachment;
+                Attachment responseAttachment = null;
 
                 switch (command)
                 {
@@ -123,12 +123,15 @@ namespace CalculatorChatBot.Bots
                         break;
                     case "mode":
                         var modeList = this.statistics.CalculateMode(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithIntArrayResult(modeList, command);
                         break;
                     case "standard deviation":
                         var stdDev = this.statistics.CalculateStandardDeviation(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithDecimalResult(stdDev, command);
                         break;
                     case "geometric mean":
                         var geometricMean = this.statistics.CalculateGeometricMean(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithDecimalResult(geometricMean, command);
                         break;
                     case "quadratic roots":
                         var quadRoots = this.geometrics.CalculateQuadraticRoots(commandInputList, turnContext, cancellationToken);
@@ -140,9 +143,11 @@ namespace CalculatorChatBot.Bots
                         break;
                     case "midpoint":
                         var midpoint = this.geometrics.CalculateMidpoint(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithStringResult(midpoint, command);
                         break;
                     case "distance":
                         var distance = this.geometrics.CalculateDistance(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithDoubleResult(distance, command);
                         break;
                     case "pythagorean triple":
                         var pythagoreanTriple = this.geometrics.CalculatePythagoreanTriple(commandInputList, turnContext, cancellationToken);
@@ -152,6 +157,8 @@ namespace CalculatorChatBot.Bots
                         await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CannotPickUpCommandText), cancellationToken).ConfigureAwait(false);
                         break;
                 }
+
+                await turnContext.SendActivityAsync(MessageFactory.Attachment(responseAttachment), cancellationToken).ConfigureAwait(false);
             }
         }
 
