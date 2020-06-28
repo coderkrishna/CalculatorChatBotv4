@@ -180,6 +180,51 @@
             </summary>
             <returns>Returns the attachment that is to be part of the tour carousel card.</returns>
         </member>
+        <member name="T:CalculatorChatBot.Helpers.ResponseCard">
+            <summary>
+            This is the class that will return the response cards accordingly.
+            </summary>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.ResponseCard.GetCardWithIntResult(System.Int32,System.String)">
+            <summary>
+            This method will return the necessary results to the end user.
+            </summary>
+            <param name="result">The numerical result.</param>
+            <param name="command">The command that produced the result.</param>
+            <returns>An attachment to append to a message.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.ResponseCard.GetCardWithDecimalResult(System.Decimal,System.String)">
+            <summary>
+            This method will return the necessary results to the end user.
+            </summary>
+            <param name="result">The decimal result.</param>
+            <param name="command">The command that produced the result.</param>
+            <returns>An attachment to append to a message.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.ResponseCard.GetCardWithStringResult(System.String,System.String)">
+            <summary>
+            This method will return the necessary results to the end user.
+            </summary>
+            <param name="result">The decimal result.</param>
+            <param name="command">The command that produced the result.</param>
+            <returns>An attachment to append to a message.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.ResponseCard.GetCardWithDoubleResult(System.Double,System.String)">
+            <summary>
+            This method will return the necessary double data type results to the end user.
+            </summary>
+            <param name="result">The result of the operation specified by the command.</param>
+            <param name="command">The command being executed as part of what the user tells the bot.</param>
+            <returns>An attachment to append to a message.</returns>
+        </member>
+        <member name="M:CalculatorChatBot.Helpers.ResponseCard.GetCardWithIntArrayResult(System.Int32[],System.String)">
+            <summary>
+            This method will return a card when there is an array returned as a result.
+            </summary>
+            <param name="result">The result of an operation specified by a command.</param>
+            <param name="command">The command that the user provides to the bot.</param>
+            <returns>An attachment to append to a message.</returns>
+        </member>
         <member name="T:CalculatorChatBot.Helpers.WelcomeAdaptiveCard">
             <summary>
             This class is responsible for the generation of the welcome adaptive card.
