@@ -71,5 +71,29 @@ namespace CalculatorChatBot.OperationsLib
             string inputList,
             ITurnContext turnContext,
             CancellationToken cancellationToken);
+
+        /// <summary>
+        /// This method calculates the area of a circle.
+        /// </summary>
+        /// <param name="inputList">The list of integers.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The area of a circle.</returns>
+        decimal CalculateCircleArea(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken);
+
+        /// <summary>
+        /// This method calculates the circumference of a circle.
+        /// </summary>
+        /// <param name="inputList">The list of integers.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The circumference of a circle.</returns>
+        decimal CalculateCircleCircumference(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken);
     }
 }
