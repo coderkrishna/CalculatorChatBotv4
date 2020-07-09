@@ -191,6 +191,14 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
+
             return 0;
         }
 
@@ -206,6 +214,14 @@ namespace CalculatorChatBot.OperationsLib
             ITurnContext turnContext,
             CancellationToken cancellationToken)
         {
+            if (inputList is null)
+            {
+                throw new ArgumentNullException(nameof(inputList));
+            }
+
+            var inputListArray = inputList.Split(',');
+            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
+
             return 0;
         }
     }
