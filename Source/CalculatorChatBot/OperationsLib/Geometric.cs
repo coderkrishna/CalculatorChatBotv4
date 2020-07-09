@@ -149,6 +149,7 @@ namespace CalculatorChatBot.OperationsLib
         /// <returns>A unit of execution.</returns>
         public string CalculateQuadraticRoots(string inputList, ITurnContext turnContext, CancellationToken cancellationToken)
         {
+            string resultString = string.Empty;
             this.telemetryClient.TrackTrace("CalculateQuadraticRoots started");
 
             if (inputList is null)
@@ -164,17 +165,48 @@ namespace CalculatorChatBot.OperationsLib
             if (inputList.Length == 3)
             {
                 this.telemetryClient.TrackTrace("The inputList is of the correct length");
+
+                var inputListArray = inputList.Split(',');
+                var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
             }
             else
             {
-                this.telemetryClient.TrackTrace("The inputList needs to have a length of 3 in order for me to calculate the roots.");
+                this.telemetryClient.TrackTrace("The inputList needs to have a length of 3 in order to calculate the roots.");
+                resultString = "ERROR";
             }
 
-            var inputListArray = inputList.Split(',');
-            var inputListInts = Array.ConvertAll(inputListArray, int.Parse);
-
             this.telemetryClient.TrackTrace("CalculateQuadraticRoots ended");
-            return string.Empty;
+            return resultString;
+        }
+
+        /// <summary>
+        /// This method will be calculating the area of a circle.
+        /// </summary>
+        /// <param name="inputList">The list of integers which will only be 1.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The decimal value of the area of the circle.</returns>
+        public decimal CalculateCircleArea(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// This method will calculate the circumference of a circle.
+        /// </summary>
+        /// <param name="inputList">The input list of integers.</param>
+        /// <param name="turnContext">The current turn/execution flow.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
+        /// <returns>The circumference of the circle.</returns>
+        public decimal CalculateCircleCircumference(
+            string inputList,
+            ITurnContext turnContext,
+            CancellationToken cancellationToken)
+        {
+            return 0;
         }
     }
 }

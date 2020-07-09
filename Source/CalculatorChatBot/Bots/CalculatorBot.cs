@@ -135,7 +135,7 @@ namespace CalculatorChatBot.Bots
                         break;
                     case "quadratic roots":
                         var quadRoots = this.geometrics.CalculateQuadraticRoots(commandInputList, turnContext, cancellationToken);
-                        responseAttachment = ResponseCard.GetCardWithStringResult(quadRoots, command);
+                        responseAttachment = quadRoots != "ERROR" ? ResponseCard.GetCardWithStringResult(quadRoots, command) : ResponseCard.GetCardWithStringResult("ERROR", command);
                         break;
                     case "discriminant":
                         var discriminant = this.geometrics.CalculateDiscriminant(commandInputList, turnContext, cancellationToken);
@@ -152,6 +152,14 @@ namespace CalculatorChatBot.Bots
                     case "pythagorean triple":
                         var pythagoreanTriple = this.geometrics.CalculatePythagoreanTriple(commandInputList, turnContext, cancellationToken);
                         responseAttachment = ResponseCard.GetCardWithStringResult(pythagoreanTriple, command);
+                        break;
+                    case "area of a circle":
+                        var circleArea = this.geometrics.CalculateCircleArea(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithDecimalResult(circleArea, command);
+                        break;
+                    case "circumference of a circle":
+                        var circleCircumference = this.geometrics.CalculateCircleCircumference(commandInputList, turnContext, cancellationToken);
+                        responseAttachment = ResponseCard.GetCardWithDecimalResult(circleCircumference, command);
                         break;
                     default:
                         await turnContext.SendActivityAsync(MessageFactory.Text(Resources.CannotPickUpCommandText), cancellationToken).ConfigureAwait(false);
